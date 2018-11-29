@@ -1,4 +1,4 @@
-package com.example.cykelsystem;
+package com.example.cykelsystem.Controller;
 
 import org.springframework.stereotype.Controller;
 
