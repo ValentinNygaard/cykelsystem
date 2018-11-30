@@ -7,7 +7,7 @@ public interface IRepo {
     public List findAll();
 
     public Object findById(Object object);
-    
+
     public Object create(Object object);
 
     public Object update(int id, Object object);
