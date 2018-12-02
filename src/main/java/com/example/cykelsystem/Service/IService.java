@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface IService {
 
-    List findAll();
+    public List findAll();
 
-    Object findById(Object object);
+    public Object findById(Object object);
 
-    Object create(Object object);
+    public Object create(Object object);
 
-    Object update(Object object);
+    public Object update(int id, Object object);
 
-    boolean delete(int id);
+    public boolean delete(int id);
 }
