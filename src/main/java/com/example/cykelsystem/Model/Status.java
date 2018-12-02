@@ -1,4 +1,4 @@
-package com.example.cykelsystem.model;
+package com.example.cykelsystem.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

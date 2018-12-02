@@ -1,4 +1,4 @@
-package com.example.cykelsystem.model;
+package com.example.cykelsystem.Model;
 
 import java.util.Date;
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
 package com.example.cykelsystem.Controller;
 
-import com.example.cykelsystem.Model.Person;
+
 import com.example.cykelsystem.Service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
+   /* @Autowired
     IService personService;
 
     @GetMapping("/")
@@ -60,5 +60,5 @@ public class HomeController {
     public String updatePerson(@ModelAttribute Person person) {
         personService.updatePerson(person.getId(), person);
         return "redirect:/";
-    }
+    }*/
 }
