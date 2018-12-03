@@ -14,7 +14,11 @@ public class StatusRepoImpl implements IRepo<Status> {
     JdbcTemplate template;
 
     @Override
-    public List<Status> findAll() {
+    public List<Status> findAll()
+    {
+        String sql ="SELECT * FROM status";
+
+
         return null;
     }
 
