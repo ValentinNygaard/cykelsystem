@@ -1,5 +1,6 @@
 package com.example.cykelsystem.Repository;
 
+import com.example.cykelsystem.Model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -7,28 +8,28 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class CustomerRepoImpl implements IRepo {
+public class CustomerRepoImpl implements IRepo<Customer> {
 
     @Autowired
     JdbcTemplate template;
 
     @Override
-    public List findAll() {
+    public List<Customer> findAll() {
         return null;
     }
 
     @Override
-    public Object findById(Object object) {
+    public Customer findById(Customer customer) {
         return null;
     }
 
     @Override
-    public Object create(Object object) {
+    public Customer create(Customer customer) {
         return null;
     }
 
     @Override
-    public Object update(Object object) {
+    public Customer update(Customer customer) {
         return null;
     }
 

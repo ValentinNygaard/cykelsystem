@@ -2,15 +2,15 @@ package com.example.cykelsystem.Service;
 
 import java.util.List;
 
-public interface IService {
+public interface IService<T> {
 
-    List findAll();
+    List<T> findAll();
 
-    Object findById(Object object);
+    T findById(T t);
 
-    Object create(Object object);
+    T create(T t);
 
-    Object update(Object object);
+    T update(T t);
 
     boolean delete(int id);
 }

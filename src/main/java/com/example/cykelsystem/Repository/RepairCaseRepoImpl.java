@@ -1,5 +1,6 @@
 package com.example.cykelsystem.Repository;
 
+import com.example.cykelsystem.Model.RepairCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -7,28 +8,28 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RepairCaseRepoImpl implements IRepo {
+public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Autowired
     JdbcTemplate template;
 
     @Override
-    public List findAll() {
+    public List<RepairCase> findAll() {
         return null;
     }
 
     @Override
-    public Object findById(Object object) {
+    public RepairCase findById(RepairCase repairCase) {
         return null;
     }
 
     @Override
-    public Object create(Object object) {
+    public RepairCase create(RepairCase repairCase) {
         return null;
     }
 
     @Override
-    public Object update(Object object) {
+    public RepairCase update(RepairCase repairCase) {
         return null;
     }
 
