@@ -34,7 +34,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     }
 
     @Override
-    public Boolean delete(int id) {
+    public boolean delete(int id) {
         return false;
     }
 }

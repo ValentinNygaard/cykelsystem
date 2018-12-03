@@ -15,26 +15,26 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
 
     @Override
     public List findAll() {
-        return null;
+        return repairLineItemRepo.findAll();
     }
 
     @Override
     public RepairLineItem findById(int id) {
-        return null;
+        return repairLineItemRepo.findById(id);
     }
 
     @Override
-    public RepairLineItem create(RepairLineItem RepairLineItem) {
-        return null;
+    public RepairLineItem create(RepairLineItem repairLineItem) {
+        return repairLineItemRepo.create(repairLineItem);
     }
 
     @Override
     public RepairLineItem update(RepairLineItem repairLineItem) {
-        return null;
+        return repairLineItemRepo.update(repairLineItem);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return repairLineItemRepo.delete(id);
     }
 }

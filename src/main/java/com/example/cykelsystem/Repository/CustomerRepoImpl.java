@@ -34,7 +34,7 @@ public class CustomerRepoImpl implements IRepo<Customer> {
     }
 
     @Override
-    public Boolean delete(int id) {
+    public boolean delete(int id) {
         return false;
     }
 }

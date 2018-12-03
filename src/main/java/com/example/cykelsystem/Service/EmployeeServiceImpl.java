@@ -15,26 +15,26 @@ public class EmployeeServiceImpl implements IService<Employee> {
 
     @Override
     public List findAll() {
-        return null;
+        return employeeRepo.findAll();
     }
 
     @Override
     public Employee findById(int id) {
-        return null;
+        return employeeRepo.findById(id);
     }
 
     @Override
     public Employee create(Employee employee) {
-        return null;
+        return employeeRepo.create(employee);
     }
 
     @Override
     public Employee update(Employee employee) {
-        return null;
+        return employeeRepo.update(employee);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return employeeRepo.delete(id);
     }
 }

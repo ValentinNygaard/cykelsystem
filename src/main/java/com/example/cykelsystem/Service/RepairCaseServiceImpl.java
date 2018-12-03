@@ -15,26 +15,26 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
 
     @Override
     public List<RepairCase> findAll() {
-        return null;
+        return repairCaseRepo.findAll();
     }
 
     @Override
     public RepairCase findById(int id) {
-        return null;
+        return repairCaseRepo.findById(id);
     }
 
     @Override
     public RepairCase create(RepairCase repairCase) {
-        return null;
+        return repairCaseRepo.create(repairCase);
     }
 
     @Override
     public RepairCase update(RepairCase repairCase) {
-        return null;
+        return repairCaseRepo.update(repairCase);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return repairCaseRepo.delete(id);
     }
 }
