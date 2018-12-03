@@ -19,7 +19,7 @@ public class StatusRepoImpl implements IRepo<Status> {
     @Override
     public List<Status> findAll() {
         String sql = "SELECT * FROM status";
-        RowM@apper<Status> rowMapper = new BeanProp@ertyRowMapper<>(Status.class);
+        RowMapper<Status> rowMapper = new BeanPropertyRowMapper<>(Status.class);
         return template.query(sql, rowMapper);
     }
 
