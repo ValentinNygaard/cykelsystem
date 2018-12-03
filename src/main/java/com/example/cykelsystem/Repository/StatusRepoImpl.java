@@ -13,28 +13,39 @@ public class StatusRepoImpl implements IRepo<Status> {
     @Autowired
     JdbcTemplate template;
 
+
     @Override
-    public List<Status> findAll() {
-        return null;
+    public List<Status> fetchAll() {
+        String sql = "SELECT * FROM status";
+        RowMapper<Status> rowMapper = new BeanPropertyRowMapper<>(Status.class);
+        return template.query(sql, rowMapper);
     }
 
     @Override
-    public Status findById(Status Status) {
-        return null;
+    public Status findById(int id) {
+        String sql = "SELECT * FROM status WHERE id=?";
+        RowMapper<Status> rowMapper = new BeanPropertyRowMapper<>(Status.class);
+        Status s = template.queryForObject(sql, rowMapper, id);
+        return s;
     }
 
     @Override
-    public Status create(Status Status) {
-        return null;
+    public Status add(Status s) {
+        String sql = "INSERT INTO status (id, status_title) VALUES(?,?)";
+        template.update(sql, s.getStatus_id(), s.getStatus_title());
+        return s;
     }
 
     @Override
-    public Status update(Status status) {
-        return null;
+    public Boolean delete(int id) {
+        String sql = "DELETE FROM person WHERE id=?";
+        return template.update(sql, id) >= 0;
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public Status update(int id, Status s) {
+        String sql = "UPDATE status SET status_title=? WHERE id=?";
+        template.update(sql, s.getStatus_title(), s.getStatus_id());
+        return null;
     }
 }
