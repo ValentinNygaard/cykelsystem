@@ -19,8 +19,8 @@ public class BicycleController {
 
     @GetMapping("/bicycle")
     public String bicycle(Model model){
-        List<Bicycle> bicycles = bsi.findAll();
-        model.addAttribute("bicycle", bicycles);
+        List<Bicycle> bicycle = bsi.findAll();
+        model.addAttribute("bicycle", bicycle);
         return "home/bicycle";
     }
 
@@ -30,8 +30,8 @@ public class BicycleController {
         return "home/bicyclefind";
     }
 
-    /*@GetMapping("/deleteStatus/{id}")
-    public String deleteStatus(@PathVariable("id")int id)
+    @GetMapping("/deletebicycle/{id}")
+    public String deleteBicycle(@PathVariable("id")int id)
     {
         boolean deleted = bsi.delete(id);
         if(deleted) {
@@ -42,22 +42,22 @@ public class BicycleController {
         }
     }
 
-    @GetMapping("/updateStatus/{id}")
-    public String updateStatus(@PathVariable("id")int id, Model model)
+    @GetMapping("/updatebicycle/{id}")
+    public String updateBicycle(@PathVariable("id")int id, Model model)
     {
-        model.addAttribute("status",bsi.findById(id));
-        return "home/updatestatus";
+        model.addAttribute("bicycle",bsi.findById(id));
+        return "home/updatebicycle";
     }
 
-    @PostMapping("/updateStatus")
-    public String updateStatus(@ModelAttribute Bicycle status){
-        bsi.update(status);
+    @PostMapping("/updatebicycle")
+    public String updateBicycle(@ModelAttribute Bicycle bicycle){
+        bsi.update(bicycle);
         return "redirect:/";
     }
 
-    @PostMapping("/createStatus")
-    public String createStatus(@ModelAttribute Bicycle status){
-        bsi.create(status);
+    @PostMapping("/createBicycle")
+    public String createBicycle(@ModelAttribute Bicycle bicycle){
+        bsi.create(bicycle);
         return "redirect:/";
-    }*/
+    }
 }

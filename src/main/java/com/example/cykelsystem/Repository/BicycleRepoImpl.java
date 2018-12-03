@@ -19,7 +19,8 @@ public class BicycleRepoImpl implements IRepo<Bicycle> {
     public List<Bicycle> findAll() {
         String sql = "SELECT * FROM bicycle";
         RowMapper<Bicycle> rowMapper = new BeanPropertyRowMapper<>(Bicycle.class);
-        return template.query(sql, rowMapper);
+        List<Bicycle> bicycles = template.query(sql, rowMapper);
+        return bicycles;
     }
 
     @Override

@@ -8,21 +8,21 @@
 
 <h1>Bicycle screen</h1>
 
-<p th:each="bicycle :${bicycles}">
-    <span th:text="${bicycle.description}"/> <!--th:text="${bicycle.customer_id}"/>-->
-    <!--<a th:href="@{'/Bicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}" th:text="${bicycle.customer_id}"/>
-    <!--<a style="color: red;" th:href="@{'/deletebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
-    <a style="color: green;" th:href="@{'/updatebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>-->
+<p th:each="bicycle :${bicycle}">
+    <span th:text="${bicycle.description}" />
+
+    <a th:href="@{'/Bicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
+    <a style="color: red;" th:href="@{'/deletebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
+    <a style="color: green;" th:href="@{'/updatebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
 </p>
 
 <h1>opret ny status</h1>
 
-<!--<form action="/createStatus" method="post">
-    <input type="text" name="status_title">
+<form action="/createBicycle" method="post">
+    <input type="text" name="description">
+    <input type="text" name="customer_id">
     <input type="submit" value="opret ny">
-</form>-->
-
-
+</form>
 
 </body>
 </html>
