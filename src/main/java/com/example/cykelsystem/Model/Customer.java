@@ -1,7 +1,12 @@
-package com.example.cykelsystem.model;
+package com.example.cykelsystem.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
 
+    @Id
     private int customer_id;
     private String phone_number;
     private String name;

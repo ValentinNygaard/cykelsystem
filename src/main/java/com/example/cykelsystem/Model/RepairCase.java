@@ -1,9 +1,13 @@
-package com.example.cykelsystem.model;
+package com.example.cykelsystem.Model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class RepairCase {
 
+    @Id
     private int repair_case_id;
     private Date start_date;
     private Date end_date;

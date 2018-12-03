@@ -1,7 +1,12 @@
-package com.example.cykelsystem.model;
+package com.example.cykelsystem.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Bicycle {
 
+    @Id
     private int bicycle_id;
     private String description;
 

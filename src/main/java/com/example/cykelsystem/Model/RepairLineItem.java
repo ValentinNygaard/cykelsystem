@@ -1,7 +1,12 @@
-package com.example.cykelsystem.model;
+package com.example.cykelsystem.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class RepairLineItem {
 
+    @Id
     private int repair_line_item_id;
     private String description;
     private int time;
