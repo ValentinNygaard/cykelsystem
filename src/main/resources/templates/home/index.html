@@ -8,6 +8,8 @@
 
     <h1>Dette er index siden</h1>
 
+    <a th:href="@{'/login/'}" th:text="Login"/>
+
     <p th:each="status :${status}">
         <span th:text="${status.status_title}" />
 
