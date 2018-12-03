@@ -6,7 +6,7 @@ public interface IService<T> {
 
     List<T> findAll();
 
-    T findById(T t);
+    T findById(int id);
 
     T create(T t);
 

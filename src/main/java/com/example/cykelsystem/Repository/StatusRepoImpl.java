@@ -19,7 +19,7 @@ public class StatusRepoImpl implements IRepo<Status> {
     }
 
     @Override
-    public Status findById(Status Status) {
+    public Status findById(int id) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class StatusRepoImpl implements IRepo<Status> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public Boolean delete(int id) {
         return false;
     }
 }

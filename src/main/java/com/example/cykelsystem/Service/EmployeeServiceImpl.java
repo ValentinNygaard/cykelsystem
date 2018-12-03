@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements IService<Employee> {
     }
 
     @Override
-    public Employee findById(Employee employee) {
+    public Employee findById(int id) {
         return null;
     }
 

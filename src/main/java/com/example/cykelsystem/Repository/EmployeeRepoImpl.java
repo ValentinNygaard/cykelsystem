@@ -19,7 +19,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     }
 
     @Override
-    public  Employee findById(Employee employee) {
+    public  Employee findById(int id) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public Boolean delete(int id) {
         return false;
     }
 }

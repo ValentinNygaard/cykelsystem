@@ -19,7 +19,7 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
     }
 
     @Override
-    public RepairCase findById(RepairCase repairCase) {
+    public RepairCase findById(int id) {
         return null;
     }
 

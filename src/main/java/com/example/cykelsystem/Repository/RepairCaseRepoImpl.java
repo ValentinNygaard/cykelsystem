@@ -19,7 +19,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     }
 
     @Override
-    public RepairCase findById(RepairCase repairCase) {
+    public RepairCase findById(int id) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public Boolean delete(int id) {
         return false;
     }
 }

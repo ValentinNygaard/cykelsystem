@@ -18,7 +18,7 @@ public class BicyleServiceImpl implements IService<Bicycle> {
     }
 
     @Override
-    public Bicycle findById(Bicycle bicycle) {
+    public Bicycle findById(int id) {
         return null;
     }
 

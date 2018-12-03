@@ -18,7 +18,7 @@ public class StatusServiceImpl implements IService<Status> {
     }
 
     @Override
-    public Status findById(Status status) {
+    public Status findById(int id) {
         return null;
     }
 

@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements IService<Customer> {
     }
 
     @Override
-    public Customer findById(Customer customer) {
+    public Customer findById(int id) {
         return null;
     }
 
