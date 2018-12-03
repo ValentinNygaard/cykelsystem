@@ -1,5 +1,6 @@
 package com.example.cykelsystem.Service;
 
+import com.example.cykelsystem.Model.Employee;
 import com.example.cykelsystem.Repository.EmployeeRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EmployeeServiceImpl implements IService {
+public class EmployeeServiceImpl implements IService<Employee> {
 
     @Autowired
     EmployeeRepoImpl employeeRepo;
@@ -18,17 +19,17 @@ public class EmployeeServiceImpl implements IService {
     }
 
     @Override
-    public Object findById(Object object) {
+    public Employee findById(Employee employee) {
         return null;
     }
 
     @Override
-    public Object create(Object object) {
+    public Employee create(Employee employee) {
         return null;
     }
 
     @Override
-    public Object update(Object object) {
+    public Employee update(Employee employee) {
         return null;
     }
 

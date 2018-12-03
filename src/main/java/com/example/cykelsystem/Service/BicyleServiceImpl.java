@@ -1,33 +1,34 @@
 package com.example.cykelsystem.Service;
 
+import com.example.cykelsystem.Model.Bicycle;
 import com.example.cykelsystem.Repository.BicycleRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BicyleServiceImpl implements IService {
+public class BicyleServiceImpl implements IService<Bicycle> {
 
     @Autowired
     BicycleRepoImpl bicycleRepo; //Tjek om det skal være interfacet, det er det i filmen, men her er der jo flere implementationer
 
     @Override
-    public List findAll() {
+    public List<Bicycle> findAll() {
         return null;
     }
 
     @Override
-    public Object findById(Object object) {
+    public Bicycle findById(Bicycle bicycle) {
         return null;
     }
 
     @Override
-    public Object create(Object object) {
+    public Bicycle create(Bicycle bicycle) {
         return null;
     }
 
     @Override
-    public Object update(Object object) {
+    public Bicycle update(Bicycle bicycle) {
         return null;
     }
 

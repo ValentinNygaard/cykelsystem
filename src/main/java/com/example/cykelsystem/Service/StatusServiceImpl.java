@@ -1,33 +1,34 @@
 package com.example.cykelsystem.Service;
 
+import com.example.cykelsystem.Model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StatusServiceImpl implements IService {
+public class StatusServiceImpl implements IService<Status> {
 
     @Autowired
     StatusServiceImpl statusService;
 
     @Override
-    public List findAll() {
+    public List<Status> findAll() {
         return null;
     }
 
     @Override
-    public Object findById(Object object) {
+    public Status findById(Status status) {
         return null;
     }
 
     @Override
-    public Object create(Object object) {
+    public Status create(Status status) {
         return null;
     }
 
     @Override
-    public Object update(Object object) {
+    public Status update(Status status) {
         return null;
     }
 

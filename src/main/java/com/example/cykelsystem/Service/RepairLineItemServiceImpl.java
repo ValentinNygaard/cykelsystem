@@ -1,5 +1,6 @@
 package com.example.cykelsystem.Service;
 
+import com.example.cykelsystem.Model.RepairLineItem;
 import com.example.cykelsystem.Repository.RepairLineItemRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RepairLineItemServiceImpl implements IService {
+public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
 
     @Autowired
     RepairLineItemRepoImpl repairLineItemRepo;
@@ -18,17 +19,17 @@ public class RepairLineItemServiceImpl implements IService {
     }
 
     @Override
-    public Object findById(Object object) {
+    public RepairLineItem findById(RepairLineItem repairLineItem) {
         return null;
     }
 
     @Override
-    public Object create(Object object) {
+    public RepairLineItem create(RepairLineItem RepairLineItem) {
         return null;
     }
 
     @Override
-    public Object update(Object object) {
+    public RepairLineItem update(RepairLineItem repairLineItem) {
         return null;
     }
 
