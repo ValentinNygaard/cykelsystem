@@ -14,26 +14,26 @@ public class CustomerServiceImpl implements IService<Customer> {
 
     @Override
     public List<Customer> findAll() {
-        return null;
+        return customerRepo.findAll();
     }
 
     @Override
     public Customer findById(int id) {
-        return null;
+        return customerRepo.findById(id);
     }
 
     @Override
     public Customer create(Customer customer) {
-        return null;
+        return customerRepo.create(customer);
     }
 
     @Override
     public Customer update(Customer customer) {
-        return null;
+        return customerRepo.update(customer);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return customerRepo.delete(id);
     }
 }

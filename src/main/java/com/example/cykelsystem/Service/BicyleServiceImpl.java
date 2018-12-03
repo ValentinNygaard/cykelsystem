@@ -14,26 +14,26 @@ public class BicyleServiceImpl implements IService<Bicycle> {
 
     @Override
     public List<Bicycle> findAll() {
-        return null;
+        return bicycleRepo.findAll();
     }
 
     @Override
     public Bicycle findById(int id) {
-        return null;
+        return bicycleRepo.findById(id);
     }
 
     @Override
     public Bicycle create(Bicycle bicycle) {
-        return null;
+        return bicycleRepo.create(bicycle);
     }
 
     @Override
     public Bicycle update(Bicycle bicycle) {
-        return null;
+        return bicycleRepo.update(bicycle);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return bicycleRepo.delete(id);
     }
 }

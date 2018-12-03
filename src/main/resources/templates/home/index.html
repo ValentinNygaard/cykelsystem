@@ -8,20 +8,18 @@
 
     <h1>Dette er index siden</h1>
 
-    <p th:each="person :${persons}">
-        <span th:text="${person.first_name}" />
-        <span th:text="${person.last_name}" />
+    <p th:each="status :${status}">
+        <span th:text="${status.status_title}" />
 
-        <a th:href="@{'/viewone/' + ${person.id}}" th:text="${person.first_name} + ' ' + ${person.last_name}" />
-        <a style="color: red;" th:href="@{'/delete/' + ${person.id}}" th:text="${person.first_name} + ' ' + ${person.last_name}" />
-        <a style="color: green;" th:href="@{'/update/' + ${person.id}}" th:text="${person.first_name} + ' ' + ${person.last_name}" />
+        <a th:href="@{'/staTus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+        <a style="color: red;" th:href="@{'/deleteStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+        <a style="color: green;" th:href="@{'/updateStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
     </p>
 
-    <h1>Tilføj ny person</h1>
+    <h1>opret ny status</h1>
 
-    <form action="/create" method="post">
-        <input type="text" name="first_name">
-        <input type="text" name="last_name">
+    <form action="/createStatus" method="post">
+        <input type="text" name="status_title">
         <input type="submit" value="opret ny">
     </form>
 

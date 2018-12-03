@@ -34,7 +34,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     }
 
     @Override
-    public Boolean delete(int id) {
+    public boolean delete(int id) {
         return false;
     }
 }

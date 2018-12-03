@@ -10,7 +10,7 @@ public interface IRepo<T> {
 
     T create(T t);
 
-    Boolean delete(int id);
+    boolean delete(int id);
 
     T update(T t);
 }
