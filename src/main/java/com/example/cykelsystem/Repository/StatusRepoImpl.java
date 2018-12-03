@@ -31,10 +31,10 @@ public class StatusRepoImpl implements IRepo<Status> {
     }
 
     @Override
-    public Status create(Status s) {
+    public Status create(Status status) {
         String sql = "INSERT INTO status (status_id, status_title) VALUES(?,?)";
-        template.update(sql, s.getStatus_id(), s.getStatus_title());
-        return s;
+        template.update(sql, status.getStatus_id(), status.getStatus_title());
+        return status;
     }
 
     @Override

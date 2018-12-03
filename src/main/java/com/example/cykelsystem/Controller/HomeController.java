@@ -20,14 +20,11 @@ public class HomeController {
    @Autowired
    StatusServiceImpl ssi;
 
+
    @GetMapping("/")
     public String home(Model model){
        List<Status> status = ssi.findAll();
        model.addAttribute("status", status);
        return "home/index";
    }
-
-
-
-
 }

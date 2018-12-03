@@ -8,6 +8,10 @@
 
     <h1>Dette er index siden</h1>
 
+    <a href="/bicycle">
+        <button class="btn-bicycle, btn" id="bicycleBtn">Bicycle</button>
+    </a>
+
     <p th:each="status :${status}">
         <span th:text="${status.status_title}" />
 
