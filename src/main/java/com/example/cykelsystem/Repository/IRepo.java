@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface IRepo<T> {
 
-    List<T> fetchAll();
+    List<T> findAll();
 
     T findById(int id);
 
-    T add(T t);
+    T create(T t);
 
     Boolean delete(int id);
 
-    T update(int id, T t);
+    T update(T t);
 }

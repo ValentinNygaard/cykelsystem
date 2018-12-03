@@ -19,7 +19,7 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
     }
 
     @Override
-    public RepairLineItem findById(RepairLineItem repairLineItem) {
+    public RepairLineItem findById(int id) {
         return null;
     }
 

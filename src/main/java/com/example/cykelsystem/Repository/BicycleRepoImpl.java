@@ -19,7 +19,7 @@ public class BicycleRepoImpl implements IRepo<Bicycle> {
     }
 
     @Override
-    public Bicycle findById(Bicycle bicycle) {
+    public Bicycle findById(int id) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class BicycleRepoImpl implements IRepo<Bicycle> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public Boolean delete(int id) {
         return false;
     }
 }

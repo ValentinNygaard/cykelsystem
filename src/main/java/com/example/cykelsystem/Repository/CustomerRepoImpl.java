@@ -19,7 +19,7 @@ public class CustomerRepoImpl implements IRepo<Customer> {
     }
 
     @Override
-    public Customer findById(Customer customer) {
+    public Customer findById(int id) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class CustomerRepoImpl implements IRepo<Customer> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public Boolean delete(int id) {
         return false;
     }
 }
