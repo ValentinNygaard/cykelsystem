@@ -19,11 +19,6 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-   @Autowired
-   StatusServiceImpl ssi;
-   @Autowired
-   StdRepairLineItemServiceImpl srli;
-
 
    @GetMapping("/")
     public String home(Model model){
