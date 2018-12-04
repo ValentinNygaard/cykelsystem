@@ -19,7 +19,9 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     public List<Employee> findAll() {
         String sql = "SELECT * FROM employee";
         RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
+        System.out.println("hello");
         return template.query(sql, rowMapper);
+
     }
 
     @Override

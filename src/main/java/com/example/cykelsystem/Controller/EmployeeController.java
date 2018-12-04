@@ -21,7 +21,7 @@ public class EmployeeController {
     @GetMapping("/login")
     public String updateStatus()
     {
-        return "home/loginEmployee";
+        return "employee/loginEmployee";
     }
 
     @PostMapping("/login")
@@ -31,7 +31,7 @@ public class EmployeeController {
             return "redirect:/";
         }
         else {
-            return "home/Fejlbesked";
+            return "employee/Fejlbesked";
         }
     }
 
@@ -49,8 +49,9 @@ public class EmployeeController {
         return "employee/detailsemployee";
     }
 
-    @GetMapping("/deleteemployee/{id}")
-    public String deleteemployee(@PathVariable("id")int id)
+
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable("id")int id)
     {
         boolean deleted = esi.delete(id);
         if(deleted) {
@@ -61,21 +62,21 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/updateemployee/{id}")
-    public String updateemployee(@PathVariable("id")int id, Model model)
+    @GetMapping("/updateEmployee/{id}")
+    public String updateEmployee(@PathVariable("id")int id, Model model)
     {
         model.addAttribute("employee",esi.findById(id));
         return "employee/updateemployee";
     }
 
-    @PostMapping("/updateemployee")
-    public String updateemployee(@ModelAttribute Employee employee){
+    @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute Employee employee){
         esi.update(employee);
         return "redirect:/";
     }
 
-    @PostMapping("/createemployee")
-    public String createemployee(@ModelAttribute Employee employee){
+    @PostMapping("/createEmployee")
+    public String createEmployee(@ModelAttribute Employee employee){
         esi.create(employee);
         return "redirect:/";
     }
