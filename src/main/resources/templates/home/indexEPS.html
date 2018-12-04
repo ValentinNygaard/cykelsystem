@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Dette er index siden</h1>
+
+<p th:each="status :${status}">
+    <span th:text="${status.status_title}" />
+
+    <a th:href="@{'/staTus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+    <a style="color: red;" th:href="@{'/deleteStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+    <a style="color: green;" th:href="@{'/updateStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+</p>
+
+<a href="/bicycle">
+    <button class="btn-bicycle, btn" id="bicycleBtn">Bicycle</button>
+</a>
+
+<h1>opret ny status</h1>
+
+<form action="/createStatus" method="post">
+    <input type="text" name="status_title">
+    <input type="submit" value="opret ny">
+</form>
+
+
+</body>
+</html>
