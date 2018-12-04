@@ -6,11 +6,8 @@
 </head>
 <body>
 
-    <h1>Viser en person</h1>
-
-
-    <span th:text="${person.first_name}" />
-    <span th:text="${person.last_name}" />
+<h1>Viser en employee</h1>
+<span th:text="${employee.name} + '' + ${employee.phone_number}"/>
 
 
 </body>

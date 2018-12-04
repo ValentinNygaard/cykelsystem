@@ -1,5 +1,6 @@
 package com.example.cykelsystem.Controller;
 
+import com.example.cykelsystem.Model.Bicycle;
 import com.example.cykelsystem.Model.Status;
 import com.example.cykelsystem.Service.StatusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +11,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class StatusController {
 
     @Autowired
     StatusServiceImpl ssi;
 
+    @GetMapping("/status")
+    public String status(Model model){
+        List<Status> status = ssi.findAll();
+        model.addAttribute("status", status);
+        return "status/status";
+    }
+
+
     @GetMapping("/staTus/{id}")
     public String staTus(@PathVariable("id")int id, Model model){
         model.addAttribute("status", ssi.findById(id));
-        return "home/status";
+        return "status/detailsstatus";
     }
 
     @GetMapping("/deleteStatus/{id}")
@@ -38,7 +49,7 @@ public class StatusController {
     public String updateStatus(@PathVariable("id")int id, Model model)
     {
         model.addAttribute("status",ssi.findById(id));
-        return "home/updatestatus";
+        return "status/updatestatus";
     }
 
     @PostMapping("/updateStatus")

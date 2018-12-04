@@ -8,71 +8,31 @@
 
 <h1>Dette er index siden</h1>
 
-<h2>Dette er status delen</h2>
-
-<h3>Oversigt over status typer</h3>
-
-<p th:each="status :${status}">
-    <span th:text="${status.status_title}" />
-
-    <a th:href="@{'/staTus/' + ${status.status_id}}" th:text="${status.status_title}"/>
-    <a style="color: red;" th:href="@{'/deleteStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
-    <a style="color: green;" th:href="@{'/updateStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
-</p>
-
-<h3>opret ny status</h3>
-
-<form action="/createStatus" method="post">
-    <input type="text" name="status_title">
-    <input type="submit" value="opret ny">
-</form>
-
-
-
-<h2>Dette er standard reperations linie delen</h2>
-
-<h3>Oversigt over standard reperationer</h3>
-
-<p th:each="stdRep :${stdRep}">
-    <span th:text="${stdRep.description} + ' ' + ${stdRep.time} + ' ' + ${stdRep.price}" />
+<a href="/bicycle">
+    <button class="btn-bicycle, btn" id="bicycleBtn">bicycle</button>
+</a>
+<a href="/customer">
+    <button class="btn-bicycle, btn" id="customerBtn">customer</button>
+</a>
+<a href="/employee">
+    <button class="btn-bicycle, btn" id="employeeBtn">employee</button>
+</a>
+<a href="/repaircase">
+    <button class="btn-bicycle, btn" id="repaircaseBtn">repaircase</button>
+</a>
+<a href="/status">
+    <button class="btn-bicycle, btn" id="statusBtn">status</button>
+</a>
+<a href="/rli">
+    <button class="btn-bicycle, btn" id="rliBtn">repair line item</button>
+</a>
+<a href="/srli">
+    <button class="btn-bicycle, btn" id="srliBtn">std repair line item</button>
+</a>
 
 
-    <a th:href="@{'/viewStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
-    <a style="color: red;" th:href="@{'/deleteStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
-    <a style="color: green;" th:href="@{'/updateStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
-</p>
-
-<h3>opret ny standard reperation</h3>
-
-<form action="/createStdRepairLineItem" method="post">
-    <input type="text" name="description">
-    <input type="text" name="time">
-    <input type="text" name="price">
-    <input type="submit" value="opret ny">
-</form>
-
-<h2>Dette er reperations linie delen</h2>
-
-<h3>Oversigt over reperations linier</h3>
-
-<p th:each="repLine :${repLine}">
-    <span th:text="${repLine.description} + ' ' + ${repLine.time} + ' ' + ${repLine.price} + ' ' + ${repLine.repair_case_id}" />
 
 
-    <a th:href="@{'/viewRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
-    <a style="color: red;" th:href="@{'/deleteRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
-    <a style="color: green;" th:href="@{'/updateRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
-</p>
-
-<h3>opret ny reperations linie</h3>
-
-<form action="/createRepairLineItem" method="post">
-    <input type="text" name="description">
-    <input type="text" name="time">
-    <input type="text" name="price">
-    <input type="text" name="repair_case_id">
-    <input type="submit" value="opret ny">
-</form>
 
 
 <a href="/bicycle">

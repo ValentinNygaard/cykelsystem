@@ -27,10 +27,6 @@ public class HomeController {
 
    @GetMapping("/")
     public String home(Model model){
-       List<Status> status = ssi.findAll();
-       model.addAttribute("status", status);
-       List<StdRepairLineItem> stdRep = srli.findAll();
-       model.addAttribute("stdRep", stdRep);
        return "home/index";
     }
 
