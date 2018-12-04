@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<body>
+
 
 <h2>Dette er employee delen</h2>
 
@@ -15,19 +15,21 @@
     <span th:text="${employee.name} + '' + ${employee.phone_number}" />
 
     <a th:href="@{'/employee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
-    <a style="color: red;" th:href="@{'/deleteemployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
-    <a style="color: green;" th:href="@{'/updateemployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
+    <a style="color: red;" th:href="@{'/deleteEmployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
+    <a style="color: green;" th:href="@{'/updateEmployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
 
 </p>
 
-<h3>opret ny status</h3>
+<h3>opret ny employee</h3>
 
-<form action="/createemployee" method=post">
+<form action="/createEmployee" method="post">
     <input type="text" name="name">
     <input type="text" name="phone_number">
+    <input type="text" name="user_name">
+    <input type="text" name="password">
     <input type="submit" value="opret ny">
 </form>
-</body>
+
 
 </body>
 </html>
