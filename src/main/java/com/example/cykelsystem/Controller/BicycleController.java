@@ -21,13 +21,13 @@ public class BicycleController {
     public String bicycle(Model model){
         List<Bicycle> bicycle = bsi.findAll();
         model.addAttribute("bicycle", bicycle);
-        return "home/bicycle";
+        return "bicycle/bicycle";
     }
 
     @GetMapping("/Bicycle/{id}")
     public String bicycle(@PathVariable("id")int id, Model model){
         model.addAttribute("bicycle", bsi.findById(id));
-        return "home/bicyclefind";
+        return "bicycle/detailsbicycle";
     }
 
     @GetMapping("/deletebicycle/{id}")

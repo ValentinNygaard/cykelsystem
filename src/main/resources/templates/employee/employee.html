@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+
+<h2>Dette er employee delen</h2>
+
+<h3>Oversigt over employees</h3>
+
+<p th:each="employee :${employee}">
+    <span th:text="${employee.name} + '' + ${employee.phone_number}" />
+
+    <a th:href="@{'/employee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
+    <a style="color: red;" th:href="@{'/deleteemployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
+    <a style="color: green;" th:href="@{'/updateemployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
+
+</p>
+
+<h3>opret ny status</h3>
+
+<form action="/createemployee" method=post">
+    <input type="text" name="name">
+    <input type="text" name="phone_number">
+    <input type="submit" value="opret ny">
+</form>
+</body>
+
+</body>
+</html>
