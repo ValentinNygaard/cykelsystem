@@ -6,22 +6,74 @@
 </head>
 <body>
 
-    <h1>Dette er index siden</h1>
+<h1>Dette er index siden</h1>
 
-    <p th:each="status :${status}">
-        <span th:text="${status.status_title}" />
+<h2>Dette er status delen</h2>
 
-        <a th:href="@{'/staTus/' + ${status.status_id}}" th:text="${status.status_title}"/>
-        <a style="color: red;" th:href="@{'/deleteStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
-        <a style="color: green;" th:href="@{'/updateStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
-    </p>
+<h3>Oversigt over status typer</h3>
 
-    <h1>opret ny status</h1>
+<p th:each="status :${status}">
+    <span th:text="${status.status_title}" />
 
-    <form action="/createStatus" method="post">
-        <input type="text" name="status_title">
-        <input type="submit" value="opret ny">
-    </form>
+    <a th:href="@{'/staTus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+    <a style="color: red;" th:href="@{'/deleteStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+    <a style="color: green;" th:href="@{'/updateStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
+</p>
+
+<h3>opret ny status</h3>
+
+<form action="/createStatus" method="post">
+    <input type="text" name="status_title">
+    <input type="submit" value="opret ny">
+</form>
+
+
+
+<h2>Dette er standard reperations linie delen</h2>
+
+<h3>Oversigt over standard reperationer</h3>
+
+<p th:each="stdRep :${stdRep}">
+    <span th:text="${stdRep.description} + ' ' + ${stdRep.time} + ' ' + ${stdRep.price}" />
+
+
+    <a th:href="@{'/viewStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+    <a style="color: red;" th:href="@{'/deleteStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+    <a style="color: green;" th:href="@{'/updateStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+</p>
+
+<h3>opret ny standard reperation</h3>
+
+<form action="/createStdRepairLineItem" method="post">
+    <input type="text" name="description">
+    <input type="text" name="time">
+    <input type="text" name="price">
+    <input type="submit" value="opret ny">
+</form>
+
+<h2>Dette er reperations linie delen</h2>
+
+<h3>Oversigt over reperations linier</h3>
+
+<p th:each="repLine :${repLine}">
+    <span th:text="${repLine.description} + ' ' + ${repLine.time} + ' ' + ${repLine.price} + ' ' + ${repLine.repair_case_id}" />
+
+
+    <a th:href="@{'/viewRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+    <a style="color: red;" th:href="@{'/deleteRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+    <a style="color: green;" th:href="@{'/updateRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+</p>
+
+<h3>opret ny reperations linie</h3>
+
+<form action="/createRepairLineItem" method="post">
+    <input type="text" name="description">
+    <input type="text" name="time">
+    <input type="text" name="price">
+    <input type="text" name="repair_case_id">
+    <input type="submit" value="opret ny">
+</form>
+
 
 
 </body>

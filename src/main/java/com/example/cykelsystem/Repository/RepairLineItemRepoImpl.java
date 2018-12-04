@@ -32,7 +32,7 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
     @Override
     public RepairLineItem create(RepairLineItem srli) {
         String sql = "INSERT INTO repair_line_item (repair_line_item_id, description, time, price, repair_case_id) VALUES(?,?,?,?,?)";
-        template.update(sql, srli.getRepair_line_item_id(), srli.getDescription(), srli.getTime(), srli.getPrice());
+        template.update(sql, srli.getRepair_line_item_id(), srli.getDescription(), srli.getTime(), srli.getPrice(), srli.getRepair_case_id());
         return srli;
     }
 
