@@ -48,7 +48,7 @@ public class CustomerController {
         return "redirect:/";
     }
 
-    @PostMapping("/createStatus")
+    @PostMapping("/createCustomer")
     public String createCustomer(@ModelAttribute Customer customer){
         csi.create(customer);
         return "redirect:/";
