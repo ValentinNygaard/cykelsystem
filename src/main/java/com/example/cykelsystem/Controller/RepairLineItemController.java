@@ -19,7 +19,7 @@ public class RepairLineItemController {
     @GetMapping("/viewRepairLineItem/{id}")
     public String viewRepairLineItem(@PathVariable("id")int id, Model model){
         model.addAttribute("stdRep", rli.findById(id));
-        return "repairlineitem/viewrepairlineitem";
+        return "viewrepairli";
     }
 
     @GetMapping("/deleteRepairLineItem/{id}")
@@ -38,7 +38,7 @@ public class RepairLineItemController {
     public String updateStatus(@PathVariable("id")int id, Model model)
     {
         model.addAttribute("stdRep",rli.findById(id));
-        return "repairlineitem/updaterepairlineitem";
+        return "updaterepairli";
     }
 
     @PostMapping("/updateRepairLineItem")
