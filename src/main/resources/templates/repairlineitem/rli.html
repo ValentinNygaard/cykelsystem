@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Dette er RLI siden</h1>
+
+    <h2>Dette er reperations linie delen</h2>
+
+    <h3>Oversigt over reperations linier</h3>
+
+    <p th:each="repLine :${repLine}">
+        <span th:text="${repLine.description} + ' ' + ${repLine.time} + ' ' + ${repLine.price} + ' ' + ${repLine.repair_case_id}" />
+
+
+        <a th:href="@{'/viewRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+        <a style="color: red;" th:href="@{'/deleteRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+        <a style="color: green;" th:href="@{'/updateRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+    </p>
+
+    <h3>opret ny reperations linie</h3>
+
+    <form action="/createRepairLineItem" method="post">
+        <input type="text" name="description">
+        <input type="text" name="time">
+        <input type="text" name="price">
+        <input type="text" name="repair_case_id">
+        <input type="submit" value="opret ny">
+    </form>
+
+
+</body>
+</html>
