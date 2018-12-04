@@ -9,11 +9,11 @@
 <h1>Bicycle screen</h1>
 
 <p th:each="bicycle :${bicycle}">
-    <span th:text="${bicycle.description}" />
+    <span th:text="${bicycle.description} + ' ' + ${bicycle.customer_id}" />
 
-    <a th:href="@{'/Bicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
-    <a style="color: red;" th:href="@{'/deletebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
-    <a style="color: green;" th:href="@{'/updatebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
+    <a th:href="@{'/Bicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description} + ' ' + ${bicycle.customer_id}"/>
+    <a style="color: red;" th:href="@{'/deletebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description} + ' ' + ${bicycle.customer_id}"/>
+    <a style="color: green;" th:href="@{'/updatebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description} + ' ' + ${bicycle.customer_id}"/>
 </p>
 
 <h1>opret ny cykel</h1>
