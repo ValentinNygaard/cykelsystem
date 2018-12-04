@@ -12,13 +12,12 @@
 
     <h3>Oversigt over standard reperationer</h3>
 
-    <p th:each="stdRep :${stdRep}">
-        <span th:text="${stdRep.description} + ' ' + ${stdRep.time} + ' ' + ${stdRep.price}" />
+    <p th:each="stdRepairLineItem :${stdRepairLineItem}">
+        <span th:text="${stdRepairLineItem.description} + ' ' + ${stdRepairLineItem.time} + ' ' + ${stdRepairLineItem.price}" />
 
-
-        <a th:href="@{'/viewStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
-        <a style="color: red;" th:href="@{'/deleteStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
-        <a style="color: green;" th:href="@{'/updateStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+        <a th:href="@{'/viewStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="${stdRepairLineItem.description}"/>
+        <a style="color: red;" th:href="@{'/deleteStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="${stdRepairLineItem.description}"/>
+        <a style="color: green;" th:href="@{'/updateStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="${stdRepairLineItem.description}"/>
     </p>
 
     <h3>opret ny standard reperation</h3>
