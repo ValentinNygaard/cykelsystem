@@ -1,17 +1,18 @@
 package com.example.cykelsystem.Service;
 
 import com.example.cykelsystem.Model.RepairLineItem;
-import com.example.cykelsystem.Repository.RepairLineItemRepoImpl;
+import com.example.cykelsystem.Model.StdRepairLineItem;
+import com.example.cykelsystem.Repository.StdRepairLineItemRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
+public class StdRepairLineItemServiceImpl<T extends StdRepairLineItem> implements IService<T> {
 
     @Autowired
-    RepairLineItemRepoImpl repoImpl;
+    StdRepairLineItemRepoImpl repoImpl;
 
     @Override
     public List findAll() {
@@ -19,18 +20,18 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
     }
 
     @Override
-    public RepairLineItem findById(int id) {
-        return repoImpl.findById(id);
+    public T findById(int id) {
+        return (T) repoImpl.findById(id);
     }
 
     @Override
-    public RepairLineItem create(RepairLineItem o) {
-        return repoImpl.create(o);
+    public T create(T o) {
+        return (T) repoImpl.create(o);
     }
 
     @Override
-    public RepairLineItem update(RepairLineItem o) {
-        return repoImpl.update(o);
+    public T update(T o) {
+        return (T) repoImpl.update(o);
     }
 
     @Override

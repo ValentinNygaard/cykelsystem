@@ -14,9 +14,7 @@ public class StatusServiceImpl implements IService<Status> {
     StatusRepoImpl statusRepoImpl;
 
     @Override
-    public List<Status> findAll() {
-        return statusRepoImpl.findAll();
-    }
+    public List<Status> findAll() { return statusRepoImpl.findAll(); }
 
     @Override
     public Status findById(int id) {
