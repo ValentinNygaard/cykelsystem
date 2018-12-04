@@ -19,7 +19,6 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     public List<Employee> findAll() {
         String sql = "SELECT * FROM employee";
         RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
-        System.out.println("hello");
         return template.query(sql, rowMapper);
 
     }
@@ -43,7 +42,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     @Override
     public Employee update(Employee employee) {
         String sql = "UPDATE employee SET name=?, phone_number=?, user_name=?, password=? WHERE employee_id=?";
-        template.update(sql, employee.getName(), employee.getPhone_number(), employee.getUser_name(), employee.getPhone_number(), employee.getEmployee_id());
+        template.update(sql, employee.getName(), employee.getPhone_number(), employee.getUser_name(), employee.getPassword(), employee.getEmployee_id());
         Employee e = findById(employee.getEmployee_id());
         return e;
     }

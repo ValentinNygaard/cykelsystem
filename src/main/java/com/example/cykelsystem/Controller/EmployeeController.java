@@ -28,7 +28,7 @@ public class EmployeeController {
     public String login(@ModelAttribute Employee employee){
         boolean login = esi.login(employee);
         if (login) {
-            return "redirect:/";
+            return "employee/employee";
         }
         else {
             return "employee/Fejlbesked";
@@ -72,7 +72,7 @@ public class EmployeeController {
     @PostMapping("/updateEmployee")
     public String updateEmployee(@ModelAttribute Employee employee){
         esi.update(employee);
-        return "redirect:/";
+        return "redirect:/employee";
     }
 
     @PostMapping("/createEmployee")

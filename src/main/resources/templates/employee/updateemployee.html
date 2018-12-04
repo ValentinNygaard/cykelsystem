@@ -8,10 +8,12 @@
 
 <h1>Opdater en employee</h1>
 
-<form action="/updateemployee" method="post">
-    <input type="hidden" name="employee_id" th:value="${status.status_id}">
+<form action="/updateEmployee" method="post">
+    <input type="hidden" name="employee_id" th:value="${employee.employee_id}">
     <input type="text" name="name" th:value="${employee.name}">
     <input type="text" name="phone_number" th:value="${employee.phone_number}">
+    <input type="text" name="user_name" th:value="${employee.user_name}">
+    <input type="text" name="password" th:value="${employee.password}">
     <input type="submit" value="gem ændringer">
 </form>
 

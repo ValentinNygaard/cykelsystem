@@ -12,11 +12,11 @@
 <h3>Oversigt over employees</h3>
 
 <p th:each="employee :${employee}">
-    <span th:text="${employee.name} + '' + ${employee.phone_number}" />
+    <span th:text="${employee.name} + ' ' + ${employee.phone_number}" />
 
-    <a th:href="@{'/employee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
-    <a style="color: red;" th:href="@{'/deleteEmployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
-    <a style="color: green;" th:href="@{'/updateEmployee/' + ${employee.employee_id}}" th:text="${employee.name} + '' + ${employee.phone_number}"/>
+    <a th:href="@{'/employee/' + ${employee.employee_id}}" th:text="${employee.name} + ' ' + ${employee.phone_number}"/>
+    <a style="color: red;" th:href="@{'/deleteEmployee/' + ${employee.employee_id}}" th:text="${employee.name} + ' ' + ${employee.phone_number}"/>
+    <a style="color: green;" th:href="@{'/updateEmployee/' + ${employee.employee_id}}" th:text="${employee.name} + ' ' + ${employee.phone_number}"/>
 
 </p>
 

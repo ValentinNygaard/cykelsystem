@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    <h2>Dette er Repair Case delen</h2>
+
+    <h3>Oversigt over Repair Cases</h3>
+
+    private Date start_date;
+    private Date end_date;
+    private int status_id;
+    private int bicycle_id;
+    private int employee_id;
+    private int repair_number;
+
+    <p th:each="repaircase :${repaircase}">
+        <span th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
+         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}" />
+
+        <a th:href="@{'/repaircase/' + ${repaircase.repaircase_id}}" th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
+         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}"/>
+        <a style="color: red;" th:href="@{'/deleteRepaircase/' + ${repaircase.repaircase_id}}" th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
+         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}"/>
+        <a style="color: green;" th:href="@{'/updateRepaircase/' + ${repaircase.repaircase_id}}" th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
+         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}"/>
+
+    </p>
+
+    <h3>opret ny employee</h3>
+
+    <form action="/createRepaircase" method="post">
+        <input type="text" name="start_date">
+        <input type="text" name="end_date">
+        <input type="text" name="status_id">
+        <input type="text" name="bicycle_id">
+        <input type="text" name="employee_id">
+        <input type="text" name="repair_number">
+        <input type="submit" value="opret ny">
+    </form>
 
 </body>
 </html>
