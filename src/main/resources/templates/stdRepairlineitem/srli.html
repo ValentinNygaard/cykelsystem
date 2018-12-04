@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Dette er SRLI siden</h1>
+
+    <h2>Dette er standard reperations delen</h2>
+
+    <h3>Oversigt over standard reperationer</h3>
+
+    <p th:each="stdRep :${stdRep}">
+        <span th:text="${stdRep.description} + ' ' + ${stdRep.time} + ' ' + ${stdRep.price}" />
+
+
+        <a th:href="@{'/viewStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+        <a style="color: red;" th:href="@{'/deleteStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+        <a style="color: green;" th:href="@{'/updateStdRepairLineItem/' + ${stdRep.std_repair_line_item_id}}" th:text="${stdRep.description}"/>
+    </p>
+
+    <h3>opret ny standard reperation</h3>
+
+    <form action="/createStdRepairLineItem" method="post">
+        <input type="text" name="description">
+        <input type="text" name="time">
+        <input type="text" name="price">
+        <input type="submit" value="opret ny">
+    </form>
+
+
+</body>
+</html>

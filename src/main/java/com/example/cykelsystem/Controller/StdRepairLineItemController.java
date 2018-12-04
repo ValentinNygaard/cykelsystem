@@ -1,8 +1,6 @@
 package com.example.cykelsystem.Controller;
 
-import com.example.cykelsystem.Model.Status;
 import com.example.cykelsystem.Model.StdRepairLineItem;
-import com.example.cykelsystem.Service.StatusServiceImpl;
 import com.example.cykelsystem.Service.StdRepairLineItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,7 @@ public class StdRepairLineItemController {
     @GetMapping("/viewStdRepairLineItem/{id}")
     public String viewStdRepairLineItem(@PathVariable("id")int id, Model model){
         model.addAttribute("stdRep", srli.findById(id));
-        return "stdrepairlineitem/viewstdrepairlineitem";
+        return "detailssrli";
     }
 
     @GetMapping("/deleteStdRepairLineItem/{id}")
@@ -40,7 +38,7 @@ public class StdRepairLineItemController {
     public String updateStatus(@PathVariable("id")int id, Model model)
     {
         model.addAttribute("stdRep",srli.findById(id));
-        return "stdrepairlineitem/updatestdrepairlineitem";
+        return "updatesrli";
     }
 
     @PostMapping("/updateStdRepairLineItem")
