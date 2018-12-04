@@ -38,7 +38,7 @@ public class CustomerRepoImpl implements IRepo<Customer> {
 
     @Override
     public Customer update(Customer customer) {
-        String sql = "UPDATE customer SET name=? AND SET phone_number=? WHERE status_id=?";
+        String sql = "UPDATE customer SET name=?, phone_number=? WHERE status_id=?";
         template.update(sql, customer.getCustomer_id(), customer.getPhone_number(),customer.getName());
         Customer c = findById(customer.getCustomer_id());
         return customer;
