@@ -31,22 +31,22 @@ public class CustomerRepoImpl implements IRepo<Customer> {
 
     @Override
     public Customer create(Customer customer) {
-        String sql = "INCERT INTO customer (customer_id, phone_number, name) VALUES(?,?,?)";
-        template.update(sql, customer.getCustomer_id(), customer.getName(), customer.getPhone_number());
+        String sql = "INSERT INTO customer (customer_id, phone_number, name) VALUES(?,?,?)";
+        template.update(sql, customer.getCustomer_id(), customer.getPhone_number(), customer.getName());
         return customer;
     }
 
     @Override
     public Customer update(Customer customer) {
-        String sql = "UPDATE customer SET name=?, phone_number=? WHERE status_id=?";
-        template.update(sql, customer.getCustomer_id(), customer.getPhone_number(),customer.getName());
+        String sql = "UPDATE customer SET name=?, phone_number=? WHERE customer_id=?";
+        template.update(sql,customer.getName(),customer.getPhone_number(), customer.getCustomer_id());
         Customer c = findById(customer.getCustomer_id());
         return customer;
     }
 
     @Override
     public boolean delete(int id) {
-        String sql = "DELETE * FROM customer WHERE customer_id=?";
+        String sql = "DELETE FROM customer WHERE customer_id=?";
         return  template.update(sql, id) >= 0;
     }
 }
