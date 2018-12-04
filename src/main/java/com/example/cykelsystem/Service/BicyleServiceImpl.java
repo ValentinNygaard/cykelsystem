@@ -10,7 +10,7 @@ import java.util.List;
 public class BicyleServiceImpl implements IService<Bicycle> {
 
     @Autowired
-    BicycleRepoImpl bicycleRepo; //Tjek om det skal være interfacet, det er det i filmen, men her er der jo flere implementationer
+    BicycleRepoImpl bicycleRepo;
 
     @Override
     public List<Bicycle> findAll() {
