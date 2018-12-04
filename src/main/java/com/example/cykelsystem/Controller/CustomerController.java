@@ -11,16 +11,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class CustomerController {
 
     @Autowired
     CustomerServiceImpl csi;
 
-    @GetMapping("/viewCustomer/{id}")
-    public String viewCustomer(@PathVariable("id")int id, Model model){
+    @GetMapping("/customer")
+    public String customer(Model model){
+        List<Customer> customers = csi.findAll();
+        model.addAttribute("customer", customers);
+        return "customer/customer";
+    }
+
+    @GetMapping("/detailsCustomer/{id}")
+    public String detailsCustomer(@PathVariable("id")int id, Model model){
         model.addAttribute("customer", csi.findById(id));
-        return "home/viewCustomer";
+        return "customer/detailscustomer";
     }
 
     @GetMapping("/deleteCustomer/{id}")
@@ -39,7 +48,7 @@ public class CustomerController {
     public String updateCustomer(@PathVariable("id")int id, Model model)
     {
         model.addAttribute("customer",csi.findById(id));
-        return "home/updateCustomer";
+        return "customer/updatecustomer";
     }
 
     @PostMapping("/updateCustomer")

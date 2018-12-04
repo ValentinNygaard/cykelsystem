@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>update customer</title>
 </head>
 <body>
 
@@ -10,7 +10,7 @@
 
 <form action="/updateCustomer" method="post">
     <input type="hidden" name="customer_id" th:value="${customer.customer_id}">
-    <input type="text" name="customer_name" th:value="${customer.customer_name}">
+    <input type="text" name="name" th:value="${customer.name}">
     <input type="text" name="phone_number" th:value="${customer.phone_number}">
     <input type="submit" value="gem ændringer">
 </form>
