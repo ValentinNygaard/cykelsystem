@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bicycle</title>
+</head>
+<body>
+
+<h1>Bicycle screen</h1>
+
+<p th:each="bicycle :${bicycle}">
+    <span th:text="${bicycle.description}" />
+
+    <a th:href="@{'/Bicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
+    <a style="color: red;" th:href="@{'/deletebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
+    <a style="color: green;" th:href="@{'/updatebicycle/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}"/>
+</p>
+
+<h1>opret ny status</h1>
+
+<form action="/createBicycle" method="post">
+    <input type="text" name="description">
+    <input type="text" name="customer_id">
+    <input type="submit" value="opret ny">
+</form>
+
+</body>
+</html>
