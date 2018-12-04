@@ -16,6 +16,10 @@
         <a style="color: green;" th:href="@{'/updateStatus/' + ${status.status_id}}" th:text="${status.status_title}"/>
     </p>
 
+    <a href="/bicycle">
+        <button class="btn-bicycle, btn" id="bicycleBtn">Bicycle</button>
+    </a>
+
     <h1>opret ny status</h1>
 
     <form action="/createStatus" method="post">
