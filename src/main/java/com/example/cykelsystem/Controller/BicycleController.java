@@ -19,8 +19,8 @@ public class BicycleController {
 
     @GetMapping("/bicycle")
     public String bicycle(Model model){
-        List<Bicycle> bicycle = bsi.findAll();
-        model.addAttribute("bicycle", bicycle);
+        List<Bicycle> bicycles = bsi.findAll();
+        model.addAttribute("bicycle", bicycles);
         return "bicycle/bicycle";
     }
 
@@ -46,7 +46,7 @@ public class BicycleController {
     public String updateBicycle(@PathVariable("id")int id, Model model)
     {
         model.addAttribute("bicycle",bsi.findById(id));
-        return "home/updatebicycle";
+        return "bicycle/updatebicycle";
     }
 
     @PostMapping("/updatebicycle")
