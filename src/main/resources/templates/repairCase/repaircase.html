@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Repair Case</title>
 </head>
 <body>
+
+<h1>Repair Case screen</h1>
+
+<p th:each="repairCase :${repairCase}">
+    <span th:text="${repairCase.start_date}+' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}
+    +' ' + ${repairCase.bicycle_id}+' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
+
+
+    <a th:href="@{'/detailsRepairCase/' + ${repairCase.repair_case_id}}" th:text="${repairCase.start_date}
+    +' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}+' ' + ${repairCase.bicycle_id}
+    +' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
+
+    <a style="color: red;" th:href="@{'/deleteRepairCase/' + ${repairCase.repair_case_id}}"
+       th:text="${repairCase.start_date} +' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}
+       +' ' + ${repairCase.bicycle_id} +' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
+
+    <a style="color: green;" th:href="@{'/updateRepairCase/' + ${repairCase.repair_case_id}}"
+       th:text="${repairCase.start_date} +' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}
+       +' ' + ${repairCase.bicycle_id} +' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
+</p>
+
+<h1>opret ny reparation</h1>
+
+<form action="/createRepairCase" method="post">
+    <input type="text" name="start_date">
+    <input type="text" name="end_date">
+    <input type="text" name="status_id">
+    <input type="text" name="bicycle_id">
+    <input type="text" name="employee_id">
+    <input type="text" name="repair_number">
+    <input type="submit" value="opret ny">
+</form>
 
 </body>
 </html>

@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>update repaircase</title>
 </head>
 <body>
 
+<h1>Opdater en repair case</h1>
+
+<form action="/updateRepairCase" method="post">
+    <input type="hidden" name="repair_case_id" th:value="${RepairCase.repair_case_id}">
+    <input type="text" name="start_date" th:value="${repairCase.start_date}">
+    <input type="text" name="end_date" th:value="${repairCase.end_date}">
+    <input type="text" name="status_id" th:value="${repairCase.status_id}">
+    <input type="text" name="bicycle_id" th:value="${repairCase.bicycle_id}">
+    <input type="text" name="employee_id" th:value="${repairCase.employee_id}">
+    <input type="text" name="repair_number" th:value="${repairCase.repair_number}">
+    <input type="submit" value="gem ændringer">
+    
+</form>
 </body>
 </html>
