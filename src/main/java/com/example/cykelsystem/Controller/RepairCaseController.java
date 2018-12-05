@@ -45,7 +45,7 @@ public class RepairCaseController {
 
     @GetMapping("/updateRepairCase/{id}")
     public String updateRepairCase(@PathVariable("id")int id, Model model) {
-        model.addAttribute("RepairCase",rcsi.findById(id));
+        model.addAttribute("repairCase",rcsi.findById(id));
         return "repaircase/updaterepaircase";
     }
 

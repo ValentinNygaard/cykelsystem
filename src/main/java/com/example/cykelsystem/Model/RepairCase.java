@@ -1,5 +1,8 @@
 package com.example.cykelsystem.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,14 +12,16 @@ public class RepairCase {
 
     @Id
     private int repair_case_id;
-    private Date start_date;
-    private Date end_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String start_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String end_date;
     private int status_id;
     private int bicycle_id;
     private int employee_id;
     private int repair_number;
 
-    public RepairCase(int repair_case_id, Date start_date, Date end_date,
+    public RepairCase(int repair_case_id, String start_date, String end_date,
                       int status_id, int bicycle_id, int employee_id, int repair_number){
         this.repair_case_id = repair_case_id;
         this.start_date = start_date;
@@ -37,19 +42,19 @@ public class RepairCase {
         this.repair_case_id = repair_case_id;
     }
 
-    public Date getStart_date() {
+    public String getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(Date start_date) {
+    public void setStart_date(String start_date) {
         this.start_date = start_date;
     }
 
-    public Date getEnd_date() {
+    public String getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Date end_date) {
+    public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
 
