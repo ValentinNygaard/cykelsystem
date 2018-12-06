@@ -1,35 +1,35 @@
 package com.example.cykelsystem.Service;
 
-import com.example.cykelsystem.Model.StdBicyclepartLineItem;
-import com.example.cykelsystem.Repository.StdBicylepartLineItemRepo;
+import com.example.cykelsystem.Model.StdPartItemLine;
+import com.example.cykelsystem.Repository.StdPartLineItemRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class StdBicyclepartLineItemService implements IService<StdBicyclepartLineItem> {
+public abstract class StdBicyclepartLineItemService implements IService<StdPartItemLine> {
 
     @Autowired
-    StdBicylepartLineItemRepo repoImpl;
+    StdPartLineItemRepoImpl repoImpl;
 
     @Override
-    public List<StdBicyclepartLineItem> findAll() {
+    public List<StdPartItemLine> findAll() {
         return repoImpl.findAll();
     }
 
     @Override
-    public StdBicyclepartLineItem findById(int id) {
+    public StdPartItemLine findById(int id) {
         return repoImpl.findById(id);
     }
 
     @Override
-    public StdBicyclepartLineItem create(StdBicyclepartLineItem stdBicyclepartLineItem) {
-        return repoImpl.create(stdBicyclepartLineItem);
+    public StdPartItemLine create(StdPartItemLine stdPartLineItem) {
+        return repoImpl.create(stdPartLineItem);
     }
 
     @Override
-    public StdBicyclepartLineItem update(StdBicyclepartLineItem stdBicyclepartLineItem) {
-        return repoImpl.update(stdBicyclepartLineItem);
+    public StdPartItemLine update(StdPartItemLine stdPartLineItem) {
+        return repoImpl.update(stdPartLineItem);
     }
 
     @Override

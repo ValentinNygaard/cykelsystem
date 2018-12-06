@@ -1,6 +1,6 @@
 package com.example.cykelsystem.Controller;
 
-import com.example.cykelsystem.Model.StdBicyclepartLineItem;
+import com.example.cykelsystem.Model.StdPartItemLine;
 import com.example.cykelsystem.Service.StdBicyclepartLineItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class StdBicyclepartLineItemController {
+public class StdPartLineItemController {
     /*@Autowired
     StdBicyclepartLineItemService sblis;
 
