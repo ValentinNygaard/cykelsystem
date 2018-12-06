@@ -60,13 +60,16 @@
             <
         </ul>
     </div>
+
+    <form th:each="bicycle :${bicycle}" action="/choosebike" method="post">
+        <input type="hidden" name="bicycle_id" th:value="${bicycle.bicycle_id}">
+        <input type="text" name="description" placeholder="${bicycle.description}" th:value="${bicycle.description}">
+        <br>
+        <input type="submit" value="slet">
+    </form>
 </div>
 
 
-<form th:each="bicycle :${bicycle}" action="/choosebike" method="post">
-    <input type="hidden" name="bicycle_id" th:value="${bicycle.bicycle_id}">
-    <input type="text" name="description" placeholder="${bicycle.description}" th:value="${bicycle.description}">
-    <input type="submit" value="opret">
-</form>
+
 </body>
 </html>
