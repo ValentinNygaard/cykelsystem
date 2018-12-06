@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>update StdBicycleLineItem</title>
+</head>
+<body>
+
+<h1>Opdater en standard bicycle line item</h1>
+
+<form action="/updateStdBicycleLineItem" method="post">
+    <input type="hidden" name="std_bicycle_line_item_id" th:value="${stdbicycleLineItem.std_bicycle_line_item_id}">
+    <input type="text" name="description" th:value="${stdbicycleLineItem.description}">
+    <input type="text" name="price" th:value="${stdbicycleLineItem.price}">
+    <input type="submit" value="gem ændringer">
+</form>
+</body>
+</html>
