@@ -4,18 +4,17 @@ import com.example.cykelsystem.Model.RepBarLine;
 import com.example.cykelsystem.Repository.RepBarLineRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class RepBarLineService implements IService<RepBarLine>{
 
     @Autowired
-    RepBarLineRepoImpl repBarLineRepoImpl;
+    RepBarLineRepoImpl barLineRepo;
 
     @Override
     public List<RepBarLine> findAll() {
-        return repBarLineRepoImpl.findAll();
+        return barLineRepo.findAll();
     }
 
     @Override

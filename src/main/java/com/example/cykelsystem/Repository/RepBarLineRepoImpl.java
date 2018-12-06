@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class RepBarLineRepoImpl implements IRepo<RepBarLine> {
 
     @Autowired
@@ -17,12 +19,15 @@ public class RepBarLineRepoImpl implements IRepo<RepBarLine> {
     public List<RepBarLine> findAll() {
         String sql = "select phone_number, repair_number, t1.time, t1.price, status_title, end_date\n" +
                 "from customer natural join bicycle natural join repair_case natural join (select repair_case_id, status_title, sum(time) as time, sum(price) as price\n" +
-                "from status s join repair_case r using(status_id) right join repair_line_item rli using(repair_case_id)\n" +
+                "from status natural join repair_case natural join repair_line_item\n" +
                 "group by repair_case_id) t1\n" +
                 "group by repair_case_id;";
         RowMapper<RepBarLine> rowMapper = new BeanPropertyRowMapper<>(RepBarLine.class);
-        return template.query(sql, rowMapper);
-        //    phone_number, repair_number, time, price, status, end_date;
+        List<RepBarLine> repBarLines = template.query(sql, rowMapper);
+        for (RepBarLine r: repBarLines) {
+            System.out.println(r.getPhone_number() + r.getPrice()+ r.getStatus_title());
+        }
+        return repBarLines;
     }
 
     @Override

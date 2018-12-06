@@ -3,6 +3,7 @@ package com.example.cykelsystem.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class StdPartLineItem {
 
     @Id

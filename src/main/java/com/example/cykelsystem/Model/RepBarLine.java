@@ -1,9 +1,8 @@
 package com.example.cykelsystem.Model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class RepBarLine {
@@ -13,20 +12,28 @@ public class RepBarLine {
     private int repair_number;
     private int time;
     private double price;
-    private String status;
+    private String status_title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String end_date;
 
-    public RepBarLine(int phone_number, int repair_number, int time, double price, String status, String end_date) {
+    public RepBarLine(int phone_number, int repair_number, int time, double price, String status_title, String end_date) {
         this.phone_number = phone_number;
         this.repair_number = repair_number;
         this.time = time;
         this.price = price;
-        this.status = status;
+        this.status_title = status_title;
         this.end_date = end_date;
     }
 
     public RepBarLine(){}
+
+    public String getStatus_title() {
+        return status_title;
+    }
+
+    public void setStatus_title(String status_title) {
+        this.status_title = status_title;
+    }
 
     public int getPhone_number() {
         return phone_number;
@@ -58,14 +65,6 @@ public class RepBarLine {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getEnd_date() {
