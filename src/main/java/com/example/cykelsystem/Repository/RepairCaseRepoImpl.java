@@ -17,7 +17,15 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public List<RepairCase> findAll() {
-        String sql = "SELECT * FROM repair_case";
+        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id,\n" +
+                "\t\trepair_case.bicycle_id, repair_case.employee_id, repair_case.repair_number, comments.comment\n" +
+                "from repair_case\n" +
+                "left join comments on repair_case.repair_case_id = comments.repair_case_id\n" +
+                "union\n" +
+                "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id,\n" +
+                "\t\trepair_case.bicycle_id, repair_case.employee_id, repair_case.repair_number, comments.comment\n" +
+                "from repair_case\n" +
+                "right join comments on repair_case.repair_case_id = comments.repair_case_id;";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         List<RepairCase> repairCases = template.query(sql, rowMapper);
         return repairCases;
@@ -25,7 +33,11 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public RepairCase findById(int id) {
-        String sql = "SELECT * FROM repair_case WHERE repair_case_id=?";
+        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id,\n" +
+                "\t\trepair_case.bicycle_id, repair_case.employee_id, repair_case.repair_number, comments.comment\n" +
+                "from repair_case\n" +
+                "left join comments on repair_case.repair_case_id = comments.repair_case_id\n" +
+                "where repair_case.repair_case_id = ?";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         RepairCase repairCase = template.queryForObject(sql, rowMapper, id);
         return repairCase;
@@ -33,19 +45,38 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public RepairCase create(RepairCase repairCase) {
-        String sql = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, employee_id, repair_number) VALUES(?,?,?,?,?,?,?)";
-        template.update(sql, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(), repairCase.getStatus_id(),
-                repairCase.getBicycle_id(), repairCase.getEmployee_id(), repairCase.getRepair_number());
+        String sql1 = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number) VALUES(?,?,?,?,?,?,?,?)";
+        template.update(sql1, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(),
+                repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(),
+                repairCase.getRepair_employee_id(), repairCase.getRepair_number());
+        if(repairCase.getComment() == null) {
+        }
+        else{
+            String sql2 = "INSERT INTO comment (repair_case_id, comment) VALUES (?,?)";
+            template.update(sql2, repairCase.getRepair_case_id(), repairCase.getComment());
+        }
         return repairCase;
     }
 
+
     @Override
     public RepairCase update(RepairCase repairCase) {
-        String sql = "UPDATE repair_case SET start_date=?, end_date=?, status_id=?, bicycle_id=?,employee_id=?, repair_number=? WHERE repair_case_id=?";
-        template.update(sql, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(),
-                repairCase.getBicycle_id(), repairCase.getEmployee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id());
-        RepairCase newRepairCase = findById(repairCase.getRepair_case_id());
-        return newRepairCase;
+        String sql1 = "UPDATE repair_case SET start_date=?, end_date=?, status_id=?, bicycle_id=?,customer_employee_id=?, repair_employee_id=?, repair_number=? WHERE repair_case_id=?";
+        template.update(sql1, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(),
+                repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id());
+        String sql2 = "SELECT * FROM comment WHERE repair_case_id=?";
+        RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
+        if(repairCase.getComment() == null) {
+        }
+        else if(template.queryForObject(sql2, rowMapper, repairCase.getRepair_case_id()) == null){
+            String sql3 = "INSERT INTO comment (repair_case_id, comment) VALUES (?,?)";
+            template.update(sql3, repairCase.getRepair_case_id(), repairCase.getComment());
+        }
+        else{
+            String sql4 = "UPDATE comment SET comment=? WHERE repair_case_id=?";
+            template.update(sql4, repairCase.getComment(), repairCase.getRepair_case_id());
+        }
+        return repairCase;
     }
 
     @Override
