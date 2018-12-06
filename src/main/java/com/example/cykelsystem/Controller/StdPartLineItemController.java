@@ -1,7 +1,7 @@
 package com.example.cykelsystem.Controller;
 
 import com.example.cykelsystem.Model.StdPartItemLine;
-import com.example.cykelsystem.Service.StdBicyclepartLineItemService;
+import com.example.cykelsystem.Repository.StdPartLineItemRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,26 +14,27 @@ import java.util.List;
 
 @Controller
 public class StdPartLineItemController {
-    /*@Autowired
-    StdBicyclepartLineItemService sblis;
 
-    @GetMapping("/sbli")
-    public String StdBicyclepartLineItem(Model model){
-        List<StdBicyclepartLineItem> stdBicyclepartLineItem = sblis.findAll();
-        model.addAttribute("stdBycycleLineItem", stdBicyclepartLineItem);
-        return "stdbicyclelineitem/sbli";
+    @Autowired
+    StdPartLineItemRepoImpl splipi;
+
+    @GetMapping("/spli")
+    public String StdPartLineItem(Model model){
+        List<StdPartItemLine> stdPartLineItem = splipi.findAll();
+        model.addAttribute("stdPartLineItem", stdPartLineItem);
+        return "stdpartlineitem/spli";
     }
 
-    @GetMapping("/viewStdBicycleLineItem/{id}")
-    public String viewStdBicyclepartLineItem(@PathVariable("id")int id, Model model){
-        model.addAttribute("stdbicycleLineItem", sblis.findById(id));
-        return "stdbicyclelineitem/detailssbli";
+    @GetMapping("/viewStdPartLineItem/{id}")
+    public String viewStdPartLineItem(@PathVariable("id")int id, Model model){
+        model.addAttribute("stdPartLineItem", splipi.findById(id));
+        return "stdpartlineitem/detailsspli";
     }
 
-    @GetMapping("/deleteStdBicycleLineItem/{id}")
-    public String deleteStdBicycleLineItem(@PathVariable("id")int id)
+    @GetMapping("/deleteStdPartLineItem/{id}")
+    public String deleteStdPartLineItem(@PathVariable("id")int id)
     {
-        boolean deleted = sblis.delete(id);
+        boolean deleted = splipi.delete(id);
         if(deleted) {
             return "redirect:/";
         }
@@ -42,22 +43,22 @@ public class StdPartLineItemController {
         }
     }
 
-    @GetMapping("/updateStdBicycleLineitem/{id}")
-    public String updateStdBicycleLineitem(@PathVariable("id")int id, Model model)
+    @GetMapping("/updateStdPartLineitem/{id}")
+    public String updateStdPartLineitem(@PathVariable("id")int id, Model model)
     {
-        model.addAttribute("stdbicycleLineItem",sblis.findById(id));
-        return "stdbicyclelineitem/updatesbli";
+        model.addAttribute("stdPartLineItem", splipi.findById(id));
+        return "stdPartlineitem/updatespli";
     }
 
-    @PostMapping("/updateStdBicycleLineItem")
-    public String updateStdBicycleLineItem(@ModelAttribute StdBicyclepartLineItem stdBicyclepartLineItem){
-        sblis.update(stdBicyclepartLineItem);
+    @PostMapping("/updateStdPartLineItem")
+    public String updateStdPartLineItem(@ModelAttribute StdPartItemLine stdPartLineItem){
+        splipi.update(stdPartLineItem);
         return "redirect:/";
     }
 
-    @PostMapping("/createStdBicycleLineItem")
-    public String createStdBicycleLineItem(@ModelAttribute StdBicyclepartLineItem stdBicyclepartLineItem){
-        sblis.create(stdBicyclepartLineItem);
+    @PostMapping("/createStdPartLineItem")
+    public String createStdPartLineItem(@ModelAttribute StdPartItemLine stdPartLineItem){
+        splipi.create(stdPartLineItem);
         return "redirect:/";
-    }*/
+    }
 }
