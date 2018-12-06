@@ -30,17 +30,17 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
     }
 
     @Override
-    public RepairLineItem create(RepairLineItem srli) {
+    public RepairLineItem create(RepairLineItem rli) {
         String sql = "INSERT INTO repair_line_item (repair_line_item_id, description, time, price, repair_case_id) VALUES(?,?,?,?,?)";
-        template.update(sql, srli.getRepair_line_item_id(), srli.getDescription(), srli.getTime(), srli.getPrice(), srli.getRepair_case_id());
-        return srli;
+        template.update(sql, rli.getRepair_line_item_id(), rli.getDescription(), rli.getTime(), rli.getPrice(), rli.getRepair_case_id());
+        return rli;
     }
 
     @Override
-    public RepairLineItem update(RepairLineItem srli) {
-        String sql = "UPDATE repair_line_item SET (description, time, price, repair_case_id) VALUES(?,?,?,?) WHERE repair_line_item_id=?";
-        template.update(sql, srli.getRepair_line_item_id(), srli.getDescription(), srli.getTime(), srli.getPrice());
-        return srli;
+    public RepairLineItem update(RepairLineItem rli) {
+        String sql = "UPDATE repair_line_item SET description=?, time=?, price=?, repair_case_id=? WHERE repair_line_item_id=?";
+        template.update(sql, rli.getDescription(), rli.getTime(), rli.getPrice(), rli.getRepair_case_id(), rli.getRepair_line_item_id());
+        return rli;
     }
 
     @Override

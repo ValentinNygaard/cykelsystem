@@ -4,7 +4,6 @@ import com.example.cykelsystem.Model.RepairCase;
 import com.example.cykelsystem.Repository.RepairCaseRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

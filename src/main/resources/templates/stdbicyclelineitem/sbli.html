@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>StdBicycleLineItem</title>
+</head>
+<body>
+
+<h1>standard bicycle line item screen</h1>
+
+<p th:each="stdBycycleLineItem :${stdBycycleLineItem}">
+    <span th:text="${stdBycycleLineItem.description}+' ' + ${stdBycycleLineItem.price}" />
+
+
+    <a th:href="@{'/viewStdBicycleLineItem/' + ${stdBycycleLineItem.std_bicycle_line_item_id}}"
+       th:text="${stdBycycleLineItem.description}+' ' + ${stdBycycleLineItem.price}"/>
+    <a style="color: red;" th:href="@{'/deleteStdBicycleLineItem/' + ${stdBycycleLineItem.std_bicycle_line_item_id}}"
+       th:text="${stdBycycleLineItem.description}+' ' + ${stdBycycleLineItem.price}"/>
+    <a style="color: green;" th:href="@{'/updateStdBicycleLineitem/' + ${stdBycycleLineItem.std_bicycle_line_item_id}}"
+       th:text="${stdBycycleLineItem.description}+' ' + ${stdBycycleLineItem.price}"/>
+</p>
+
+<h1>opret ny standard bicycle line item</h1>
+
+<form action="/createStdBicycleLineItem" method="post">
+    <input type="text" name="description">
+    <input type="text" name="price">
+    <input type="submit" value="opret ny">
+</form>
+
+</body>
+</html>

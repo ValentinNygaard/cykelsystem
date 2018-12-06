@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>RepairLineItem</title>
 </head>
 <body>
 
@@ -12,13 +12,13 @@
 
     <h3>Oversigt over reperations linier</h3>
 
-    <p th:each="repLine :${repLine}">
-        <span th:text="${repLine.description} + ' ' + ${repLine.time} + ' ' + ${repLine.price} + ' ' + ${repLine.repair_case_id}" />
+    <p th:each="repairLineItem :${repairLineItem}">
+        <span th:text="${repairLineItem.description} + ' ' + ${repairLineItem.time} + ' ' + ${repairLineItem.price}+ ' ' + ${repairLineItem.repair_case_id}" />
 
 
-        <a th:href="@{'/viewRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
-        <a style="color: red;" th:href="@{'/deleteRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
-        <a style="color: green;" th:href="@{'/updateRepairLineItem/' + ${repLine.std_repair_line_item_id}}" th:text="${repLine.description}"/>
+        <a th:href="@{'/viewRepairLineItem/' + ${repairLineItem.repair_line_item_id}}" th:text="${repairLineItem.description}"/>
+        <a style="color: red;" th:href="@{'/deleteRepairLineItem/' + ${repairLineItem.repair_line_item_id}}" th:text="${repairLineItem.description}"/>
+        <a style="color: green;" th:href="@{'/updateRepairLineItem/' + ${repairLineItem.repair_line_item_id}}" th:text="${repairLineItem.description}"/>
     </p>
 
     <h3>opret ny reperations linie</h3>

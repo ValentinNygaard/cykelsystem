@@ -18,21 +18,49 @@ public class RepairCase {
     private String end_date;
     private int status_id;
     private int bicycle_id;
-    private int employee_id;
+    private int customer_employee_id;
+    private int repair_employee_id;
     private int repair_number;
+    private String comment;
 
-    public RepairCase(int repair_case_id, String start_date, String end_date,
-                      int status_id, int bicycle_id, int employee_id, int repair_number){
+    public RepairCase(int repair_case_id, String start_date, String end_date, int status_id, int bicycle_id,
+                      int customer_employee_id, int repair_employee_id, int repair_number, String comment) {
         this.repair_case_id = repair_case_id;
         this.start_date = start_date;
         this.end_date = end_date;
         this.status_id = status_id;
         this.bicycle_id = bicycle_id;
-        this.employee_id = employee_id;
+        this.customer_employee_id = customer_employee_id;
+        this.repair_employee_id = repair_employee_id;
         this.repair_number = repair_number;
+        this.comment = comment;
     }
 
     public RepairCase(){}
+
+    public int getCustomer_employee_id() {
+        return customer_employee_id;
+    }
+
+    public void setCustomer_employee_id(int customer_employee_id) {
+        this.customer_employee_id = customer_employee_id;
+    }
+
+    public int getRepair_employee_id() {
+        return repair_employee_id;
+    }
+
+    public void setRepair_employee_id(int repair_employee_id) {
+        this.repair_employee_id = repair_employee_id;
+}
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public int getRepair_case_id() {
         return repair_case_id;
@@ -74,15 +102,7 @@ public class RepairCase {
         this.bicycle_id = bicycle_id;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
-    }
-
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
-    }
-
-    public int getRepair_number() {
+      public int getRepair_number() {
         return repair_number;
     }
 

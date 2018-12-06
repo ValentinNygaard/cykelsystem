@@ -10,16 +10,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class RepairLineItemController {
 
     @Autowired
     RepairLineItemServiceImpl rli;
 
+    @GetMapping("/repairLineItem")
+    public String customer(Model model){
+        List<RepairLineItem> repairLineItems = rli.findAll();
+        model.addAttribute("repairLineItem", repairLineItems);
+        return "repairlineitem/rli";
+    }
+
     @GetMapping("/viewRepairLineItem/{id}")
     public String viewRepairLineItem(@PathVariable("id")int id, Model model){
-        model.addAttribute("stdRep", rli.findById(id));
-        return "viewrepairli";
+        model.addAttribute("repLine", rli.findById(id));
+        return "repairlineitem/detailsrli";
     }
 
     @GetMapping("/deleteRepairLineItem/{id}")
@@ -37,8 +46,8 @@ public class RepairLineItemController {
     @GetMapping("/updateRepairLineItem/{id}")
     public String updateStatus(@PathVariable("id")int id, Model model)
     {
-        model.addAttribute("stdRep",rli.findById(id));
-        return "updaterepairli";
+        model.addAttribute("repLine",rli.findById(id));
+        return "repairlineitem/updaterli";
     }
 
     @PostMapping("/updateRepairLineItem")

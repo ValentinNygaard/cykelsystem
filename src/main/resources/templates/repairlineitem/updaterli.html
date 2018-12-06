@@ -9,7 +9,7 @@
 <h1>Opdater en standard reperation</h1>
 
 <form action="/updateRepairLineItem" method="post">
-    <input type="hidden" name="repair_line_item_id" th:value="${repLine.std_repair_line_item_id}">
+    <input type="hidden" name="repair_line_item_id" th:value="${repLine.repair_line_item_id}">
     <input type="text" name="description" th:value="${repLine.description}">
     <input type="text" name="time" th:value="${repLine.time}">
     <input type="text" name="price" th:value="${repLine.price}">
