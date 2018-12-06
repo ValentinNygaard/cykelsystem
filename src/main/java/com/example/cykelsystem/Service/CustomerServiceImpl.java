@@ -1,6 +1,7 @@
 package com.example.cykelsystem.Service;
 
 import com.example.cykelsystem.Model.Customer;
+import com.example.cykelsystem.Model.Employee;
 import com.example.cykelsystem.Repository.CustomerRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,6 @@ public class CustomerServiceImpl implements IService<Customer> {
     public boolean delete(int id) {
         return customerRepo.delete(id);
     }
+
+    public Customer findByPhone(String phone_number){return  customerRepo.findByPhone(phone_number);}
 }

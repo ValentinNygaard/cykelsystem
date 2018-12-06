@@ -1,0 +1,170 @@
+<!Doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f2f2f2;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 18px 16px;
+        text-decoration: none;
+        font-size: 25px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #5F9EA0;
+        color: white;
+    }
+
+
+    .btn-group button {
+        background-color: #5F9EA0; /* Green background */
+        border: 1px solid black; /* Green border */
+        color: white; /* White text */
+        padding: 15px 24px; /* Some padding */
+        font-size: 17px;
+        cursor: pointer; /* Pointer/hand icon */
+        width: 100%; /* Set a width if needed */
+        display: block; /* Make the buttons appear below each other */
+    }
+
+    .btn-group button:not(:last-child) {
+        border-bottom: none; /* Prevent double borders */
+    }
+
+    /* Add a background color on hover */
+    .btn-group button:hover {
+        background-color: #436e70;
+    }
+    .btn-group2 button {
+        background-color: #2d862d; /* Green background */
+        border: 1px solid black; /* Green border */
+        color: white; /* White text */
+        padding: 15px 24px; /* Some padding */
+        font-size: 17px;
+        cursor: pointer; /* Pointer/hand icon */
+        width: 100%; /* Set a width if needed */
+        display: block; /* Make the buttons appear below each other */
+    }
+
+    .btn-group2 button:not(:last-child) {
+        border-bottom: none; /* Prevent double borders */
+    }
+
+    /* Add a background color on hover */
+    .btn-group2 button:hover {
+        background-color: #194d19;
+    }
+
+    .label {
+        color: white;
+        padding: 1px;
+        font-family: Arial
+
+    }
+
+    .date {background-color: #404040;
+        color: white;
+        border: 1px solid black;
+        font-size: 20px;
+        width: 100%;
+
+
+    }
+
+    h1{
+        font-size: 40px;
+    }
+
+</style>-->
+
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+</head>
+
+<body>
+
+
+<div class="topnav">
+    <a class="active" href="/arbejdskort">Arbejdskort</a>
+    <a href="/opretarbejdskort">Opret arbejdskort</a>
+    <a href="/findarbejdskort">Find arbejdskort</a>
+    <a href="/kunder">Kunder</a>
+    <a href="/kassebilag">Kassebilag</a>
+
+</div>
+
+<div style="padding-left:16px">
+    <h1>Arbejdskort</h1>
+    <p>her kan man skrive en overskrift</p>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</div>
+
+
+
+
+
+
+
+<button class="label date"><p id="demo"></p></button>
+
+<script>
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toDateString();
+</script>
+
+<div class="btn-group"> <!--th:each="repaircase :${repaircase}"-->
+   <!-- <button><span th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
+         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}" /><i class='fas fa-wrench' style='font-size:24px'></i> </button>-->
+    <button>TLF: 23232323 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 12  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 30 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 400 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i>
+    </button>
+    <button>TLF: 23232323 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 12  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 30 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 400 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i> </button>
+    <button>TLF: 23232323 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 12  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 30 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 400 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i></button>
+</div>
+
+
+<div class="btn-group2">
+    <button>TLF: 24242424 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 14  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 30 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 500 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: repareret &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class="fa fa-check-square-o" style="font-size:24px"></i>
+    </button>
+    <button>TLF: 24242424 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 14  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 30 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 500 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: repareret &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class="fa fa-check-square-o" style="font-size:24px"></i>
+    </button>
+    <button>TLF: 24242424 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 14  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 30 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 500 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: repareret &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class="fa fa-check-square-o" style="font-size:24px"></i>
+    </button>
+</div>
+
+<button class="label date"><p id="demo2"></p></button>
+
+<script>
+    var currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 1);
+    document.getElementById("demo2").innerHTML = currentDate.toDateString();
+</script>
+
+
+
+<div class="btn-group">
+    <button>TLF: 25252525 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 16  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 50 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 600 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i> </button></button>
+    <button>TLF: 25252525 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 16  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 50 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 600 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i> </button></button>
+</div>
+
+</body>
+</html>

@@ -36,4 +36,6 @@ public class BicyleServiceImpl implements IService<Bicycle> {
     public boolean delete(int id) {
         return bicycleRepo.delete(id);
     }
+
+    public List<Bicycle> findAllByCustomer(int customer_id) {return bicycleRepo.findAllByCustomer(customer_id);}
 }

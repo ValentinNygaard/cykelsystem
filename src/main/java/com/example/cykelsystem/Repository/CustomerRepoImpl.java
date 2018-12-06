@@ -49,4 +49,10 @@ public class CustomerRepoImpl implements IRepo<Customer> {
         String sql = "DELETE FROM customer WHERE customer_id=?";
         return  template.update(sql, id) >= 0;
     }
+
+    public Customer findByPhone(String phone_number){
+        String sql = "SELECT * FROM customer WHERE phone_number=?";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return template.queryForObject(sql, rowMapper, phone_number);
+    }
 }

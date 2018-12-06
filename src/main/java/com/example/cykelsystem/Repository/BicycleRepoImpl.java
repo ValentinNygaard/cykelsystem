@@ -51,4 +51,11 @@ public class BicycleRepoImpl implements IRepo<Bicycle> {
         String sql = "DELETE FROM bicycle WHERE bicycle_id=?";
         return template.update(sql, id) >= 0;
     }
+
+    public List<Bicycle> findAllByCustomer(int customer_id){
+        String sql = "SELECT * FROM bicycle WHERE customer_id=?";
+        RowMapper<Bicycle> rowMapper = new BeanPropertyRowMapper<>(Bicycle.class);
+        List<Bicycle> bicycles = template.query(sql, rowMapper, customer_id);
+        return bicycles;
+    }
 }
