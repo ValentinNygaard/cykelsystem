@@ -1,6 +1,6 @@
 package com.example.cykelsystem.Controller;
 
-import com.example.cykelsystem.Model.StdPartItemLine;
+import com.example.cykelsystem.Model.StdPartLineItem;
 import com.example.cykelsystem.Repository.StdPartLineItemRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class StdPartLineItemController {
 
     @GetMapping("/spli")
     public String StdPartLineItem(Model model){
-        List<StdPartItemLine> stdPartLineItem = splipi.findAll();
+        List<StdPartLineItem> stdPartLineItem = splipi.findAll();
         model.addAttribute("stdPartLineItem", stdPartLineItem);
         return "stdpartlineitem/spli";
     }
@@ -51,13 +51,13 @@ public class StdPartLineItemController {
     }
 
     @PostMapping("/updateStdPartLineItem")
-    public String updateStdPartLineItem(@ModelAttribute StdPartItemLine stdPartLineItem){
+    public String updateStdPartLineItem(@ModelAttribute StdPartLineItem stdPartLineItem){
         splipi.update(stdPartLineItem);
         return "redirect:/";
     }
 
     @PostMapping("/createStdPartLineItem")
-    public String createStdPartLineItem(@ModelAttribute StdPartItemLine stdPartLineItem){
+    public String createStdPartLineItem(@ModelAttribute StdPartLineItem stdPartLineItem){
         splipi.create(stdPartLineItem);
         return "redirect:/";
     }

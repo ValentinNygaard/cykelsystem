@@ -3,20 +3,20 @@ package com.example.cykelsystem.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-public class StdPartItemLine {
+public class StdPartLineItem {
 
     @Id
     private int std_bicycle_line_item_id;
     private String description;
     private int price;
 
-    public StdPartItemLine(int std_bicycle_line_item_id, String description, int price) {
+    public StdPartLineItem(int std_bicycle_line_item_id, String description, int price) {
         this.std_bicycle_line_item_id = std_bicycle_line_item_id;
         this.description = description;
         this.price = price;
     }
 
-    public  StdPartItemLine(){}
+    public StdPartLineItem(){}
 
     public int getStd_part_line_item_id() {
         return std_bicycle_line_item_id;
