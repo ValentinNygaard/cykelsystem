@@ -1,9 +1,14 @@
 package com.example.cykelsystem.Model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+
+@Entity
 public class RepBarLine {
 
+    @Id
     private int phone_number;
     private int repair_number;
     private int time;

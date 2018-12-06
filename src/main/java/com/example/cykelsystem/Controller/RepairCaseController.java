@@ -20,8 +20,8 @@ public class RepairCaseController {
 
     @GetMapping("/repaircase")
     public String repairCase(Model model){
-        List<RepairCase> repairCases = rcsi.findAll();
-        model.addAttribute("repairCase", repairCases);
+        List<RepairCase> repairCase = rcsi.findAll();
+        model.addAttribute("repairCase", repairCase);
         return "repaircase/repaircase";
     }
 

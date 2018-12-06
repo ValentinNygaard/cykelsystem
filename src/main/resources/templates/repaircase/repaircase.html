@@ -6,41 +6,27 @@
 </head>
 <body>
     <h2>Dette er Repair Case delen</h2>
-
     <h3>Oversigt over Repair Cases</h3>
 
-    <p th:each="repaircase :${repaircase}">
-        <span th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
-         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}" />
+    <p th:each="repairCase :${repairCase}">
+        <span th:text="${repairCase.start_date} + '' + ${repairCase.end_date} + '' + ${repairCase.status_id}
+         + '' + ${repairCase.bicycle_id} + '' + ${repairCase.customer_employee_id} + '' +${repairCase.repair_employee_id}
+          + '' + ${repairCase.repair_number} + '' + ${repairCase.comment}" />
 
-        <a th:href="@{'/repaircase/' + ${repaircase.repair_case_id}}" th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
-         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}"/>
-        <a style="color: red;" th:href="@{'/deleteRepaircase/' + ${repaircase.repaircase_id}}" th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
-         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}"/>
-        <a style="color: green;" th:href="@{'/updateRepaircase/' + ${repaircase.repaircase_id}}" th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
-         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}"/>
+        <a th:href="@{'/detailsRepairCase/' + ${repairCase.repair_case_id}}" th:text="${repairCase.start_date} + '' + ${repairCase.end_date} + '' + ${repairCase.status_id}
+         + '' + ${repairCase.bicycle_id} + '' + ${repairCase.customer_employee_id} + '' +${repairCase.repair_employee_id}
+          + '' + ${repairCase.repair_number} + '' + ${repairCase.comment}" />
+
+        <a style="color: red;" th:href="@{'/deleteRepairCase/' + ${repairCase.repair_case_id}}" th:text="${repairCase.start_date} + '' + ${repairCase.end_date} + '' + ${repairCase.status_id}
+         + '' + ${repairCase.bicycle_id} + '' + ${repairCase.customer_employee_id} + '' +${repairCase.repair_employee_id}
+          + '' + ${repairCase.repair_number} + '' + ${repairCase.comment}" />
+
+        <a style="color: green;" th:href="@{'/updateRepairCase/' + ${repairCase.repair_case_id}}" th:text="${repairCase.start_date} + '' + ${repairCase.end_date} + '' + ${repairCase.status_id}
+         + '' + ${repairCase.bicycle_id} + '' + ${repairCase.customer_employee_id} + '' +${repairCase.repair_employee_id}
+          + '' + ${repairCase.repair_number} + '' + ${repairCase.comment}" />
 
     </p>
 
-<h1>Repair Case screen</h1>
-
-<p th:each="repairCase :${repairCase}">
-    <span th:text="${repairCase.start_date}+' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}
-    +' ' + ${repairCase.bicycle_id}+' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
-
-
-    <a th:href="@{'/detailsRepairCase/' + ${repairCase.repair_case_id}}" th:text="${repairCase.start_date}
-    +' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}+' ' + ${repairCase.bicycle_id}
-    +' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
-
-    <a style="color: red;" th:href="@{'/deleteRepairCase/' + ${repairCase.repair_case_id}}"
-       th:text="${repairCase.start_date} +' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}
-       +' ' + ${repairCase.bicycle_id} +' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
-
-    <a style="color: green;" th:href="@{'/updateRepairCase/' + ${repairCase.repair_case_id}}"
-       th:text="${repairCase.start_date} +' ' + ${repairCase.end_date}+' ' + ${repairCase.status_id}
-       +' ' + ${repairCase.bicycle_id} +' ' + ${repairCase.employee_id}+' ' + ${repairCase.repair_number}" />
-</p>
 
 <h1>opret ny reparation</h1>
 
@@ -49,8 +35,10 @@
     <input type="text" name="end_date">
     <input type="text" name="status_id">
     <input type="text" name="bicycle_id">
-    <input type="text" name="employee_id">
+    <input type="text" name="customer_employee_id">
+    <input type="text" name="repair_employee_id">
     <input type="text" name="repair_number">
+    <input type="text" name="comment">
     <input type="submit" value="opret ny">
 </form>
 
