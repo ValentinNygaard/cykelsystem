@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h2>Dette er partLineItem delen</h2>
+
+<h3>Oversigt over partLineItems</h3>
+
+<p th:each="partLineItem :${partLineItem}">
+    <span th:text="${partLineItem.description} + ' ' + ${partLineItem.price}" />
+
+    <a th:href="@{'/detailsPartLineItem/' + ${partLineItem.part_line_item_id}}" th:text="${partLineItem.description} + ' ' + ${partLineItem.price}"/>
+    <a style="color: red;" th:href="@{'/deletePartLineItem/' + ${partLineItem.part_line_item_id}}" th:text="${partLineItem.description} + ' ' + ${partLineItem.price}"/>
+    <a style="color: green;" th:href="@{'/updatePartlineItem/' + ${partLineItem.part_line_item_id}}" th:text="${partLineItem.description} + ' ' + ${partLineItem.price}"/>
+
+</p>
+
+<h3>opret ny Part Line Item</h3>
+
+<form action="/createPartLineItem" method="post">
+    <input type="text" name="description">
+    <input type="text" name="price">
+    <input type="text" name="repair_case_id">
+    <input type="submit" value="opret ny">
+</form>
+</body>
+</html>
