@@ -17,15 +17,12 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public List<RepairCase> findAll() {
-        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id,\n" +
-                "\t\trepair_case.bicycle_id, repair_case.employee_id, repair_case.repair_number, comments.comment\n" +
-                "from repair_case\n" +
-                "left join comments on repair_case.repair_case_id = comments.repair_case_id\n" +
+        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id, repair_case.bicycle_id, repair_case.customer_employee_id, repair_case.repair_employee_id, repair_case.repair_number, comment.comment \n" +
+                "from repair_case left join comment on repair_case.repair_case_id = comment.repair_case_id\n" +
                 "union\n" +
-                "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id,\n" +
-                "\t\trepair_case.bicycle_id, repair_case.employee_id, repair_case.repair_number, comments.comment\n" +
+                "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id, repair_case.bicycle_id, repair_case.customer_employee_id, repair_case.repair_employee_id, repair_case.repair_number, comment.comment\n" +
                 "from repair_case\n" +
-                "right join comments on repair_case.repair_case_id = comments.repair_case_id;";
+                "right join comment on repair_case.repair_case_id = comment.repair_case_id; ";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         List<RepairCase> repairCases = template.query(sql, rowMapper);
         return repairCases;
@@ -33,11 +30,11 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public RepairCase findById(int id) {
-        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id,\n" +
-                "\t\trepair_case.bicycle_id, repair_case.employee_id, repair_case.repair_number, comments.comment\n" +
+        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id, repair_case.bicycle_id,\n" +
+                "\t\trepair_case.customer_employee_id, repair_case.repair_employee_id, repair_case.repair_number, comment.comment\n" +
                 "from repair_case\n" +
-                "left join comments on repair_case.repair_case_id = comments.repair_case_id\n" +
-                "where repair_case.repair_case_id = ?";
+                "left join comment on repair_case.repair_case_id = comment.repair_case_id\n" +
+                "where repair_case.repair_case_id = ?;";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         RepairCase repairCase = template.queryForObject(sql, rowMapper, id);
         return repairCase;
@@ -49,15 +46,13 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         template.update(sql1, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(),
                 repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(),
                 repairCase.getRepair_employee_id(), repairCase.getRepair_number());
-        if(repairCase.getComment() == null) {
-        }
-        else{
+                if(repairCase.getComment() != null) {
             String sql2 = "INSERT INTO comment (repair_case_id, comment) VALUES (?,?)";
             template.update(sql2, repairCase.getRepair_case_id(), repairCase.getComment());
         }
+        else{}
         return repairCase;
     }
-
 
     @Override
     public RepairCase update(RepairCase repairCase) {
@@ -82,7 +77,10 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     @Override
     public boolean delete(int id){
     String sql = "DELETE FROM repair_case WHERE repair_case_id=?";
-        return template.update(sql, id) >= 0;    }
+    String sql2 = "DELETE FROM comment WHERE repair_case_id=?";
+    template.update(sql2, id);
+        return template.update(sql, id) >= 0;
+    }
 }
 
 

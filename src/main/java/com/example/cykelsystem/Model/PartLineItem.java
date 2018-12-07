@@ -4,29 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class BicycleLineItem {
+public class PartLineItem {
 
     @Id
-    private int bicyclepart_line_item_id;
+    private int part_line_item_id;
     private String description;
     private int price;
     private int repair_case_id;
 
-    public BicycleLineItem(int bicyclepart_line_item_id, String description, int price, int repair_case_id) {
-        this.bicyclepart_line_item_id = bicyclepart_line_item_id;
+    public PartLineItem(int part_line_item_id, String description, int price, int repair_case_id) {
+        this.part_line_item_id = part_line_item_id;
         this.description = description;
         this.price = price;
         this.repair_case_id = repair_case_id;
     }
 
-    public BicycleLineItem(){}
+    public PartLineItem(){}
 
-    public int getBicyclepart_line_item_id() {
-        return bicyclepart_line_item_id;
+    public int getPart_line_item_id() {
+        return part_line_item_id;
     }
 
-    public void setBicyclepart_line_item_id(int bicyclepart_line_item_id) {
-        this.bicyclepart_line_item_id = bicyclepart_line_item_id;
+    public void setPart_line_item_id(int bicyclepart_line_item_id) {
+        this.part_line_item_id = bicyclepart_line_item_id;
     }
 
     public String getDescription() {
