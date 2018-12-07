@@ -7,33 +7,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RepBarLineService implements IService<RepBarLine>{
+public class RepBarLineService {
 
     @Autowired
     RepBarLineRepoImpl barLineRepo;
 
-    @Override
     public List<RepBarLine> findAll() {
         return barLineRepo.findAll();
     }
 
-    @Override
+    public List<RepBarLine> findAllRepBars(){return barLineRepo.findAllRepbars();}
+
     public RepBarLine findById(int id) {
         return null;
     }
 
-    @Override
-    public RepBarLine create(RepBarLine repBarLine) {
-        return null;
-    }
 
-    @Override
-    public RepBarLine update(RepBarLine repBarLine) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
 }
