@@ -1,7 +1,5 @@
 package com.example.cykelsystem.Service;
-
 import com.example.cykelsystem.Model.Customer;
-import com.example.cykelsystem.Model.Employee;
 import com.example.cykelsystem.Repository.CustomerRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

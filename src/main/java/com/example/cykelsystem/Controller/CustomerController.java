@@ -52,7 +52,7 @@ public class CustomerController {
     }
 
     @PostMapping("/updateCustomer")
-    public String updateStatus(@ModelAttribute Customer customer){
+    public String updateCustomer(@ModelAttribute Customer customer){
         csi.update(customer);
         return "redirect:/";
     }

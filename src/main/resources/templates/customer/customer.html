@@ -10,8 +10,6 @@
 
 <p th:each="customer :${customer}">
     <span th:text="${customer.name}+' ' + ${customer.phone_number}" />
-
-
     <a th:href="@{'/detailsCustomer/' + ${customer.customer_id}}" th:text="${customer.name}+' ' + ${customer.phone_number}"/>
     <a style="color: red;" th:href="@{'/deleteCustomer/' + ${customer.customer_id}}" th:text="${customer.name}+' ' + ${customer.phone_number}"/>
     <a style="color: green;" th:href="@{'/updateCustomer/' + ${customer.customer_id}}" th:text="${customer.name}+' ' + ${customer.phone_number}"/>
