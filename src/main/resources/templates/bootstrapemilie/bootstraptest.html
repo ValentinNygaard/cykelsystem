@@ -132,26 +132,22 @@
     document.getElementById("demo").innerHTML = d.toDateString();
 </script>
 
-<div class="btn-group"> <!--th:each="repaircase :${repaircase}"-->
-   <!-- <button><span th:text="${repaircase.start_date} + '' + ${repaircase.end_date} + '' + ${repaircase.status_id}
-         + '' + ${repaircase.bicycle_id} + '' + ${repaircase.employee_id} + '' + ${repaircase.repair_number}" /><i class='fas fa-wrench' style='font-size:24px'></i> </button>-->
-    <button><i class='fas fa-wrench' style='font-size:24px'></i>
-    </button>
-    <button><i class='fas fa-wrench' style='font-size:24px'></i> </button>
-    <button><i class='fas fa-wrench' style='font-size:24px'></i></button>
+
+
+
+
+<p th:each="repBarLine :${repBarLine}">
+    <span th:text="${repBarLine.phone_number}+ ' ' +${repBarLine.repair_number}+ ' ' +${repBarLine.time}
+    + ' ' +${repBarLine.price}+ ' ' +${repBarLine.status_title}+ ' ' +${repBarLine.end_date}" />
+
+</p>
+
+<div class="btn-group">
+
+    <button th:each="repBarLine :${repBarLine}"><i class='fas fa-wrench' style='font-size:24px'></i><span th:text="${repBarLine.phone_number}+ ' ' +${repBarLine.repair_number}+ ' ' +${repBarLine.time}
+    + ' ' +${repBarLine.price}+ ' ' +${repBarLine.status_title}+ ' ' +${repBarLine.end_date}" /></button>
 </div>
 
-
-<div class="btn-group2">
-    <button><i class="fa fa-check-square-o" style="font-size:24px"></i>
-    </button>
-    <button><i class="fa fa-check-square-o" style="font-size:24px"></i>
-    </button>
-    <button><i class="fa fa-check-square-o" style="font-size:24px"></i>
-    </button>
-</div>
-
-<button class="label date"><p id="demo2"></p></button>
 
 <script>
     var currentDate = new Date();
@@ -161,10 +157,7 @@
 
 
 
-<div class="btn-group">
-    <button>TLF: 25252525 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 16  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 50 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 600 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i> </button></button>
-    <button>TLF: 25252525 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp REP NR: 16  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST TID: 50 min  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    EST. PRIS: 600 kr.  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    STATUS: oprettet &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i class='fas fa-wrench' style='font-size:24px'></i> </button></button>
-</div>
+
 
 </body>
 </html>
