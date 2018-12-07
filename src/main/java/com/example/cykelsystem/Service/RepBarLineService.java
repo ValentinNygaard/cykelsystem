@@ -18,6 +18,8 @@ public class RepBarLineService {
 
     public List<RepBarLine> findAllRepBars(){return barLineRepo.findAllRepbars();}
 
+    public List<RepBarLine> findAllRepbarsDate(){return barLineRepo.findAllRepbarsDate();}
+
     public RepBarLine findById(int id) {
         return null;
     }
