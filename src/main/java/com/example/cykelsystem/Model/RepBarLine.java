@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class RepBarLine {
 
     @Id
-    private int phone_number;
+    private String phone_number;
     private int repair_number;
     private int time;
     private double price;
@@ -16,7 +16,7 @@ public class RepBarLine {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String end_date;
 
-    public RepBarLine(int phone_number, int repair_number, int time, double price, String status_title, String end_date) {
+    public RepBarLine(String phone_number, int repair_number, int time, double price, String status_title, String end_date) {
         this.phone_number = phone_number;
         this.repair_number = repair_number;
         this.time = time;
@@ -35,11 +35,11 @@ public class RepBarLine {
         this.status_title = status_title;
     }
 
-    public int getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(int phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
