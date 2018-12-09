@@ -17,12 +17,8 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public List<RepairCase> findAll() {
-        String sql = "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id, repair_case.bicycle_id, repair_case.customer_employee_id, repair_case.repair_employee_id, repair_case.repair_number, comment.comment \n" +
-                "from repair_case left join comment on repair_case.repair_case_id = comment.repair_case_id\n" +
-                "union\n" +
-                "select repair_case.repair_case_id, repair_case.start_date, repair_case.end_date, repair_case.status_id, repair_case.bicycle_id, repair_case.customer_employee_id, repair_case.repair_employee_id, repair_case.repair_number, comment.comment\n" +
-                "from repair_case\n" +
-                "right join comment on repair_case.repair_case_id = comment.repair_case_id; ";
+        String sql = "select repair_case.repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, comment.comment\n" +
+                "from repair_case left join comment using(repair_case_id)";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         List<RepairCase> repairCases = template.query(sql, rowMapper);
         return repairCases;
@@ -42,18 +38,20 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public RepairCase create(RepairCase repairCase) {
-        String sql1 = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number) VALUES(?,?,?,?,?,?,?,?) ";
+        String sql1 = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number) VALUES(?,?,?,?,?,?,?,?)";
         template.update(sql1, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(),
                 repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(),
                 repairCase.getRepair_employee_id(), repairCase.getRepair_number());
 
-
-        if(repairCase.getComment() != null) {
+        /*if(repairCase.getComment() == null) {
+        }
+        else{
+            RepairCase r = returnRepairCaseWithSqlId(repairCase);
             String sql2 = "INSERT INTO comment (repair_case_id, comment) VALUES (?,?)";
             template.update(sql2, repairCase.getRepair_case_id(), repairCase.getComment());
-        }
-        else{}
-        return repairCase;
+        }*/
+        RepairCase r = returnRepairCaseWithSqlId(repairCase);
+        return r;
     }
 
     @Override
@@ -63,7 +61,6 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
                 repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id());
         String sql2 = "SELECT * FROM comment WHERE repair_case_id=?";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
-
         if(repairCase.getComment() == null) {
         }
         else if(template.queryForObject(sql2, rowMapper, repairCase.getRepair_case_id()) == null){
@@ -84,6 +81,16 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     template.update(sql2, id);
         return template.update(sql, id) >= 0;
     }
+
+    public RepairCase returnRepairCaseWithSqlId(RepairCase repairCase) {
+        String sql = "select repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, comment\n" +
+                "from repair_case left join comment using(repair_case_id)\n" +
+                "where start_date = ? and end_date = ? and repair_number = ?;";
+        RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
+        RepairCase r = template.queryForObject(sql, rowMapper, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getRepair_number());
+        return r;
+    }
+
 }
 
 
