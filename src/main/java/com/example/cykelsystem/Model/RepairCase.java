@@ -109,4 +109,9 @@ public class RepairCase {
     public void setRepair_number(int repair_number) {
         this.repair_number = repair_number;
     }
+
+    public String toString(){
+        return "start date"+ " "+getStart_date()+" "+"end date"+" "+getEnd_date()+" "+"status"+" "+ getStatus_id()+" "+"bicycle id"+" "+ getBicycle_id()
+                +" "+"repair nr"+" "+ getRepair_number()+" "+"customer employee id"+" "+ getCustomer_employee_id()+" "+"repair employee id"+" "+ getRepair_employee_id()+" "+"comment"+" "+ getComment();
+    }
 }

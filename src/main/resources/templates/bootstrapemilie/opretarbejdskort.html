@@ -47,27 +47,170 @@
         <input type="text" name="phone_number">
         <input type="submit" value="find cykel">
     </form>
-    <div class="dropdown">
+
+   <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Cykler
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
             <li class="dropdown-header">Cykler</li>
-            <li th:each="bicycle :${bicycle}">
-                <a th:href="@{'/choosebike/' + ${bicycle.bicycle_id}}" th:text="${bicycle.description}" />
+            <li th:each="bicycle1 :${bicycle1}">
+                <a th:href="@{'/choosebike/' + ${bicycle1.bicycle_id}}" th:text="${bicycle1.description}" />
             <li><a href="#">tilføj cykel</a></li>
             <li class="divider"></li>
             <li class="dropdown-header">Dropdown header 2</li>
             <
         </ul>
+   </div>
+</div>
+<!--
+       <form th:each="bicycle2 :${bicycle2}" action="/createrepaircase" method="post">
+        <input type="hidden" name="bicycle_id" th:value="${bicycle2.bicycle_id}" placeholder="${bicycle2.description}">
+        <input type="text" name="description" placeholder="${bicycle2.description}" th:value="${bicycle2.description}">
+        <input type="text" name="start_date" placeholder="YYYY/MM/DD">
+        <input type="text" name="end_date" placeholder="YYYY/MM/DD">
+
+
+           <div class="dropdown">
+               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Status
+                   <span class="caret"></span></button>
+               <ul class="dropdown-menu">
+                   <li class="dropdown-header">Status</li>
+                   <li th:each="status1 :${status1}">
+                       <a th:href="@{'/choosestatus/' + ${status1.status_id}}" th:text="${status1.status_title}" />
+                   <li class="divider"></li>
+                   <li class="dropdown-header">Dropdown header 2</li>
+                   <
+               </ul>
+           </div>
+           <form th:each="status2 :${status2}">
+
+               <input  type="hidden" name="status_id" th:value="${status2.status_id}" placeholder="${status2.status_id}">
+               <input type="text" name="name" placeholder="${status2.status_title}" th:value="${status2.status_title}">
+           </form>
+
+           <div class="dropdown">
+               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Oprettet af
+                   <span class="caret"></span></button>
+               <ul class="dropdown-menu">
+                   <li class="dropdown-header">Medarbejdere</li>
+                   <li th:each="medarbejder1 :${medarbejder1}">
+                       <a th:href="@{'/chooseemployee/' + ${medarbejder1.employee_id}}" th:text="${medarbejder1.name}" />
+                   <li class="divider"></li>
+                   <li class="dropdown-header">Dropdown header 2</li>
+                   <
+               </ul>
+           </div>
+           <form th:each="medarbejder2 :${medarbejder2}">
+
+           <input  type="hidden" name="employee_id" th:value="${medarbejder2.employee_id}" placeholder="${medarbejder2.employee_id}">
+           <input type="text" name="name" placeholder="${medarbejder2.name}" th:value="${medarbejder2.name}">
+           </form>
+        <input type="text" name="repair_employee_id" placeholder="repair employee id">
+        <input type="text" name="repair_number" placeholder="repair number">
+        <input type="text" name="comment" placeholder="comment">
+        <input type="submit" value="opret ny">
+    </form>
+</form>
+-->
+    <h2>Responsive Form</h2>
+    <p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p>
+
+    <div class="container">
+        <form th:each="bicycle2 :${bicycle2}" action="/createrepaircase" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <label for="bike">Cykel beskrivelse</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="bike" name="description" placeholder="${bicycle2.description}" th:value="${bicycle2.description}">
+                    <input type="hidden"  name="bicycle_id" th:value="${bicycle2.bicycle_id}" placeholder="${bicycle2.description}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="repnr">Rep nr.</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="repnr" name="repair_number" placeholder="rep nr.">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="sdate">Oprettet dato</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="sdate" name="start_date" placeholder="YYYY/MM/DD">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="sldate">Færdig dato</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="sldate" name="end_date" placeholder="YYYY/MM/DD">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="employeecustomer">Oprettet af</label>
+                </div>
+                <div class="col-75">
+                    <select id="employeecustomer" name="customer_employee_id" >
+                        <option th:each="employee :${employee}" value="${employee.employee_id}"><p th:number="${employee.name}"/></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="employeerepair">Repareret af</label>
+                </div>
+                <div class="col-75">
+                    <select id="employeerepair" name="repair_employee_id" >
+                        <option th:each="employee :${employee}" value="${employee.employee_id}"><p th:text="${employee.name}"/></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="status">Status</label>
+                </div>
+                <div class="col-75">
+                    <select id="status" name="status_id" >
+                        <option th:each="status :${status}" value="${status.status_id}"><p th:text="${status.status_title}"/></option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="subject">Kommentar</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="subject" name="comment" placeholder="Write something.." style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Opret arbejdskort">
+            </div>
+        </form>
     </div>
 
-    <form th:each="bicycle :${bicycle}" action="/choosebike" method="post">
-        <input type="hidden" name="bicycle_id" th:value="${bicycle.bicycle_id}">
-        <input type="text" name="description" placeholder="${bicycle.description}" th:value="${bicycle.description}">
-        <br>
-        <input type="submit" value="slet">
-    </form>
-</div>
+
+
+
+    <!-- <form action="/createrepaircase" method="post">
+         <input type="text" name="start_date" placeholder="start date">
+         <input type="text" name="end_date" placeholder="end date">
+         <input type="text" name="status_id" placeholder="status id">
+         <input th:each="bicycle2 :${bicycle2}" type="text" name="bicycle_description" placeholder="${bicycle2.description}">
+         <input th:each="bicycle2 :${bicycle2}" type="hidden" name="bicycle_id" placeholder="${bicycle2.bicycle_id}">
+         <input type="text" name="customer_employee_id" placeholder="customer employee id">
+         <input type="text" name="repair_employee_id" placeholder="repair employee id">
+         <input type="text" name="repair_number" placeholder="repair number">
+         <input type="text" name="comment" placeholder="comment">
+         <input type="submit" value="opret ny">
+     </form>-->
+
 
 
 

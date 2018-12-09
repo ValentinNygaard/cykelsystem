@@ -42,11 +42,13 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public RepairCase create(RepairCase repairCase) {
-        String sql1 = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number) VALUES(?,?,?,?,?,?,?,?)";
+        String sql1 = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number) VALUES(?,?,?,?,?,?,?,?) ";
         template.update(sql1, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(),
                 repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(),
                 repairCase.getRepair_employee_id(), repairCase.getRepair_number());
-                if(repairCase.getComment() != null) {
+
+
+        if(repairCase.getComment() != null) {
             String sql2 = "INSERT INTO comment (repair_case_id, comment) VALUES (?,?)";
             template.update(sql2, repairCase.getRepair_case_id(), repairCase.getComment());
         }
@@ -61,6 +63,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
                 repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id());
         String sql2 = "SELECT * FROM comment WHERE repair_case_id=?";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
+
         if(repairCase.getComment() == null) {
         }
         else if(template.queryForObject(sql2, rowMapper, repairCase.getRepair_case_id()) == null){
