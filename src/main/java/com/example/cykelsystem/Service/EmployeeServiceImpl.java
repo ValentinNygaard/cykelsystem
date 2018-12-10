@@ -11,32 +11,32 @@ import java.util.List;
 public class EmployeeServiceImpl implements IService<Employee> {
 
     @Autowired
-    EmployeeRepoImpl employeeRepo;
+    EmployeeRepoImpl repoImpl;
 
     @Override
-    public List findAll() {
-        return employeeRepo.findAll();
+    public List<Employee> findAll() {
+        return repoImpl.findAll();
     }
 
     @Override
     public Employee findById(int id) {
-        return employeeRepo.findById(id);
+        return repoImpl.findById(id);
     }
 
     @Override
     public Employee create(Employee employee) {
-        return employeeRepo.create(employee);
+        return repoImpl.create(employee);
     }
 
     @Override
     public Employee update(Employee employee) {
-        return employeeRepo.update(employee);
+        return repoImpl.update(employee);
     }
 
     @Override
     public boolean delete(int id) {
-        return employeeRepo.delete(id);
+        return repoImpl.delete(id);
     }
 
-    public boolean login(Employee employee){ return employeeRepo.login(employee);}
+    public boolean login(Employee employee){ return repoImpl.login(employee);}
 }

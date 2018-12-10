@@ -14,8 +14,12 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
     RepairLineItemRepoImpl repoImpl;
 
     @Override
-    public List findAll() {
+    public List<RepairLineItem> findAll() {
         return repoImpl.findAll();
+    }
+
+    public List<RepairLineItem> findByRcId(int id) {
+        return repoImpl.findByRcId(id);
     }
 
     @Override

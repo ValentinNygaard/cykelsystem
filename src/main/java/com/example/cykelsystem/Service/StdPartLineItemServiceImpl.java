@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class StdPartLineItemServiceImpl implements IService<StdPartLineItem> {
+public class StdPartLineItemServiceImpl implements IService<StdPartLineItem> {
 
     @Autowired
     StdPartLineItemRepoImpl repoImpl;

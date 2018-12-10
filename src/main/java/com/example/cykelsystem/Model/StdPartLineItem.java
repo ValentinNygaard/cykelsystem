@@ -7,12 +7,12 @@ import javax.persistence.Id;
 public class StdPartLineItem {
 
     @Id
-    private int std_bicycle_line_item_id;
+    private int std_part_line_item_id;
     private String description;
     private int price;
 
     public StdPartLineItem(int std_bicycle_line_item_id, String description, int price) {
-        this.std_bicycle_line_item_id = std_bicycle_line_item_id;
+        this.std_part_line_item_id = std_bicycle_line_item_id;
         this.description = description;
         this.price = price;
     }
@@ -20,11 +20,11 @@ public class StdPartLineItem {
     public StdPartLineItem(){}
 
     public int getStd_part_line_item_id() {
-        return std_bicycle_line_item_id;
+        return std_part_line_item_id;
     }
 
     public void setStd_part_line_item_id(int std_bicycle_line_item_id) {
-        this.std_bicycle_line_item_id = std_bicycle_line_item_id;
+        this.std_part_line_item_id = std_bicycle_line_item_id;
     }
 
     public String getDescription() {

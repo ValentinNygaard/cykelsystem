@@ -19,7 +19,7 @@ public class HomeController {
    /*@GetMapping("/")
     public String home(Model model){
        return "home/index";
-    }*/
+    }
 
 
     @GetMapping("/")
@@ -27,5 +27,5 @@ public class HomeController {
         List<RepBarLine> repbarlines = rbls.findAll();
         model.addAttribute("repBarLine", repbarlines);
         return "bootstrapemilie/bootstraptest";
-    }
+    }*/
 }

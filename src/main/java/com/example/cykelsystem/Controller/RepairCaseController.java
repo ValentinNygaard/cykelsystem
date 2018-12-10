@@ -18,7 +18,7 @@ public class RepairCaseController {
     @Autowired
     RepairCaseServiceImpl rcsi;
 
-    @GetMapping("/repaircase")
+    /*@GetMapping("/repaircase")
     public String repairCase(Model model){
         List<RepairCase> repairCase = rcsi.findAll();
         model.addAttribute("repairCase", repairCase);
@@ -59,5 +59,5 @@ public class RepairCaseController {
     public String createRepairCase(@ModelAttribute RepairCase repairCase){
         rcsi.create(repairCase);
         return "redirect:/";
-    }
+    }*/
 }

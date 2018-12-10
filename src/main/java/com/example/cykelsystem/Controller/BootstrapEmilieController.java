@@ -2,7 +2,6 @@ package com.example.cykelsystem.Controller;
 
 import com.example.cykelsystem.Model.Bicycle;
 import com.example.cykelsystem.Model.Customer;
-import com.example.cykelsystem.Model.Employee;
 import com.example.cykelsystem.Model.RepairCase;
 import com.example.cykelsystem.Repository.BicycleRepoImpl;
 import com.example.cykelsystem.Repository.CustomerRepoImpl;
