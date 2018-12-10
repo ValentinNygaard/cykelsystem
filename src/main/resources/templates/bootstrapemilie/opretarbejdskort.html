@@ -18,10 +18,6 @@
 </div>
 
 
-
-
-
-
 <div style="padding-left:16px">
     <h1>Opret arbejdskort</h1>
     <p>her kan man skrive en overskrift</p>
@@ -42,176 +38,115 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <h2>Indtast telefonnummer</h2>
-    <p>find kundens cykler</p>
+    <label>find kundens cykler</label>
     <form action="/findcykler" method="post">
-        <input type="text" name="phone_number">
+        <input type="text" name="phone_number" placeholder="Telefonnummer">
+        <input type="text" name="name" placeholder="Navn">
         <input type="submit" value="find cykel">
     </form>
 
-   <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Cykler
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li class="dropdown-header">Cykler</li>
-            <li th:each="bicycle1 :${bicycle1}">
-                <a th:href="@{'/choosebike/' + ${bicycle1.bicycle_id}}" th:text="${bicycle1.description}" />
-            <li><a href="#">tilføj cykel</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Dropdown header 2</li>
-            <
-        </ul>
-   </div>
-</div>
-<!--
-       <form th:each="bicycle2 :${bicycle2}" action="/createrepaircase" method="post">
-        <input type="hidden" name="bicycle_id" th:value="${bicycle2.bicycle_id}" placeholder="${bicycle2.description}">
-        <input type="text" name="description" placeholder="${bicycle2.description}" th:value="${bicycle2.description}">
-        <input type="text" name="start_date" placeholder="YYYY/MM/DD">
-        <input type="text" name="end_date" placeholder="YYYY/MM/DD">
+    <a th:each="bicycle1 :${bicycle1}" th:href="@{'/choosebike/' + ${bicycle1.bicycle_id}}" >
+        <button th:text="${bicycle1.description}"/>
+    </a>
 
-
-           <div class="dropdown">
-               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Status
-                   <span class="caret"></span></button>
-               <ul class="dropdown-menu">
-                   <li class="dropdown-header">Status</li>
-                   <li th:each="status1 :${status1}">
-                       <a th:href="@{'/choosestatus/' + ${status1.status_id}}" th:text="${status1.status_title}" />
-                   <li class="divider"></li>
-                   <li class="dropdown-header">Dropdown header 2</li>
-                   <
-               </ul>
-           </div>
-           <form th:each="status2 :${status2}">
-
-               <input  type="hidden" name="status_id" th:value="${status2.status_id}" placeholder="${status2.status_id}">
-               <input type="text" name="name" placeholder="${status2.status_title}" th:value="${status2.status_title}">
-           </form>
-
-           <div class="dropdown">
-               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Oprettet af
-                   <span class="caret"></span></button>
-               <ul class="dropdown-menu">
-                   <li class="dropdown-header">Medarbejdere</li>
-                   <li th:each="medarbejder1 :${medarbejder1}">
-                       <a th:href="@{'/chooseemployee/' + ${medarbejder1.employee_id}}" th:text="${medarbejder1.name}" />
-                   <li class="divider"></li>
-                   <li class="dropdown-header">Dropdown header 2</li>
-                   <
-               </ul>
-           </div>
-           <form th:each="medarbejder2 :${medarbejder2}">
-
-           <input  type="hidden" name="employee_id" th:value="${medarbejder2.employee_id}" placeholder="${medarbejder2.employee_id}">
-           <input type="text" name="name" placeholder="${medarbejder2.name}" th:value="${medarbejder2.name}">
-           </form>
-        <input type="text" name="repair_employee_id" placeholder="repair employee id">
-        <input type="text" name="repair_number" placeholder="repair number">
-        <input type="text" name="comment" placeholder="comment">
-        <input type="submit" value="opret ny">
-    </form>
-</form>
--->
-    <h2>Responsive Form</h2>
-    <p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p>
 
     <div class="container">
-        <form th:each="bicycle2 :${bicycle2}" action="/createrepaircase" method="post">
+        <form action="/createrepaircase" method="post">
             <div class="row">
                 <div class="col-25">
-                    <label for="bike">Cykel beskrivelse</label>
+                    <label >Cykel</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="bike" name="description" placeholder="${bicycle2.description}" th:value="${bicycle2.description}">
-                    <input type="hidden"  name="bicycle_id" th:value="${bicycle2.bicycle_id}" placeholder="${bicycle2.description}">
+                    <input type="text" name="description"  th:value="${bicycle2.description}">
+                    <input type="hidden" name="bicycle_id" th:value="${bicycle2.bicycle_id}">
                 </div>
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label for="repnr">Rep nr.</label>
+                    <label for="sdate"></label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="repnr" name="repair_number" placeholder="rep nr.">
+                    <label >repair number</label>
+                    <input type="text" name="repair_number" placeholder="repair number">
+                    <label for="sdate">Oprettet d.</label>
+                    <input type="text" name="start_date" placeholder="YYYY-MM-DD">
+                    <label for="sdate">Afhentes d.</label>
+                    <input type="text" name="end_date" placeholder="YYYY-MM-DD">
                 </div>
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label for="sdate">Oprettet dato</label>
+                    <label ></label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="sdate" name="start_date" placeholder="YYYY/MM/DD">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="sldate">Færdig dato</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="sldate" name="end_date" placeholder="YYYY/MM/DD">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="employeecustomer">Oprettet af</label>
-                </div>
-                <div class="col-75">
-                    <select id="employeecustomer" name="customer_employee_id" >
-                        <option th:each="employee :${employee}" value="${employee.employee_id}"><p th:number="${employee.name}"/></option>
+                    <div class="col-25">
+                        <label >Status</label>
+                    <select id="status" name="status_id">
+                            <option value="1">Oprettet</option>
+                            <option value="2">Repararet</option>
+                            <option value="3">Afhentet</option>
+                            <option value="4">Tilbud</option>
+                        </select>
+                        <label >Oprettet af</label>
+                    <select id="oprettetaf" name="customer_employee_id">
+                        <option value="0">Medarbejdere</option>
+                        <option value="1">Peter</option>
+                        <option value="2">Thomas</option>
+                        <option value="3">Rasmus</option>
                     </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="employeerepair">Repareret af</label>
-                </div>
-                <div class="col-75">
-                    <select id="employeerepair" name="repair_employee_id" >
-                        <option th:each="employee :${employee}" value="${employee.employee_id}"><p th:text="${employee.name}"/></option>
+                        <label >Færdiggjort af</label>
+                    <select id="færdigaf" name="repair_employee_id">
+                        <option value="0">Medarbejdere</option>
+                        <option value="1">Peter</option>
+                        <option value="2">Thomas</option>
+                        <option value="3">Rasmus</option>
                     </select>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label for="status">Status</label>
+                    <label >Kommentar</label>
                 </div>
                 <div class="col-75">
-                    <select id="status" name="status_id" >
-                        <option th:each="status :${status}" value="${status.status_id}"><p th:text="${status.status_title}"/></option>
-
-                    </select>
+                    <textarea type="text" name="comment" placeholder="comment" style="height:200px">Skriv en kommentar her</textarea>
                 </div>
             </div>
             <div class="row">
-                <div class="col-25">
-                    <label for="subject">Kommentar</label>
-                </div>
                 <div class="col-75">
-                    <textarea id="subject" name="comment" placeholder="Write something.." style="height:200px"></textarea>
+                    <input type="submit" value="opret ny">
                 </div>
-            </div>
-            <div class="row">
-                <input type="submit" value="Opret arbejdskort">
             </div>
         </form>
     </div>
 
 
-
-
-    <!-- <form action="/createrepaircase" method="post">
-         <input type="text" name="start_date" placeholder="start date">
-         <input type="text" name="end_date" placeholder="end date">
-         <input type="text" name="status_id" placeholder="status id">
-         <input th:each="bicycle2 :${bicycle2}" type="text" name="bicycle_description" placeholder="${bicycle2.description}">
-         <input th:each="bicycle2 :${bicycle2}" type="hidden" name="bicycle_id" placeholder="${bicycle2.bicycle_id}">
-         <input type="text" name="customer_employee_id" placeholder="customer employee id">
-         <input type="text" name="repair_employee_id" placeholder="repair employee id">
-         <input type="text" name="repair_number" placeholder="repair number">
-         <input type="text" name="comment" placeholder="comment">
-         <input type="submit" value="opret ny">
-     </form>-->
-
-
+    <div class="container">
+        <form action="/morestdrepline" method="post">
+            <div class="col-75">
+                <div class="col-25">
+                    <label >Standard reparationslinjer</label>
+                    <select id="stdrepline" name="description">
+                        <option th:each="stdrepline :${stdrepline}" th:value="${stdrepline.description}"><span th:text="${stdrepline.description}"/></option>
+                    </select>
+                    <select id="stdreplinetime" name="time">
+                        <option th:each="stdrepline :${stdrepline}" th:value="${stdrepline.time}" ><span th:text="${stdrepline.time}"/></option>
+                    </select>
+                    <select id="stdreplineprice" name="price" >
+                        <option th:each="stdrepline :${stdrepline}" th:value="${stdrepline.price}"><span th:text="${stdrepline.price}"/></option>
+                    </select>
+                    <input type="submit" value="tilføj linje">
+                </div>
+            </div>
+        </form>
+    </div>
+    <h3>REP LINJER</h3>
+    <ol th:each="repaircase :${repaircase}">
+    <li th:each="repline :${repline}" >
+        <li th:text="${repline.description}+${repline.time}+${repline.price}"/>
+    </li>
+    </ol>
+</div>
 
 
 </body>

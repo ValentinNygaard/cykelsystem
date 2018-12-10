@@ -31,6 +31,12 @@ public class BootstrapEmilieController {
     @Autowired
     StatusServiceImpl ssi;
 
+    @Autowired
+    StdRepairLineItemServiceImpl srlisi;
+
+    @Autowired
+    RepairLineItemServiceImpl rlisi;
+
     private List<Bicycle> bicycles = new ArrayList<>();
     private List<Bicycle> bicyclesbyphone = new ArrayList<>();
     private List<Bicycle> bicyclechosen = new ArrayList<>();
@@ -38,6 +44,9 @@ public class BootstrapEmilieController {
     private List<Employee> employeechosen = new ArrayList<>();
     private List<Status> statuses = new ArrayList<>();
     private List<Status> statuseschosen = new ArrayList<>();
+    private List<StdRepairLineItem> stsreplines = new ArrayList<>();
+    private List<RepairLineItem> replines = new ArrayList<>();
+    private Bicycle bicycle = new Bicycle();
 
 
     @GetMapping("/arbejdskort")
@@ -49,14 +58,29 @@ public class BootstrapEmilieController {
     public String oprearbejdskort(Model model){
 
         //List<Bicycle> bicycles = new ArrayList<>();
+        stsreplines = srlisi.findAll();
+        model.addAttribute("bicycle2", bicycle);
         model.addAttribute("bicycle", bicycles);
+        model.addAttribute("stdrepline", stsreplines);
         return "bootstrapemilie/opretarbejdskort";
     }
 
     @PostMapping("/findcykler")
     public String findcykler(@ModelAttribute Customer customer, Model model){
         Customer c = csi.findByPhone(customer.getPhone_number());
-        bicyclesbyphone = bsi.findAllByCustomer(c.getCustomer_id());
+        if(c.getPhone_number()==null){
+
+            if (customer.getName()== null) {
+                customer.setName("ukendt");
+            }
+            csi.create(customer);
+
+        }else{
+
+            bicyclesbyphone = bsi.findAllByCustomer(c.getCustomer_id());
+        }
+        model.addAttribute("stdrepline", stsreplines);
+        model.addAttribute("bicycle2", bicycle);
         model.addAttribute("bicycle1", bicyclesbyphone);
         return "bootstrapemilie/opretarbejdskort";
     }
@@ -64,10 +88,10 @@ public class BootstrapEmilieController {
     @GetMapping("/choosebike/{id}")
     public String choosebike(@PathVariable("id")int id, Model model) {
 
-        Bicycle bicycle = bsi.findById(id);
+        bicycle = bsi.findById(id);
         bicyclechosen.add(bicycle);
-        model.addAttribute("bicycle2", bicyclechosen);
-
+        model.addAttribute("bicycle2", bicycle);
+        model.addAttribute("bicycle1", bicyclesbyphone);
         statuses = ssi.findAll();
         for(Status s : statuses){
 
@@ -76,12 +100,29 @@ public class BootstrapEmilieController {
 
         employees = esi.findAll();
         model.addAttribute("employee", employees);
+        model.addAttribute("stdrepline", stsreplines);
         return "bootstrapemilie/opretarbejdskort";
     }
 
     @PostMapping("/choosebike")
     public String choosebike(@ModelAttribute Bicycle bicycle){
         return "bootstrapemilie/opretarbejdskort";
+    }
+
+    @PostMapping("/morestdrepline")
+    public String morestdrepline(@ModelAttribute RepairLineItem r, Model model){
+        r.setRepair_case_id(4);
+        rlisi.create(r);
+        replines.add(r);
+        model.addAttribute("repline", replines);
+        model.addAttribute("bicycle2", bicycle);
+        model.addAttribute("bicycle1", bicyclesbyphone);
+        model.addAttribute("employee", employees);
+        model.addAttribute("stdrepline", stsreplines);
+        model.addAttribute("status", statuses);
+
+        return "bootstrapemilie/opretarbejdskort";
+
     }
 
 
@@ -108,10 +149,13 @@ public class BootstrapEmilieController {
     }
 
     @PostMapping("/createrepaircase")
-    public String createrepaircase(@ModelAttribute RepairCase repairCase){
+    public String createrepaircase(@ModelAttribute RepairCase repairCase, Model model) {
         System.out.println(repairCase.toString());
         rcsi.create(repairCase);
-        return "redirect:/";
+        model.addAttribute("repaircase", repairCase);
+
+        //hvis vi kan returnere et id kan vi overveje at vente med at create replines til her
+        return "bootstrapemilie/opretarbejdskort";
     }
 
     @GetMapping("/findarbejdskort")
