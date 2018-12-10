@@ -43,6 +43,52 @@ public class RepairCaseControllerVN {
 
     private boolean needinit = true;
 
+    @RequestMapping ("/repairCaseCreate")
+    public String repairCaseCreate(Model model) {
+
+
+        RepairCase newRepairCase = new RepairCase();
+        newRepairCase.setStart_date("2018-12-04");
+        newRepairCase.setEnd_date("2018-12-04");
+        newRepairCase.setStatus_id(1);
+        newRepairCase.setBicycle_id(1);
+        newRepairCase.setCustomer_employee_id(1);
+        newRepairCase.setRepair_employee_id(2);
+        newRepairCase.setRepair_number(445);
+        rcsi.create(newRepairCase);
+        int nrc_id = newRepairCase.getRepair_case_id();
+        System.out.println("nrc_id: " + nrc_id);
+
+
+        rc_id = rcsi.nextId();
+        System.out.println("rc_id: " + rc_id);
+
+        repairCase = rcsi.findById(rc_id);
+        model.addAttribute("repairCase",repairCase);
+        repairCaseList = rcsi.findAll();
+        model.addAttribute("repairCaseList", repairCaseList);
+        statusList = ssi.findAll();
+        model.addAttribute("statusList", statusList);
+        employeeList = esi.findAll();
+        model.addAttribute("employeeList", employeeList);
+        stdRepairLineList = srlisi.findAll();
+        model.addAttribute("stdRepairLineList", stdRepairLineList);
+        repairLineList = rlisi.findByRcId(rc_id);
+        model.addAttribute("repairLineList", repairLineList);
+        stdPartLineList = splisi.findAll();
+        model.addAttribute("stdPartLineList", stdPartLineList);
+        partLineList = plisi.findByRcId(rc_id);
+        model.addAttribute("partLineList", partLineList);
+        if (csi.existsById(rc_id)) {
+            comment = csi.findById(rc_id);
+        } else {
+            comment = new Comment();
+            comment.setRepair_case_id(rc_id);
+        }
+        model.addAttribute("comment",comment);
+        return "repaircase/repaircasemain";
+    }
+
     @RequestMapping ("/repairCaseMain")
     public String repairCaseMain(Model model) {
 
@@ -60,6 +106,7 @@ public class RepairCaseControllerVN {
         }
 
         rc_id = rcsi.nextId();
+        System.out.println("rc_id: " + rc_id);
 
         repairCase = rcsi.findById(rc_id);
         model.addAttribute("repairCase",repairCase);
