@@ -26,6 +26,6 @@ public class HomeController {
     public String home(Model model){
         List<RepBarLine> repbarlines = rbls.findAll();
         model.addAttribute("repBarLine", repbarlines);
-        return "bootstrapemilie/bootstraptest";
+        return "bootstrapJens/test";
     }
 }

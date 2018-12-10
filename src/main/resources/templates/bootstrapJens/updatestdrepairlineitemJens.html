@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="UTF-8">
+    <title>Update Standard repair line item</title>
+</head>
+<body>
+<form action="/updateStdRepairlineitemFromSettings" method="post">
+    <input type="hidden" name="std_repair_line_item_id" th:value="${stdRepairLineItem.std_repair_line_item_id}">
+    <input type="text" name="description" th:value="${stdRepairLineItem.description}">
+    <input type="text" name="time" th:value="${stdRepairLineItem.time}">
+    <input type="text" name="price" th:value="${stdRepairLineItem.price}">
+    <input type="submit" value="gem ændringer">
+</form>
+</body>
+</html>

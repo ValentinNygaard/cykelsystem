@@ -14,7 +14,6 @@
 
     <p th:each="stdRepairLineItem :${stdRepairLineItem}">
         <span th:text="${stdRepairLineItem.description} + ' ' + ${stdRepairLineItem.time} + ' ' + ${stdRepairLineItem.price}" />
-
         <a th:href="@{'/viewStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="${stdRepairLineItem.description}"/>
         <a style="color: red;" th:href="@{'/deleteStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="${stdRepairLineItem.description}"/>
         <a style="color: green;" th:href="@{'/updateStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="${stdRepairLineItem.description}"/>
