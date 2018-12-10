@@ -52,6 +52,16 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         return template.update(sql, id) >= 0;
     }
 
+    public RepairCase returnRepairCaseWithSqlId(RepairCase repairCase) {
+        String sql = "select repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, comment\n" +
+                "from repair_case left join comment using(repair_case_id)\n" +
+                "where start_date = ? and end_date = ? and repair_number = ?;";
+        RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
+        RepairCase r = template.queryForObject(sql, rowMapper, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getRepair_number());
+        return r;
+    }
+
+
     public int nextId() {
         List<RepairCase> tempList = findAll();
         int nextId = tempList.get(tempList.size());
