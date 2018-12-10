@@ -2,6 +2,7 @@ package com.example.cykelsystem.Repository;
 
 import com.example.cykelsystem.Model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -53,6 +54,11 @@ public class CustomerRepoImpl implements IRepo<Customer> {
     public Customer findByPhone(String phone_number){
         String sql = "SELECT * FROM customer WHERE phone_number=?";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
-        return template.queryForObject(sql, rowMapper, phone_number);
+        try {
+            return template.queryForObject(sql, rowMapper, phone_number);
+        }catch (EmptyResultDataAccessException e){
+            Customer c = new Customer();
+            return c;
+        }
     }
 }
