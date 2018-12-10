@@ -107,6 +107,7 @@
     <a href="/findarbejdskort">Find arbejdskort</a>
     <a href="/kunder">Kunder</a>
     <a href="/kassebilag">Kassebilag</a>
+    <a href="/settings">Indstillinger</a>
 
 </div>
 
@@ -129,6 +130,14 @@
 </script>
 
 
+
+
+
+<p th:each="repBarLine :${repBarLine}">
+    <span th:text="${repBarLine.phone_number}+ ' ' +${repBarLine.repair_number}+ ' ' +${repBarLine.time}
+    + ' ' +${repBarLine.price}+ ' ' +${repBarLine.status_title}+ ' ' +${repBarLine.end_date}" />
+
+</p>
 
 <div class="btn-group">
 

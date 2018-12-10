@@ -8,8 +8,8 @@
 
 <h1>standard bicycle line item screen</h1>
 
-<p th:each="stdBycycleLineItem :${stdBycycleLineItem}">
-    <span th:text="${stdBycycleLineItem.description}+' ' + ${stdBycycleLineItem.price}" />
+<p th:each="stdPartLineItem :${stdPartLineItem}">
+    <span th:text="${stdPartLineItem.description}+' ' + ${stdBycycleLineItem.price}" />
 
 
     <a th:href="@{'/viewStdBicycleLineItem/' + ${stdBycycleLineItem.std_bicycle_line_item_id}}"
