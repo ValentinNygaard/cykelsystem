@@ -64,8 +64,8 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     public int nextId() {
         List<RepairCase> tempList = findAll();
-        int nextId = tempList.get(tempList.size());
-        //int nextId = tempList.size();
+        //int nextId = tempList.get(tempList.size());
+        int nextId = tempList.size();
         return nextId;
     }
 }
