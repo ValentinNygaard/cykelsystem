@@ -17,7 +17,7 @@ public class RepBarLineController {
 
     @GetMapping("/repBarLine")
     public String repBarLine(Model model){
-        List<RepBarLine> repBarLines = rbls.findAll();
+        List<RepBarLine> repBarLines = rbls.findAllRepbarsDate();
         model.addAttribute("repBarLine", repBarLines);
         return "repbarline/repbarline";
     }
