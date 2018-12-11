@@ -118,7 +118,7 @@ public class RepairCaseController {
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
         System.out.println("Data (id): " + repaircase_id);
-        return "repaircase/repaircasemain/"+repaircase_id;
+        return "redirect:/repairCaseMain/"+repaircase_id;
     }
 
     @PostMapping("/createNewBicycle")
@@ -143,13 +143,6 @@ public class RepairCaseController {
         repairCaseService.create(newRepairCase);
         repaircase_id = repairCaseService.lastId();
     }
-
-    /*
-        @GetMapping("/repairCaseMain/{id}")
-        public String repairCaseMain(@PathVariable("id")int id, Model model) {
-            System.out.println("Hallo");
-            return "repaircase/repaircasemain";
-        }*/
 
     @RequestMapping("/repairCaseMain/{id}")
     public String repairCaseMain(@PathVariable("id")int id, Model model) {
