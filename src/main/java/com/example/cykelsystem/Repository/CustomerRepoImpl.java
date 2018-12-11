@@ -61,4 +61,10 @@ public class CustomerRepoImpl implements IRepo<Customer> {
             return c;
         }
     }
+
+    public boolean existsByPhone(String phone_number) {
+        String sql ="SELECT * FROM customer WHERE phone_number=?";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return (template.query(sql, rowMapper, phone_number).size()>0);
+    }
 }

@@ -8,31 +8,36 @@ import java.util.List;
 
 @Service
 public class PartLineItemServiceImpl implements IService<PartLineItem> {
+
     @Autowired
-    PartLineItemRepoImlp pliRepo;
+    PartLineItemRepoImlp repoImpl;
 
     @Override
     public List<PartLineItem> findAll() {
-        return pliRepo.findAll();
+        return repoImpl.findAll();
+    }
+
+    public List<PartLineItem> findByRcId(int id) {
+        return repoImpl.findByRcId(id);
     }
 
     @Override
     public PartLineItem findById(int id) {
-        return pliRepo.findById(id);
+        return repoImpl.findById(id);
     }
 
     @Override
     public PartLineItem create(PartLineItem partLineItem) {
-        return pliRepo.create(partLineItem);
+        return repoImpl.create(partLineItem);
     }
 
     @Override
     public PartLineItem update(PartLineItem partLineItem) {
-        return pliRepo.update(partLineItem);
+        return repoImpl.update(partLineItem);
     }
 
     @Override
     public boolean delete(int id) {
-        return pliRepo.delete(id);
+        return repoImpl.delete(id);
     }
 }

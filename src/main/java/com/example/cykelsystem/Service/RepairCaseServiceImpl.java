@@ -36,4 +36,6 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
     public boolean delete(int id) {
         return repairCaseRepo.delete(id);
     }
+
+    public int lastId() { return repairCaseRepo.lastId(); }
 }

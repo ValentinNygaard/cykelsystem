@@ -33,7 +33,7 @@ public class StdPartLineItemRepoImpl implements IRepo<StdPartLineItem> {
     @Override
     public StdPartLineItem create(StdPartLineItem spil) {
         String sql = "INSERT INTO std_part_line_item (std_part_line_item_id, description, price) VALUES(?,?,?)";
-        template.update(sql, spil.getStd_part_line_item_id(), spil.getDescription(), spil.getPrice(), spil.getPrice());
+        template.update(sql, spil.getStd_part_line_item_id(), spil.getDescription(), spil.getPrice());
         return spil;
     }
 

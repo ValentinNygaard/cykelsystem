@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+
+    <meta charset="UTF-8">
+    <title>Find Kunde</title>
+</head>
+<body>
+
+    <div class="topnav">
+        <a class="active" href="/">CykelSystem</a>
+        <a href="/overview">Oversigter</a>
+        <a href="/getCustomer">Arbejdskort</a>
+        <a href="/search">Søgninger</a>
+        <a href="/settings">Indstillinger</a>
+        <a href="/help">Hjælp</a>
+    </div>
+
+
+    <div class="container" style="padding-left:20px">
+
+        <h2>Oprettelse af arbejdskort</h2>
+
+        <p>&nbsp</p>
+
+        <h3>Find kunde</h3>
+
+        <h5>Indtast telefonnummer</h5>
+
+        <form action="/getCustomer" method="post">
+            <input type="text" name="phone_number" th:value="${phone_number}" placeholder="Telefonnummer"><br>
+            <input type="submit" value="Find kunde">
+        </form>
+
+        <p>&nbsp<br>Eller hvis kunden ikke findes i systemet i forvejen<br>&nbsp</p>
+
+        <h3>Opret kunde og cykel</h3>
+
+        <h5>Indtast telefonnummer, navn og cykelbeskrivelse</h5>
+
+        <form action="/createCustomerAndBicycle" method="post">
+            <input type="text" name="phone_number" placeholder="Telefonnummer"><br>
+            <input type="text" name="name" placeholder="Navn"><br>
+            <input type="text" name="name" placeholder="Cykelbeskrivelse"><br>
+            <input type="submit" value="Opret">
+        </form>
+
+
+    </div>
+
+</body>
+</html>

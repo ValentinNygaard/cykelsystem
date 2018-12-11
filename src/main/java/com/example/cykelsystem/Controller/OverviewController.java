@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class RepBarLineController {
+public class OverviewController {
 
     @Autowired
     RepBarLineService rbls;
 
-    @GetMapping("/repBarLine")
-    public String repBarLine(Model model){
-        List<RepBarLine> repBarLines = rbls.findAllRepbarsDate();
+    @GetMapping("/overview")
+    public String overview(Model model){
+        List<RepBarLine> repBarLines = rbls.findAll();
         model.addAttribute("repBarLine", repBarLines);
-        return "repbarline/repbarline";
+        return "overview/overview";
     }
 }

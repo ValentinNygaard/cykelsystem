@@ -7,29 +7,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StdRepairLineItemServiceImpl<T extends StdRepairLineItem> implements IService<T> {
+public class StdRepairLineItemServiceImpl implements IService<StdRepairLineItem> {
 
     @Autowired
     StdRepairLineItemRepoImpl repoImpl;
 
     @Override
-    public List findAll() {
+    public List<StdRepairLineItem> findAll() {
         return repoImpl.findAll();
     }
 
     @Override
-    public T findById(int id) {
-        return (T) repoImpl.findById(id);
+    public StdRepairLineItem findById(int id) {
+        return repoImpl.findById(id);
     }
 
     @Override
-    public T create(T o) {
-        return (T) repoImpl.create(o);
+    public StdRepairLineItem create(StdRepairLineItem o) {
+        return repoImpl.create(o);
     }
 
     @Override
-    public T update(T o) {
-        return (T) repoImpl.update(o);
+    public StdRepairLineItem update(StdRepairLineItem o) {
+        return repoImpl.update(o);
     }
 
     @Override
