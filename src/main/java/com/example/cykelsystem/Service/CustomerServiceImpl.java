@@ -9,34 +9,36 @@ import java.util.List;
 public class CustomerServiceImpl implements IService<Customer> {
 
     @Autowired
-    CustomerRepoImpl customerRepo;
+    CustomerRepoImpl repoImpl;
 
     @Override
     public List<Customer> findAll() {
-        return customerRepo.findAll();
+        return repoImpl.findAll();
     }
 
     @Override
     public Customer findById(int id) {
-        return customerRepo.findById(id);
+        return repoImpl.findById(id);
     }
 
     @Override
     public Customer create(Customer customer) {
-        return customerRepo.create(customer);
+        return repoImpl.create(customer);
     }
 
     @Override
     public Customer update(Customer customer) {
-        return customerRepo.update(customer);
+        return repoImpl.update(customer);
     }
 
     @Override
     public boolean delete(int id) {
-        return customerRepo.delete(id);
+        return repoImpl.delete(id);
     }
 
-    public Customer findByPhone(String phone_number) {return  customerRepo.findByPhone(phone_number);}
+    public Customer findByPhone(String phone_number) {return  repoImpl.findByPhone(phone_number);}
 
-    public boolean existsByPhone(String phone_number) {return  customerRepo.existsByPhone(phone_number);}
+    public boolean existsByPhone(String phone_number) {return  repoImpl.existsByPhone(phone_number);}
+
+    public int lastId() { return repoImpl.lastId(); }
 }

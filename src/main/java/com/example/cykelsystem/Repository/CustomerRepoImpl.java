@@ -67,4 +67,10 @@ public class CustomerRepoImpl implements IRepo<Customer> {
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
         return (template.query(sql, rowMapper, phone_number).size()>0);
     }
+
+    public int lastId() {
+        List<Customer> tempList = findAll();
+        int index = tempList.size()-1;
+        return tempList.get(index).getCustomer_id();
+    }
 }

@@ -40,9 +40,9 @@
         <h5>Indtast telefonnummer, navn og cykelbeskrivelse</h5>
 
         <form action="/createCustomerAndBicycle" method="post">
-            <input type="text" name="phone_number" placeholder="Telefonnummer"><br>
-            <input type="text" name="name" placeholder="Navn"><br>
-            <input type="text" name="name" placeholder="Cykelbeskrivelse"><br>
+            <input type="text" name="phone_number" placeholder="Telefonnummer" th:value="${customer.phone_number}"><br>
+            <input type="text" name="name" placeholder="Navn" th:value="${customer.name}"><br>
+            <input type="text" name="description" placeholder="Cykelbeskrivelse" th:value="${bicycle.description}"><br>
             <input type="submit" value="Opret">
         </form>
 
