@@ -36,5 +36,7 @@ public class CustomerServiceImpl implements IService<Customer> {
         return customerRepo.delete(id);
     }
 
-    public Customer findByPhone(String phone_number){return  customerRepo.findByPhone(phone_number);}
+    public Customer findByPhone(String phone_number) {return  customerRepo.findByPhone(phone_number);}
+
+    public boolean existsByPhone(String phone_number) {return  customerRepo.existsByPhone(phone_number);}
 }

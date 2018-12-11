@@ -2,44 +2,27 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+    <title>Index</title>
 </head>
 <body>
 
-<h1>Dette er index siden</h1>
+    <div class="topnav">
+        <a class="active" href="/">CykelSystem</a>
+        <a href="/overview">Oversigter</a>
+        <a href="/getCustomer">Arbejdskort</a>
+        <a href="/search">Søgninger</a>
+        <a href="/settings">Indstillinger</a>
+        <a href="/help">Hjælp</a>
+    </div>
 
-<a href="/bicycle">
-    <button class="btn-bicycle, btn" id="bicycleBtn">bicycle</button>
-</a>
-<a href="/customer">
-    <button class="btn-bicycle, btn" id="customerBtn">customer</button>
-</a>
-<a href="/employee">
-    <button class="btn-bicycle, btn" id="employeeBtn">employee</button>
-</a>
-<a href="/repaircase">
-    <button class="btn-bicycle, btn" id="repaircaseBtn">repaircase</button>
-</a>
-<a href="/status">
-    <button class="btn-bicycle, btn" id="statusBtn">status</button>
-</a>
-<a href="/repairLineItem">
-    <button class="btn-bicycle, btn" id="rliBtn">repair line item</button>
-</a>
-<a href="/srli">
-    <button class="btn-bicycle, btn" id="srliBtn">std repair line item</button>
-</a>
-<a href="/sbli">
-    <button class="btn-bicycle, btn" id="sbliBtn">std bicycle line item</button>
-</a>
-<a href="/repBarLine">
-    <button class="btn-bicycle, btn" id="repBarLineBtn">Rep bar </button>
-</a>
+    <div class="container" style="padding-left:20px">
 
-</a>
-<a href="/partLineItem">
-    <button class="btn-partlineitem, btn" id="partlineitem-btn">Part line item </button>
-</a>
+        <h2>Dette er index siden</h2>
+
+    </div>
+
+
 
 </body>
 </html>

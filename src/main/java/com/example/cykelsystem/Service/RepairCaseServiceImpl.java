@@ -37,5 +37,5 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
         return repairCaseRepo.delete(id);
     }
 
-    public int nextId() { return repairCaseRepo.nextId(); }
+    public int lastId() { return repairCaseRepo.lastId(); }
 }
