@@ -7,29 +7,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StdPartLineItemServiceImpl<T extends StdPartLineItem> implements IService<T> {
+public class StdPartLineItemServiceImpl implements IService<StdPartLineItem> {
 
     @Autowired
     StdPartLineItemRepoImpl repoImpl;
 
     @Override
-    public List findAll() {
+    public List<StdPartLineItem> findAll() {
         return repoImpl.findAll();
     }
 
     @Override
-    public T findById(int id) {
-        return (T) repoImpl.findById(id);
+    public StdPartLineItem findById(int id) {
+        return repoImpl.findById(id);
     }
 
     @Override
-    public T create(T o) {
-        return (T) repoImpl.create(o);
+    public StdPartLineItem create(StdPartLineItem o) {
+        return repoImpl.create(o);
     }
 
     @Override
-    public T update(T o) {
-        return (T) repoImpl.update(o);
+    public StdPartLineItem update(StdPartLineItem o) {
+        return repoImpl.update(o);
     }
 
     @Override

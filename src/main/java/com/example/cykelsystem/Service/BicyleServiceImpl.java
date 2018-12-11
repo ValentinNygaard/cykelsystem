@@ -10,32 +10,34 @@ import java.util.List;
 public class BicyleServiceImpl implements IService<Bicycle> {
 
     @Autowired
-    BicycleRepoImpl bicycleRepo;
+    BicycleRepoImpl repoImpl;
 
     @Override
     public List<Bicycle> findAll() {
-        return bicycleRepo.findAll();
+        return repoImpl.findAll();
     }
 
     @Override
     public Bicycle findById(int id) {
-        return bicycleRepo.findById(id);
+        return repoImpl.findById(id);
     }
 
     @Override
     public Bicycle create(Bicycle bicycle) {
-        return bicycleRepo.create(bicycle);
+        return repoImpl.create(bicycle);
     }
 
     @Override
     public Bicycle update(Bicycle bicycle) {
-        return bicycleRepo.update(bicycle);
+        return repoImpl.update(bicycle);
     }
 
     @Override
     public boolean delete(int id) {
-        return bicycleRepo.delete(id);
+        return repoImpl.delete(id);
     }
 
-    public List<Bicycle> findAllByCustomer(int customer_id) {return bicycleRepo.findAllByCustomer(customer_id);}
+    public List<Bicycle> findAllByCustomer(int customer_id) {return repoImpl.findAllByCustomer(customer_id);}
+
+    public int lastId() { return repoImpl.lastId(); }
 }

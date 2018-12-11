@@ -58,4 +58,10 @@ public class BicycleRepoImpl implements IRepo<Bicycle> {
         List<Bicycle> bicycles = template.query(sql, rowMapper, customer_id);
         return bicycles;
     }
+
+    public int lastId() {
+        List<Bicycle> tempList = findAll();
+        int index = tempList.size()-1;
+        return tempList.get(index).getBicycle_id();
+    }
 }

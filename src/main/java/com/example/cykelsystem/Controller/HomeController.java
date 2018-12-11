@@ -16,11 +16,13 @@ public class HomeController {
     @Autowired
     RepBarLineService rbls;
 
-   /*@GetMapping("/")
+    @GetMapping("/")
     public String home(Model model){
        return "home/index";
     }
 
+
+/*
 
     @GetMapping("/")
     public String home(Model model){
