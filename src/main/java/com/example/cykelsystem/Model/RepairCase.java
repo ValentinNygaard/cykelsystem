@@ -102,7 +102,7 @@ public class RepairCase {
         this.bicycle_id = bicycle_id;
     }
 
-      public int getRepair_number() {
+    public int getRepair_number() {
         return repair_number;
     }
 
