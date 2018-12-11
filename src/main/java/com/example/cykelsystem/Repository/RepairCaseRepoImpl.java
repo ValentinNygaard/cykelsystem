@@ -90,7 +90,6 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         RepairCase r = template.queryForObject(sql, rowMapper, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getRepair_number());
         return r;
     }
-
 }
 
 
