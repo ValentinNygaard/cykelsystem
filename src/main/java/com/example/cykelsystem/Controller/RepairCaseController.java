@@ -56,6 +56,7 @@ public class RepairCaseController {
     private int customer_employee_id = 1;
     private int repair_employee_id = 1;
     private int repair_number = 1;
+    private int end_time = 17;
 
     // Getting Customer & Bicycle info before creating and editing a new repair_case
 
@@ -140,6 +141,7 @@ public class RepairCaseController {
         newRepairCase.setCustomer_employee_id(customer_employee_id);
         newRepairCase.setRepair_employee_id(repair_employee_id);
         newRepairCase.setRepair_number(repair_number);
+        newRepairCase.setEnd_time(end_time);
         repairCaseService.create(newRepairCase);
         repaircase_id = repairCaseService.lastId();
     }

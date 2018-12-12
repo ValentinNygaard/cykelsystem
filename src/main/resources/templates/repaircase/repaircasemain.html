@@ -34,6 +34,8 @@
             <input type="text" id="fdate" name="start_date" th:value="${repairCase.start_date}"><br>
             <label for="tdate">Afhentningsdato:</label>
             <input type="text" id="tdate" name="end_date" th:value="${repairCase.end_date}"><br>
+            <label for="ttime">Afhentningstid:</label>
+            <input type="text" id="ttime" name="end_time" th:value="${repairCase.end_time}"><br>
             <label for="cemployee">Oprettet af:</label>
             <select id="cemployee" name="customer_employee_id">
                 <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>

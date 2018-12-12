@@ -17,10 +17,6 @@ public class PartLineItemServiceImpl implements IService<PartLineItem> {
         return repoImpl.findAll();
     }
 
-    public List<PartLineItem> findByRcId(int id) {
-        return repoImpl.findByRcId(id);
-    }
-
     @Override
     public PartLineItem findById(int id) {
         return repoImpl.findById(id);
@@ -40,4 +36,9 @@ public class PartLineItemServiceImpl implements IService<PartLineItem> {
     public boolean delete(int id) {
         return repoImpl.delete(id);
     }
+
+    public List<PartLineItem> findByRcId(int id) {
+        return repoImpl.findByRcId(id);
+    }
+
 }

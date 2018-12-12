@@ -38,5 +38,5 @@ public class EmployeeServiceImpl implements IService<Employee> {
         return repoImpl.delete(id);
     }
 
-    public boolean login(Employee employee){ return repoImpl.login(employee);}
+    //public boolean login(Employee employee){ return repoImpl.login(employee);}
 }
