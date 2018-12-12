@@ -92,7 +92,7 @@ public class RepairCaseController {
         bicycleService.create(bicycle);
         bicycle_id = bicycleService.lastId();
         createNewRepairCase();
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @GetMapping("/noCustomer")
@@ -119,7 +119,7 @@ public class RepairCaseController {
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
         System.out.println("Data (id): " + repaircase_id);
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @PostMapping("/createNewBicycle")
@@ -129,7 +129,7 @@ public class RepairCaseController {
         bicycle_id = bicycleService.lastId();
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     // Creating new repair_case row in database
@@ -178,7 +178,7 @@ public class RepairCaseController {
             comment.setRepair_case_id(id);
         }
         model.addAttribute("comment",comment);
-        return "repaircase/repairCaseMain";
+        return "repaircase/repaircasemain";
     }
 
     // Handling edits to the repair_case
@@ -186,7 +186,7 @@ public class RepairCaseController {
     @PostMapping("/updateRepairCase")
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
         repairCaseService.update(repairCase);
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @PostMapping("/addRepairLine")
@@ -206,7 +206,7 @@ public class RepairCaseController {
     public String updateRepairLine(@ModelAttribute RepairLineItem repairLineItem){
         repairLineItem.setRepair_case_id(repaircase_id);
         repairLineItemService.update(repairLineItem);
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @GetMapping("/deleteRepairLine/{id}")
@@ -214,10 +214,10 @@ public class RepairCaseController {
         boolean deleted = repairLineItemService.delete(id);
         repairLineList = repairLineItemService.findByRcId(repaircase_id);
         if(deleted) {
-            return "redirect:/repairCaseMain/"+repaircase_id;
+            return "redirect:/repaircasemain/"+repaircase_id;
         }
         else{
-            return "redirect:/repairCaseMain/"+repaircase_id;
+            return "redirect:/repaircasemain/"+repaircase_id;
         }
     }
 
@@ -230,14 +230,14 @@ public class RepairCaseController {
         pli.setRepair_case_id(repaircase_id);
         partLineItemService.create(pli);
         partLineList = partLineItemService.findByRcId(repaircase_id);
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @PostMapping("/updatePartLine")
     public String updatePartLine(@ModelAttribute PartLineItem partLineItem){
         partLineItem.setRepair_case_id(repaircase_id);
         partLineItemService.update(partLineItem);
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @GetMapping("/deletePartLine/{id}")
@@ -245,10 +245,10 @@ public class RepairCaseController {
         boolean deleted = partLineItemService.delete(id);
         partLineList = partLineItemService.findByRcId(repaircase_id);
         if(deleted) {
-            return "redirect:/repairCaseMain/"+repaircase_id;
+            return "redirect:/repaircasemain/"+repaircase_id;
         }
         else{
-            return "redirect:/repairCaseMain/"+repaircase_id;
+            return "redirect:/repaircasemain/"+repaircase_id;
         }
     }
 
@@ -260,17 +260,17 @@ public class RepairCaseController {
             comment.setRepair_case_id(repaircase_id);
             commentService.create(comment);
         }
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @GetMapping("/deleteComment")
     public String deleteComment() {
         boolean deleted = commentService.delete(repaircase_id);
         if(deleted) {
-            return "redirect:/repairCaseMain/"+repaircase_id;
+            return "redirect:/repaircasemain/"+repaircase_id;
         }
         else{
-            return "redirect:/repairCaseMain/"+repaircase_id;
+            return "redirect:/repaircasemain/"+repaircase_id;
         }
     }
 

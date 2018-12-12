@@ -17,7 +17,7 @@ public class OverviewController {
 
     @GetMapping("/overview")
     public String overview(Model model){
-        List<RepBarLine> repBarLines = rbls.findAllRepbarsDate();
+        List<RepBarLine> repBarLines = rbls.findAll();
         model.addAttribute("repBarLine", repBarLines);
         return "overview/overview";
     }
