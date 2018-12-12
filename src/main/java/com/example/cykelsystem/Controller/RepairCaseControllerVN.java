@@ -160,6 +160,8 @@ public class RepairCaseControllerVN {
 
     @PostMapping("/addRepairLine")
     public String addRepairLine(@ModelAttribute StdRepairLineItem srli){
+        System.out.println("Data: " + srli.getStd_repair_line_item_id());
+        System.out.println("Data: " + srli.getDescription());
         RepairLineItem rli = new RepairLineItem();
         StdRepairLineItem newSrli = srlisi.findById(srli.getStd_repair_line_item_id());
         rli.setDescription(newSrli.getDescription());
@@ -173,7 +175,9 @@ public class RepairCaseControllerVN {
 
     @PostMapping("/updateRepairLine")
     public String updateRepairLine(@ModelAttribute RepairLineItem repairLineItem){
+        System.out.println("Data: " + repairLineItem.getRepair_line_item_id());
         repairLineItem.setRepair_case_id(rc_id);
+        System.out.println("Data: " + repairLineItem.getDescription());
         rlisi.update(repairLineItem);
         return "redirect:/repairCaseMain";
     }
