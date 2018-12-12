@@ -33,15 +33,15 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     @Override
     public RepairCase create(RepairCase repairCase) {
-        String sql1 = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number) VALUES(?,?,?,?,?,?,?,?)";
-        template.update(sql1, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number());
+        String sql = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, end_time) VALUES(?,?,?,?,?,?,?,?,?)";
+        template.update(sql, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getEnd_time());
         return repairCase;
     }
 
     @Override
     public RepairCase update(RepairCase repairCase) {
-        String sql = "UPDATE repair_case SET start_date=?, end_date=?, status_id=?, bicycle_id=?, customer_employee_id=?, repair_employee_id=?, repair_number=? WHERE repair_case_id=?";
-        template.update(sql, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id());
+        String sql = "UPDATE repair_case SET start_date=?, end_date=?, status_id=?, bicycle_id=?, customer_employee_id=?, repair_employee_id=?, repair_number=?, end_time=? WHERE repair_case_id=?";
+        template.update(sql, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id(), repairCase.getEnd_time());
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         return repairCase;
     }
@@ -52,8 +52,9 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         return template.update(sql, id) >= 0;
     }
 
+    // Skal denne bruges?
     public RepairCase returnRepairCaseWithSqlId(RepairCase repairCase) {
-        String sql = "select repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, comment\n" +
+        String sql = "select repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, end_time, comment\n" +
                 "from repair_case left join comment using(repair_case_id)\n" +
                 "where start_date = ? and end_date = ? and repair_number = ?;";
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
@@ -61,13 +62,10 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         return r;
     }
 
-
-    public int nextId() {
+    public int lastId() {
         List<RepairCase> tempList = findAll();
-        int index = tempList.size();
-        int nextId = tempList.get(index-1).getRepair_case_id();
-        //int nextId = tempList.size();
-        return nextId;
+        int index = tempList.size()-1;
+        return tempList.get(index).getRepair_case_id();
     }
 }
 

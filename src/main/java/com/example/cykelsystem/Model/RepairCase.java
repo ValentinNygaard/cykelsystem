@@ -21,10 +21,10 @@ public class RepairCase {
     private int customer_employee_id;
     private int repair_employee_id;
     private int repair_number;
-    private String comment;
+    private int end_time;
 
     public RepairCase(int repair_case_id, String start_date, String end_date, int status_id, int bicycle_id,
-                      int customer_employee_id, int repair_employee_id, int repair_number, String comment) {
+                      int customer_employee_id, int repair_employee_id, int repair_number, int end_time) {
         this.repair_case_id = repair_case_id;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -33,7 +33,7 @@ public class RepairCase {
         this.customer_employee_id = customer_employee_id;
         this.repair_employee_id = repair_employee_id;
         this.repair_number = repair_number;
-        this.comment = comment;
+        this.end_time = end_time;
     }
 
     public RepairCase(){}
@@ -53,14 +53,6 @@ public class RepairCase {
     public void setRepair_employee_id(int repair_employee_id) {
         this.repair_employee_id = repair_employee_id;
 }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 
     public int getRepair_case_id() {
         return repair_case_id;
@@ -102,7 +94,7 @@ public class RepairCase {
         this.bicycle_id = bicycle_id;
     }
 
-      public int getRepair_number() {
+    public int getRepair_number() {
         return repair_number;
     }
 
@@ -110,8 +102,13 @@ public class RepairCase {
         this.repair_number = repair_number;
     }
 
+    public int getEnd_time() { return end_time; }
+
+    public void setEnd_time(int end_time) { this.end_time = end_time; }
+
     public String toString(){
         return "start date"+ " "+getStart_date()+" "+"end date"+" "+getEnd_date()+" "+"status"+" "+ getStatus_id()+" "+"bicycle id"+" "+ getBicycle_id()
-                +" "+"repair nr"+" "+ getRepair_number()+" "+"customer employee id"+" "+ getCustomer_employee_id()+" "+"repair employee id"+" "+ getRepair_employee_id()+" "+"comment"+" "+ getComment();
+                +" "+"repair nr"+" "+ getRepair_number()+" "+"customer employee id"+" "+ getCustomer_employee_id()+" "+"repair employee id"+" "+ getRepair_employee_id()+" "+"end_time"+" "+ getEnd_time();
     }
+
 }

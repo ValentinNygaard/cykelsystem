@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+
+    <meta charset="UTF-8">
+    <title>Find Kunde</title>
+</head>
+<body>
+
+    <div class="topnav">
+        <a class="active" href="/">CykelSystem</a>
+        <a href="/overview">Oversigter</a>
+        <a href="/getCustomer">Arbejdskort</a>
+        <a href="/search">Søgninger</a>
+        <a href="/settings">Indstillinger</a>
+        <a href="/help">Hjælp</a>
+    </div>
+
+
+    <div class="container" style="padding-left:20px">
+
+        <h2>Oprettelse af arbejdskort - 2</h2>
+
+        <p>&nbsp</p>
+
+        <h3>Kunde info</h3>
+
+        <p>Navn: <span th:text="${customer.name}"/><br>
+        Telefonnummer: <span th:text="${customer.phone_number}"/></p>
+
+        <h3>Fundne cykler</h3>
+
+        <h4>Vælg en cykel</h4>
+
+        <form action="/gotBicycle" method="post">
+            <select id="bicycle" name="bicycle_id">
+                <option th:each="bicycle :${bicycleList}" th:value="${bicycle.bicycle_id}" th:text="${bicycle.description}"></option>
+            </select>
+            <input type="submit" value="Vælg cykel">
+        </form>
+
+        <p>Eller hvis kunden har en ny/anden cykel der skal repareres</p>
+
+        <h3>Opret ny cykel for kunden</h3>
+
+        <h4>Indtast cykelbeskrivelse</h4>
+
+        <form action="/createNewBicycle" method="post">
+            <input type="text" name="description" placeholder="Cykelbeskrivelse">
+            <input type="submit" value="Opret cykel">
+        </form>
+
+    </div>
+
+</body>
+</html>

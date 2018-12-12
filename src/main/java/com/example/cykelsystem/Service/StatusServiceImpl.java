@@ -10,28 +10,28 @@ import java.util.List;
 public class StatusServiceImpl implements IService<Status> {
 
     @Autowired
-    StatusRepoImpl statusRepoImpl;
+    StatusRepoImpl repoImpl;
 
     @Override
-    public List<Status> findAll() { return statusRepoImpl.findAll(); }
+    public List<Status> findAll() { return repoImpl.findAll(); }
 
     @Override
     public Status findById(int id) {
-        return statusRepoImpl.findById(id);
+        return repoImpl.findById(id);
     }
 
     @Override
     public Status create(Status status) {
-        return statusRepoImpl.create(status);
+        return repoImpl.create(status);
     }
 
     @Override
     public Status update(Status status) {
-        return statusRepoImpl.update(status);
+        return repoImpl.update(status);
     }
 
     @Override
     public boolean delete(int id) {
-        return statusRepoImpl.delete(id);
+        return repoImpl.delete(id);
     }
 }

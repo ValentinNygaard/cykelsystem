@@ -15,50 +15,45 @@ import java.util.List;
 @Controller
 public class SettingsController {
 
-    @Autowired
-    StdPartLineItemRepoImpl spliri;
-
-    @Autowired
-    StdRepairLineItemRepoImpl srliri;
 
     @Autowired
     StdPartLineItemServiceImpl stdPartLineItemService;
 
     @Autowired
-    StdRepairLineItemServiceImpl srlisi;
+    StdRepairLineItemServiceImpl stdRepairLineItemService;
 
 
     @GetMapping("/settings")
     public String settings(Model model){
-        List<StdPartLineItem> stdPartLineItem = spliri.findAll();
-        List<StdRepairLineItem> stdRepairLineItems = srliri.findAll();
+        List<StdPartLineItem> stdPartLineItem = stdPartLineItemService.findAll();
+        List<StdRepairLineItem> stdRepairLineItems = stdRepairLineItemService.findAll();
         model.addAttribute("stdPartLineItem", stdPartLineItem);
         model.addAttribute("stdRepairLineItem", stdRepairLineItems);
-        return "bootstrapJens/settings";
+        return "settings/settings";
     }
 
     @GetMapping("/updateStdPartLineItemFromSettings/{id}")
     public String updateStdPartLineItemFromSettings(@PathVariable("id")int id, Model model)
     {
-        model.addAttribute("stdPartLineItem", spliri.findById(id));
-        return "bootstrapJens/updatestdpartlineitemJens";
+        model.addAttribute("stdPartLineItem", stdPartLineItemService.findById(id));
+        return "settings/updatestdpartlineitemJens";
     }
 
     @PostMapping("/updateStdPartLineItemFromSettings")
     public String updateCustomer(@ModelAttribute StdPartLineItem stdPartLineItem){
-        spliri.update(stdPartLineItem);
+        stdPartLineItemService.update(stdPartLineItem);
         return "redirect:/settings";
     }
 
-    @GetMapping("/updateStdRepairlineitemFromSettings/{id}")
+    @GetMapping("/updateStdRepairLineItemFromSettings/{id}")
     public String updateStdRepairLineItemFromSettings(@PathVariable("id")int id, Model model) {
-        model.addAttribute("stdrepairlineitem", srliri.findById(id));
-        return "bootstrapJens/updatestdrepairlineitemJens";
+        model.addAttribute("stdRepairLineItem", stdRepairLineItemService.findById(id));
+        return "settings/updatestdrepairlineitemJens";
     }
 
     @PostMapping("/updateStdRepairlineitemFromSettings")
     public String updateStdRepairLineFromSettings(@ModelAttribute StdRepairLineItem stdRepairLineItem){
-        srliri.update(stdRepairLineItem);
+        stdRepairLineItemService.update(stdRepairLineItem);
         return "redirect:/settings";
     }
 
@@ -70,7 +65,7 @@ public class SettingsController {
 
     @PostMapping("/createStdRepairLineItemFromSettings")
     public String createStdRepairLineItemFromSettings(@ModelAttribute StdRepairLineItem StdRepairLineItem){
-        srliri.create(StdRepairLineItem);
+        stdRepairLineItemService.create(StdRepairLineItem);
         return "redirect:/settings";
     }
 
@@ -89,7 +84,7 @@ public class SettingsController {
     @GetMapping("/deleteStdRepairLineItemFromSettings/{id}")
     public String deleteStdRepairLineItemFromSettings(@PathVariable("id")int id)
     {
-        boolean deleted = srlisi.delete(id);
+        boolean deleted = stdRepairLineItemService.delete(id);
         if(deleted) {
             return "redirect:/settings";
         }
