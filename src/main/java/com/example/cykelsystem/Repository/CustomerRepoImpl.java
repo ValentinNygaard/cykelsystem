@@ -34,9 +34,6 @@ public class CustomerRepoImpl implements IRepo<Customer> {
     public Customer create(Customer customer) {
         String sql = "INSERT INTO customer (customer_id, phone_number, name) VALUES(?,?,?)";
         template.update(sql, customer.getCustomer_id(), customer.getPhone_number(), customer.getName());
-        /*String sql2 ="SELECT LAST_INSERT_ID()";
-        int id = template.update(sql2);
-        System.out.println(id);*/
         return customer;
     }
 
@@ -72,14 +69,8 @@ public class CustomerRepoImpl implements IRepo<Customer> {
     }
 
     public int lastId() {
-        List<Customer> tempList = findAll();
-        int index = tempList.size()-1;
-        return tempList.get(index).getCustomer_id();
+        String sql2 ="SELECT LAST_INSERT_ID()";
+        Integer id = (template.queryForObject(sql2, Integer.class));
+        return id.intValue();
     }
-
-   /* public static void main(String[] args) {
-        Customer repairCase = new Customer(0, "27344566", "id test");
-        CustomerRepoImpl repo = new CustomerRepoImpl();
-        repo.create(repairCase);
-    }*/
 }
