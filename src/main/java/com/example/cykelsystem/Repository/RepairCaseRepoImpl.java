@@ -53,8 +53,8 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     }
 
     public int lastId() {
-        String sql2 ="SELECT LAST_INSERT_ID()";
-        Integer id = (template.queryForObject(sql2, Integer.class));
+        String sql ="SELECT LAST_INSERT_ID()";
+        Integer id = (template.queryForObject(sql, Integer.class));
         return id.intValue();
     }
 }
