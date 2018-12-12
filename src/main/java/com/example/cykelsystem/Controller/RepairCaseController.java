@@ -33,6 +33,8 @@ public class RepairCaseController {
     @Autowired
     EmployeeServiceImpl employeeService;
 
+    ServiceService service = new ServiceService();
+
     private List<Bicycle> bicycleList;
     private List<Employee> employeeList;
     private List<PartLineItem> partLineList;
@@ -49,8 +51,8 @@ public class RepairCaseController {
     private int repaircase_id;
     private int customer_id;
 
-    private String start_date = "2018-12-04";
-    private String end_date = "2018-12-04";
+    private String start_date = service.getCurrentDate().toString();
+    private String end_date = service.getCurrentDateAddOne().toString(); //"2018-12-04"; //getCurrentDate + 1
     private int status_id = 1;
     private int bicycle_id = 1;
     private int customer_employee_id = 1;

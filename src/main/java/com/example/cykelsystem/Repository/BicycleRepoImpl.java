@@ -60,8 +60,8 @@ public class BicycleRepoImpl implements IRepo<Bicycle> {
     }
 
     public int lastId() {
-        List<Bicycle> tempList = findAll();
-        int index = tempList.size()-1;
-        return tempList.get(index).getBicycle_id();
+        String sql2 ="SELECT LAST_INSERT_ID()";
+        Integer id = (template.queryForObject(sql2, Integer.class));
+        return id.intValue();
     }
 }
