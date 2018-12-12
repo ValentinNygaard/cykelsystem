@@ -20,26 +20,8 @@
     <div class="container" style="padding-left:20px">
 
         <H1>Indstillinger</H1>
-        <h2>Her kan du ændre i standard værdier</h2>
-
-        <h2>Her kan du se og ændre værdier for reparations dele</h2>
-        <h3>opret ny reparations del</h3>
-        <form action="/createStdPartLineItemFromSettings" method="post">
-            <input type="text" name="description">
-            <input type="text" name="price">
-            <input type="submit" value="opret ny">
-        </form>
-        <span th:each="stdPartLineItem :${stdPartLineItem}">
-         <form action="/updateStdPartLineItemFromSettings" method="post">
-            <input type="hidden" name="std_part_line_item_id" th:value="${stdPartLineItem.std_part_line_item_id}">
-            <input type="text" name="description" th:value="${stdPartLineItem.description}">
-            <input type="text" name="price" th:value="${stdPartLineItem.price}">
-            <input type="submit" value="gem ændringer">
-             <input type="submit" formaction="@{'deleteStdPartLineItemFromSettings/' + ${stdPartLineItem.std_part_line_item_id}}" value="slet">
-        </form>
-        </span>
-
-        <h2>Her kan du se og ændre værdier for reparationer</h2>
+        <h3>Her kan du ændre i standard værdier</h3>
+        <h3>Her kan du se og ændre værdier for reparationer</h3>
         <h3>opret ny standard reparation</h3>
         <form action="/createStdRepairLineItemFromSettings" method="post">
             <input type="text" name="description">
@@ -47,9 +29,8 @@
             <input type="text" name="price">
             <input type="submit" value="opret ny">
         </form>
+        <h3>Ændre værdier for reparationer</h3>
         <span th:each="stdRepairLineItem :${stdRepairLineItem}">
-
-
         <form action="/updateStdRepairLineItemFromSettings" method="post">
             <input type="hidden" name="std_repair_line_item_id" th:value="${stdRepairLineItem.std_repair_line_item_id}">
             <input type="text" name="description" th:value="${stdRepairLineItem.description}">
@@ -58,6 +39,25 @@
             <input type="submit" value="gem ændringer">
             <input type="submit" formaction="@{'deleteStdRepairLineItemFromSettings/' + ${stdRepairLineItem.std_repair_line_item_id}}" value="slet">
             </form>
+        </span>
+
+        <h3>Her kan du se og ændre værdier for reparations dele</h3>
+        <h3>opret ny reparations del</h3>
+        <form action="/createStdPartLineItemFromSettings" method="post">
+            <input type="text" name="description">
+            <input type="text" name="price">
+            <input type="submit" value="opret ny">
+        </form>
+
+        <h3>Ændre værdier for reparations dele</h3>
+        <span th:each="stdPartLineItem :${stdPartLineItem}">
+         <form action="/updateStdPartLineItemFromSettings" method="post">
+            <input type="hidden" name="std_part_line_item_id" th:value="${stdPartLineItem.std_part_line_item_id}">
+            <input type="text" name="description" th:value="${stdPartLineItem.description}">
+            <input type="text" name="price" th:value="${stdPartLineItem.price}">
+            <input type="submit" value="gem ændringer">
+             <input type="submit" formaction="@{'deleteStdPartLineItemFromSettings/' + ${stdPartLineItem.std_part_line_item_id}}" value="slet">
+        </form>
         </span>
 
     </div>
