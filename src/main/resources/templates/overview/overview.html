@@ -15,6 +15,8 @@
         <a href="/">CykelSystem</a>
         <a class="active" href="/overview">Oversigter</a>
         <a href="/getCustomer">Arbejdskort</a>
+        <a href="/kassebilag">Kassebilag</a>
+        <a href="/kunder">Kunder</a>
         <a href="/search">Søgninger</a>
         <a href="/settings">Indstillinger</a>
         <a href="/help">Hjælp</a>
@@ -40,10 +42,9 @@
 
 
     <div class="btn-group">
-          <a th:each="repBarLine :${repBarLine}" th:href="@{'/repairCaseMain/' + ${repBarLine.repair_case_id}}" style="text-decoration:none">
-              <button ><i class='fas fa-wrench' style='font-size:24px'></i><span th:text="${repBarLine.phone_number}+ ' ' +${repBarLine.repair_number}+ ' ' +${repBarLine.time}
-    + ' ' +${repBarLine.price}+ ' ' +${repBarLine.status_title}+ ' ' +${repBarLine.end_date}" /></button>
-
+          <a th:each="repBarLine :${repBarLine}" th:href="@{'/repaircasemain/' + ${repBarLine.repair_case_id}}" style="text-decoration:none">
+              <button ><i class='fas fa-wrench' style='font-size:24px'></i><span th:text="${repBarLine.phone_number}+' '+${repBarLine.repair_number}+' '+${repBarLine.time}
+    +' '+${repBarLine.price}+' '+${repBarLine.status_title}+' '+${repBarLine.end_date}" /></button>
           </a>
       </div>
 
