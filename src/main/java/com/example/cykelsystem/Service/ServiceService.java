@@ -13,12 +13,12 @@ public class ServiceService {
         return new java.sql.Date(today.getTime());
     }
 
-    public Date getCurrentDateAddOne(){
-        Date date = new Date();
+    public java.sql.Date getCurrentDateAddOneDay(){
+        java.util.Date date = new java.util.Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DATE, 1);
         date = c.getTime();
-        return date;
+        return new java.sql.Date(date.getTime());
     }
 }

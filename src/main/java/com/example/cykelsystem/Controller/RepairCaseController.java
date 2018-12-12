@@ -52,7 +52,7 @@ public class RepairCaseController {
     private int customer_id;
 
     private String start_date = service.getCurrentDate().toString();
-    private String end_date = service.getCurrentDateAddOne().toString(); //"2018-12-04"; //getCurrentDate + 1
+    private String end_date = service.getCurrentDateAddOneDay().toString();
     private int status_id = 1;
     private int bicycle_id = 1;
     private int customer_employee_id = 1;
