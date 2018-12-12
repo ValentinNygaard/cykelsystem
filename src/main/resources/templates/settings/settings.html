@@ -29,12 +29,15 @@
             <input type="text" name="price">
             <input type="submit" value="opret ny">
         </form>
-        <p th:each="stdPartLineItem :${stdPartLineItem}">
-            <span th:text="${stdPartLineItem.description}+' ' + ${stdPartLineItem.price}" />
-            <a style="color: green;" th:href="@{'updateStdPartLineItemFromSettings/' + ${stdPartLineItem.std_part_line_item_id}}"th:text="'Tryk for at ændre pris og beskrivelse' "/>
-            <a style="color: red" th:href="@{'deleteStdPartLineItemFromSettings/' + ${stdPartLineItem.std_part_line_item_id}}"
-               th:text="'Tryk for at slette' "/>
-        </p>
+        <span th:each="stdPartLineItem :${stdPartLineItem}">
+         <form action="/updateStdPartLineItemFromSettings" method="post">
+            <input type="hidden" name="std_part_line_item_id" th:value="${stdPartLineItem.std_part_line_item_id}">
+            <input type="text" name="description" th:value="${stdPartLineItem.description}">
+            <input type="text" name="price" th:value="${stdPartLineItem.price}">
+            <input type="submit" value="gem ændringer">
+             <input type="submit" formaction="@{'deleteStdPartLineItemFromSettings/' + ${stdPartLineItem.std_part_line_item_id}}" value="slet">
+        </form>
+        </span>
 
         <h2>Her kan du se og ændre værdier for reparationer</h2>
         <h3>opret ny standard reparation</h3>
@@ -44,12 +47,18 @@
             <input type="text" name="price">
             <input type="submit" value="opret ny">
         </form>
-        <p th:each="stdRepairLineItem :${stdRepairLineItem}">
-            <span th:text="${stdRepairLineItem.description} + ' ' + ${stdRepairLineItem.time} + ' ' + ${stdRepairLineItem.price}" />
-            <a style="color: green;" th:href="@{'updateStdRepairLineItemFromSettings/' + ${stdRepairLineItem.std_repair_line_item_id}}" th:text="'Tryk for at ændre pris og beskrivelse' "/>
-            <a style="color: red" th:href="@{'deleteStdRepairLineItemFromSettings/' + ${stdRepairLineItem.std_repair_line_item_id}}"
-               th:text="'Tryk for at slette' "/>
-        </p>
+        <span th:each="stdRepairLineItem :${stdRepairLineItem}">
+
+
+        <form action="/updateStdRepairLineItemFromSettings" method="post">
+            <input type="hidden" name="std_repair_line_item_id" th:value="${stdRepairLineItem.std_repair_line_item_id}">
+            <input type="text" name="description" th:value="${stdRepairLineItem.description}">
+            <input type="text" name="time" th:value="${stdRepairLineItem.time}">
+            <input type="text" name="price" th:value="${stdRepairLineItem.price}">
+            <input type="submit" value="gem ændringer">
+            <input type="submit" formaction="@{'deleteStdRepairLineItemFromSettings/' + ${stdRepairLineItem.std_repair_line_item_id}}" value="slet">
+            </form>
+        </span>
 
     </div>
 
