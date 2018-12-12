@@ -12,21 +12,21 @@ public class RepBarLineService {
     @Autowired
     RepBarLineRepoImpl barLineRepo;
 
+    ServiceService service;
+
     public List<RepBarLine> findAll() {
         return barLineRepo.findAll();
     }
 
     public List<RepBarLine> findAllRepBars(){return barLineRepo.findAllRepbars();}
 
-    public List<RepBarLine> findAllRepbarsDate(){return barLineRepo.findAllRepbarsDate(getCurrentDate());}
-
-    public RepBarLine findById(int id) {
-        return null;
+    public List<RepBarLine> findAllRepbarsDate(){
+        return barLineRepo.findAllRepbarsDate(service.getCurrentDate());
     }
 
-    public java.sql.Date getCurrentDate() {
-        java.util.Date today = new java.util.Date();
-        return new java.sql.Date(today.getTime());
+    // ?
+    public RepBarLine findById(int id) {
+        return null;
     }
 
 }

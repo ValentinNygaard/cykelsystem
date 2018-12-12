@@ -18,10 +18,6 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
         return repoImpl.findAll();
     }
 
-    public List<RepairLineItem> findByRcId(int id) {
-        return repoImpl.findByRcId(id);
-    }
-
     @Override
     public RepairLineItem findById(int id) {
         return repoImpl.findById(id);
@@ -41,4 +37,9 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
     public boolean delete(int id) {
         return repoImpl.delete(id);
     }
+
+    public List<RepairLineItem> findByRcId(int id) {
+        return repoImpl.findByRcId(id);
+    }
+
 }

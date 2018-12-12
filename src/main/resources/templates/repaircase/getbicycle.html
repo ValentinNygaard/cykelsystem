@@ -20,10 +20,14 @@
 
     <div class="container" style="padding-left:20px">
 
-
-        <h2>Arbejdskort</h2>
+        <h2>Oprettelse af arbejdskort - 2</h2>
 
         <p>&nbsp</p>
+
+        <h3>Kunde info</h3>
+
+        <p>Navn: <span th:text="${customer.name}"/><br>
+        Telefonnummer: <span th:text="${customer.phone_number}"/></p>
 
         <h3>Fundne cykler</h3>
 
@@ -46,7 +50,6 @@
             <input type="text" name="description" placeholder="Cykelbeskrivelse">
             <input type="submit" value="Opret cykel">
         </form>
-
 
     </div>
 

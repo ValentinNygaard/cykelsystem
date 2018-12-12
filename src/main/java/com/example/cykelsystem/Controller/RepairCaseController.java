@@ -36,21 +36,19 @@ public class RepairCaseController {
     private List<Bicycle> bicycleList;
     private List<Employee> employeeList;
     private List<PartLineItem> partLineList;
-    private List<RepairCase> repairCaseList;
     private List<RepairLineItem> repairLineList;
     private List<Status> statusList;
     private List<StdRepairLineItem> stdRepairLineList;
     private List<StdPartLineItem> stdPartLineList;
 
     private Comment comment;
-    private Employee employee;
     private Customer customer = new Customer();
-    private Bicycle bicycle;
+    private Bicycle bicycle = new Bicycle();
     private RepairCase repairCase;
 
     private int repaircase_id;
-
     private int customer_id;
+
     private String start_date = "2018-12-04";
     private String end_date = "2018-12-04";
     private int status_id = 1;
@@ -58,26 +56,25 @@ public class RepairCaseController {
     private int customer_employee_id = 1;
     private int repair_employee_id = 1;
     private int repair_number = 1;
+    private int end_time = 17;
 
-    // Getting Customer & Bicycle info
+    // Getting Customer & Bicycle info before creating and editing a new repair_case
 
     @GetMapping("/getCustomer")
     public String getCustomer(Model model){
-        //customer = customerService.findById(1);
-        //System.out.println("Data: " + customer.getPhone_number());
-        String phone_number = "";
-        model.addAttribute("customer", phone_number);
+        customer.setName("");
+        customer.setPhone_number("");
+        model.addAttribute("customer", customer);
         model.addAttribute("bicycle", bicycle);
         return "repaircase/getcustomer";
     }
 
     @PostMapping("/getCustomer")
-    public String getCustomer(@ModelAttribute Customer customer, String phone_number){
+    public String getCustomer(@ModelAttribute Customer customer){
         //check if customer exists
-        boolean found = customerService.existsByPhone(phone_number);
+        boolean found = customerService.existsByPhone(customer.getPhone_number());
         if(found) {
-            customer_id = customerService.findByPhone(phone_number).getCustomer_id();
-            System.out.println("Data: " + customer_id);
+            customer_id = customerService.findByPhone(customer.getPhone_number()).getCustomer_id();
             return "redirect:/getbicycle";
         }
         else{
@@ -88,17 +85,17 @@ public class RepairCaseController {
     @PostMapping("/createCustomerAndBicycle")
     public String createCustomerAndBicycle(@ModelAttribute Customer costumer, Bicycle bicycle){
         customerService.create(costumer);
-        customer_id = customerService.findByPhone(costumer.getPhone_number()).getCustomer_id();
+        customer_id = customerService.lastId();
         bicycle.setCustomer_id(customer_id);
         bicycleService.create(bicycle);
         bicycle_id = bicycleService.lastId();
         createNewRepairCase();
-        return "repaircase/repaircasemain";
+        return "redirect:/repairCaseMain/"+repaircase_id;
     }
 
     @GetMapping("/noCustomer")
     public String noCustomer(Model model){
-        // Identisk med getCustomer - bortset fra fejlbesked - så den bruger også gettingCustomer som PostMapping
+        // Identisk med getCustomer - bortset fra fejlbesked på html side - så den bruger også gettingCustomer som PostMapping
         model.addAttribute("customer",customer);
         model.addAttribute("bicycle",bicycle);
         return "repaircase/nocustomer";
@@ -108,6 +105,8 @@ public class RepairCaseController {
     public String getBicycle(Model model){
         bicycleList = bicycleService.findAllByCustomer(customer_id);
         model.addAttribute("bicycleList",bicycleList);
+        customer = customerService.findById(customer_id);
+        model.addAttribute("customer",customer);
         return "repaircase/getbicycle";
     }
 
@@ -128,8 +127,10 @@ public class RepairCaseController {
         bicycle_id = bicycleService.lastId();
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
-        return "repaircase/repaircasemain/"+repaircase_id;
+        return "redirect:/repairCaseMain/"+repaircase_id;
     }
+
+    // Creating new repair_case row in database
 
     private void createNewRepairCase() {
         RepairCase newRepairCase = new RepairCase();
@@ -140,27 +141,32 @@ public class RepairCaseController {
         newRepairCase.setCustomer_employee_id(customer_employee_id);
         newRepairCase.setRepair_employee_id(repair_employee_id);
         newRepairCase.setRepair_number(repair_number);
+        newRepairCase.setEnd_time(end_time);
         repairCaseService.create(newRepairCase);
         repaircase_id = repairCaseService.lastId();
     }
 
+    // Show the repair_case for editing
+
     @RequestMapping("/repairCaseMain/{id}")
     public String repairCaseMain(@PathVariable("id")int id, Model model) {
-        repairCase = repairCaseService.findById(id);
-        model.addAttribute("repairCase",repairCase);
         repaircase_id = id;
-        //repairCaseList = repairCaseService.findAll();
-        //model.addAttribute("repairCaseList", repairCaseList);
         statusList = statusService.findAll();
         model.addAttribute("statusList", statusList);
         employeeList = employeeService.findAll();
         model.addAttribute("employeeList", employeeList);
         stdRepairLineList = stdRepairLineItemService.findAll();
         model.addAttribute("stdRepairLineList", stdRepairLineList);
-        repairLineList = repairLineItemService.findByRcId(id);
-        model.addAttribute("repairLineList", repairLineList);
         stdPartLineList = stdPartLineItemService.findAll();
         model.addAttribute("stdPartLineList", stdPartLineList);
+        repairCase = repairCaseService.findById(id);
+        model.addAttribute("repairCase",repairCase);
+        bicycle = bicycleService.findById(repairCase.getBicycle_id());
+        model.addAttribute("bicycle",bicycle);
+        customer = customerService.findById(bicycle.getCustomer_id());
+        model.addAttribute("customer",customer);
+        repairLineList = repairLineItemService.findByRcId(id);
+        model.addAttribute("repairLineList", repairLineList);
         partLineList = partLineItemService.findByRcId(id);
         model.addAttribute("partLineList", partLineList);
         if (commentService.existsById(id)) {
@@ -173,9 +179,10 @@ public class RepairCaseController {
         return "repaircase/repairCaseMain";
     }
 
+    // Handling edits to the repair_case
+
     @PostMapping("/updateRepairCase")
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
-        System.out.println("Data (id): " + repaircase_id);
         repairCaseService.update(repairCase);
         return "redirect:/repairCaseMain/"+repaircase_id;
     }
@@ -201,8 +208,7 @@ public class RepairCaseController {
     }
 
     @GetMapping("/deleteRepairLine/{id}")
-    public String deleteRepairLine(@PathVariable("id")int id)
-    {
+    public String deleteRepairLine(@PathVariable("id")int id) {
         boolean deleted = repairLineItemService.delete(id);
         repairLineList = repairLineItemService.findByRcId(repaircase_id);
         if(deleted) {
@@ -233,8 +239,7 @@ public class RepairCaseController {
     }
 
     @GetMapping("/deletePartLine/{id}")
-    public String deletePartLine(@PathVariable("id")int id)
-    {
+    public String deletePartLine(@PathVariable("id")int id) {
         boolean deleted = partLineItemService.delete(id);
         partLineList = partLineItemService.findByRcId(repaircase_id);
         if(deleted) {
@@ -257,8 +262,7 @@ public class RepairCaseController {
     }
 
     @GetMapping("/deleteComment")
-    public String deleteComment()
-    {
+    public String deleteComment() {
         boolean deleted = commentService.delete(repaircase_id);
         if(deleted) {
             return "redirect:/repairCaseMain/"+repaircase_id;
@@ -268,100 +272,6 @@ public class RepairCaseController {
         }
     }
 
-
-    // Skal pt. ikke bruges - slettes når jeg er sikker
-/*
-    @GetMapping ("/repaircase")
-    public String repairCase(Employee employee, Model model) {
-
-        employeeList = employeeService.findAll();
-        model.addAttribute("employeeList", employeeList);
-        model.addAttribute("employee", employee);
-        return "repaircase/createrepaircase";
-    }
-
-    @PostMapping("/newRepairCase")
-    public String createRepairCase(@ModelAttribute Employee employee){
-        System.out.println("Medarbejder: " + employee.getEmployee_id());
-        System.out.println("Medarbejder: " + employee.getName());
-        return "repaircase/getcustomer";
-    }
-    @GetMapping("/detailsRepairCase/{id}")
-    public String detailsrepaircase(@PathVariable("id")int id, Model model){
-        model.addAttribute("repairCase", repairCaseService.findById(id));
-        return "repaircase/repaircasemain";
-    }
-
-    @GetMapping("/deleteRepairCase/{id}")
-    public String deleteRepairCase(@PathVariable("id")int id)
-    {
-        boolean deleted = repairCaseService.delete(id);
-        if(deleted) {
-            return "redirect:/";
-        }
-        else{
-            return "redirect:/";
-        }
-    }
-    @PostMapping("/updateRepairCase")
-    public String updateRepairCase(@ModelAttribute RepairCase repairCase){
-        repairCaseService.update(repairCase);
-        return "redirect:/repairCaseMain";
-    }
-
-
-
-
-
-    @RequestMapping ("/repairCaseMain")
-    public String repairCaseMain(Model model) {
-
-        if (needinit) {
-            RepairCase newRepairCase = new RepairCase();
-            newRepairCase.setStart_date("2018-12-04");
-            newRepairCase.setEnd_date("2018-12-04");
-            newRepairCase.setStatus_id(1);
-            newRepairCase.setBicycle_id(1);
-            newRepairCase.setCustomer_employee_id(1);
-            newRepairCase.setRepair_employee_id(2);
-            newRepairCase.setRepair_number(445);
-            repairCaseService.create(newRepairCase);
-            needinit = false;
-        }
-
-        repaircase_id = repairCaseService.lastId();
-        System.out.println("repaircase_id: " + repaircase_id);
-
-        repairCase = repairCaseService.findById(repaircase_id);
-        model.addAttribute("repairCase",repairCase);
-        repairCaseList = repairCaseService.findAll();
-        model.addAttribute("repairCaseList", repairCaseList);
-        statusList = statusService.findAll();
-        model.addAttribute("statusList", statusList);
-        employeeList = employeeService.findAll();
-        model.addAttribute("employeeList", employeeList);
-        stdRepairLineList = stdRepairLineItemService.findAll();
-        model.addAttribute("stdRepairLineList", stdRepairLineList);
-        repairLineList = repairLineItemService.findByRcId(repaircase_id);
-        model.addAttribute("repairLineList", repairLineList);
-        stdPartLineList = stdPartLineItemService.findAll();
-        model.addAttribute("stdPartLineList", stdPartLineList);
-        partLineList = partLineItemService.findByRcId(repaircase_id);
-        model.addAttribute("partLineList", partLineList);
-        if (commentService.existsById(repaircase_id)) {
-            comment = commentService.findById(repaircase_id);
-        } else {
-            comment = new Comment();
-            comment.setRepair_case_id(repaircase_id);
-        }
-        model.addAttribute("comment",comment);
-        return "repaircase/repaircasemain";
-    }
-
-*/
-
-
-
-
+    //System.out.println("Data (id): " + repaircase_id);
 
 }

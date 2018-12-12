@@ -8,9 +8,9 @@
 <body>
 
     <div class="topnav">
-        <a class="active" href="/">CykelSystem</a>
+        <a href="/">CykelSystem</a>
         <a href="/overview">Oversigter</a>
-        <a href="/getCustomer">Arbejdskort</a>
+        <a class="active" href="/getCustomer">Arbejdskort</a>
         <a href="/search">Søgninger</a>
         <a href="/settings">Indstillinger</a>
         <a href="/help">Hjælp</a>
@@ -18,22 +18,24 @@
 
     <div class="container" style="padding-left:20px">
 
-    <h2>Opret og rediger arbejdskort</h2>
+        <h2>Rediger arbejdskort</h2>
 
-        <h3>Rediger basisoplysninger</h3>
+        <h3>Basisoplysninger</h3>
 
         <form action="/updateRepairCase" method="post">
             <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-            <label for="fdate">Oprettelsesdato:</label>
-            <input type="text" id="fdate" name="start_date" th:value="${repairCase.start_date}"><br>
-            <label for="tdate">Afhentningsdato:</label>
-            <input type="text" id="tdate" name="end_date" th:value="${repairCase.end_date}"><br>
+            <label for="rnumber">Arbejdskort nummer:</label>
+            <input type="text" id="rnumber" name="repair_number" th:value="${repairCase.repair_number}"><br>
             <label for="statusid">Status:</label>
             <select id="statusid" name="status_id">
                 <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
             </select><br>
-            <label for="bicycleid">Cykel id:</label>
-            <input type="text" id="bicycleid" name="bicycle_id" th:value="${repairCase.bicycle_id}"><br>
+            <label for="fdate">Oprettelsesdato:</label>
+            <input type="text" id="fdate" name="start_date" th:value="${repairCase.start_date}"><br>
+            <label for="tdate">Afhentningsdato:</label>
+            <input type="text" id="tdate" name="end_date" th:value="${repairCase.end_date}"><br>
+            <label for="ttime">Afhentningstid:</label>
+            <input type="text" id="ttime" name="end_time" th:value="${repairCase.end_time}"><br>
             <label for="cemployee">Oprettet af:</label>
             <select id="cemployee" name="customer_employee_id">
                 <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
@@ -42,65 +44,70 @@
             <select id="remployee" name="repair_employee_id">
                 <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
             </select><br>
-            <label for="rnumber">Arbejdskort nummer:</label>
-            <input type="text" id="rnumber" name="repair_number" th:value="${repairCase.repair_number}"><br>
             <input type="submit" value="opdater">
         </form>
 
-            <h3>Reperationer:</h3>
+        <h3>Kunde og cykel info:</h3>
 
-            <form action="/addRepairLine" method="post">
-                <label for="stdRepairline">Vælg og tilføj:</label>
-                <select id="stdRepairline" name="std_repair_line_item_id">
-                    <option selected>Vælg reparation</option>
-                    <option th:each="stdRepairLine :${stdRepairLineList}" th:value="${stdRepairLine.std_repair_line_item_id}" th:text="${stdRepairLine.description}"></option>
-                </select>
-                <input type="submit" value="Tilføj">
+        <p>Navn: <span th:text="${customer.name}"/><br>
+            Telefonnummer: <span th:text="${customer.phone_number}"/><br>
+            Cykelbeskrivelse: <span th:text="${bicycle.description}"/>
+        </p>
+
+        <h3>Reperationer:</h3>
+
+        <form action="/addRepairLine" method="post">
+            <label for="stdRepairline">Vælg og tilføj:</label>
+            <select id="stdRepairline" name="std_repair_line_item_id">
+                <option selected>Vælg reparation</option>
+                <option th:each="stdRepairLine :${stdRepairLineList}" th:value="${stdRepairLine.std_repair_line_item_id}" th:text="${stdRepairLine.description}"></option>
+            </select>
+            <input type="submit" value="Tilføj">
+        </form>
+
+        <h4>Reperationslinier:</h4>
+
+        <span th:each="rLine :${repairLineList}">
+            <form action="/updateRepairLine" method="post">
+                <input type="hidden" name="repair_line_item_id" th:value="${rLine.repair_line_item_id}">
+                <input type="text" id="description" name="description" th:value="${rLine.description}">
+                <input type="text" id="time" name="time" th:value="${rLine.time}">
+                <input type="text" id="price" name="price" th:value="${rLine.price}">
+                <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}">Slet</a>
             </form>
+        </span>
 
-            <h4>Reperationslinier:</h4>
+        <h3>Cykeldele og tilbehør:</h3>
 
-            <span th:each="rLine :${repairLineList}">
-                <form action="/updateRepairLine" method="post">
-                    <input type="hidden" name="repair_line_item_id" th:value="${rLine.repair_line_item_id}">
-                    <input type="text" id="description" name="description" th:value="${rLine.description}">
-                    <input type="text" id="time" name="time" th:value="${rLine.time}">
-                    <input type="text" id="price" name="price" th:value="${rLine.price}">
-                    <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}">Slet</a>
-                </form>
-            </span>
+        <form action="/addPartLine" method="post">
+            <label for="stdPartline">Vælg og tilføj:</label>
+            <select id="stdPartline" name="std_part_line_item_id">
+                <option selected>Vælg del/tilbehør</option>
+                <option th:each="stdPartLine :${stdPartLineList}" th:value="${stdPartLine.std_part_line_item_id}" th:text="${stdPartLine.description}"></option>
+            </select>
+            <input type="submit" value="Tilføj">
+        </form>
 
-            <h3>Cykeldele og tilbehør:</h3>
+        <h4>Salgslinier:</h4>
 
-            <form action="/addPartLine" method="post">
-                <label for="stdPartline">Vælg og tilføj:</label>
-                <select id="stdPartline" name="std_part_line_item_id">
-                    <option selected>Vælg del/tilbehør</option>
-                    <option th:each="stdPartLine :${stdPartLineList}" th:value="${stdPartLine.std_part_line_item_id}" th:text="${stdPartLine.description}"></option>
-                </select>
-                <input type="submit" value="Tilføj">
+        <span th:each="pLine :${partLineList}">
+            <form action="/updatePartLine" method="post">
+                <input type="hidden" name="part_line_item_id" th:value="${pLine.part_line_item_id}">
+                <input type="text" id="description" name="description" th:value="${pLine.description}">
+                <input type="text" id="price" name="price" th:value="${pLine.price}">
+                <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}">Slet</a>
             </form>
+        </span>
 
-            <h4>Salgslinier:</h4>
+        <h3>Kommentar:</h3>
 
-            <span th:each="pLine :${partLineList}">
-                <form action="/updatePartLine" method="post">
-                    <input type="hidden" name="part_line_item_id" th:value="${pLine.part_line_item_id}">
-                    <input type="text" id="description" name="description" th:value="${pLine.description}">
-                    <input type="text" id="price" name="price" th:value="${pLine.price}">
-                    <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}">Slet</a>
-                </form>
-            </span>
-
-            <h3>Kommentar:</h3>
-
-            <span>
-                <form action="/updateComment" method="post">
-                    <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
-                    <input type="text" id="comment" name="comment" th:value="${comment.comment}">
-                    <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteComment/'}">Slet</a>
-                </form>
-            </span>
+        <span>
+            <form action="/updateComment" method="post">
+                <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
+                <input type="text" id="comment" name="comment" th:value="${comment.comment}">
+                <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteComment/'}">Slet</a>
+            </form>
+        </span>
 
     </div>
 

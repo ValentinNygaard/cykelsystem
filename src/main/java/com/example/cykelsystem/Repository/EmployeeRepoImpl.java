@@ -53,7 +53,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
         return template.update(sql, id) >= 0;
     }
 
-    public boolean login(Employee employee){
+    /*public boolean login(Employee employee){
         String sql = "SELECT * FROM employee WHERE user_name=? and password=?";
         RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
         List<Employee> e = template.query(sql, rowMapper, employee.getUser_name(), employee.getPassword());
@@ -62,5 +62,5 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
         }else{
             return false;
         }
-    }
+    }*/
 }
