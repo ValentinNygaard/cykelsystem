@@ -150,7 +150,7 @@ public class RepairCaseController {
 
     // Show the repair_case for editing
 
-    @GetMapping("/repaircasemain/{id}")
+    @RequestMapping("/repaircasemain/{id}")
     public String repairCaseMain(@PathVariable("id")int id, Model model) {
         repaircase_id = id;
         statusList = statusService.findAll();
@@ -185,7 +185,6 @@ public class RepairCaseController {
 
     @PostMapping("/updateRepairCase")
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
-        repairCase.setRepair_case_id(repaircase_id);
         repairCaseService.update(repairCase);
         return "redirect:/repaircasemain/"+repaircase_id;
     }
@@ -200,7 +199,7 @@ public class RepairCaseController {
         rli.setRepair_case_id(repaircase_id);
         repairLineItemService.create(rli);
         repairLineList = repairLineItemService.findByRcId(repaircase_id);
-        return "redirect:/repaircasemain/"+repaircase_id;
+        return "redirect:/repairCaseMain/"+repaircase_id;
     }
 
     @PostMapping("/updateRepairLine")
