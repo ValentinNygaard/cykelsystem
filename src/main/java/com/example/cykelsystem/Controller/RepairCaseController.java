@@ -150,7 +150,7 @@ public class RepairCaseController {
 
     // Show the repair_case for editing
 
-    @RequestMapping("/repaircasemain/{id}")
+    @GetMapping("/repaircasemain/{id}")
     public String repairCaseMain(@PathVariable("id")int id, Model model) {
         repaircase_id = id;
         statusList = statusService.findAll();
@@ -178,7 +178,7 @@ public class RepairCaseController {
             comment.setRepair_case_id(id);
         }
         model.addAttribute("comment",comment);
-        return "repaircase/repaircasemain";
+        return "repaircase/repaircasemain/"+repaircase_id;
     }
 
     // Handling edits to the repair_case
