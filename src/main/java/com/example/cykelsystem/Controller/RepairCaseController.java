@@ -185,6 +185,7 @@ public class RepairCaseController {
 
     @PostMapping("/updateRepairCase")
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
+        repairCase.setRepair_case_id(repaircase_id);
         repairCaseService.update(repairCase);
         return "redirect:/repaircasemain/"+repaircase_id;
     }
@@ -254,7 +255,10 @@ public class RepairCaseController {
 
     @PostMapping("/updateComment")
     public String updateComment(@ModelAttribute Comment comment){
+        comment.setRepair_case_id(repaircase_id);
+        System.out.println("Data (id getting here): " + repaircase_id);
         if (commentService.existsById(repaircase_id)) {
+            System.out.println("Data (id getting here): " + comment.getRepair_case_id());
             commentService.update(comment);
         } else {
             comment.setRepair_case_id(repaircase_id);
