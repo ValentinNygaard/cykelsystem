@@ -40,7 +40,7 @@ public class SettingsController {
     }
 
     @PostMapping("/updateStdPartLineItemFromSettings")
-    public String updateCustomer(@ModelAttribute StdPartLineItem stdPartLineItem){
+    public String updateStdPartLineItemFromSettings(@ModelAttribute StdPartLineItem stdPartLineItem){
         stdPartLineItemService.update(stdPartLineItem);
         return "redirect:/settings";
     }
