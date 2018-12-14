@@ -22,12 +22,6 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
         return template.query(sql, rowMapper);
     }
 
-    public List<RepairLineItem> findByRcId(int repair_case_id) {
-        String sql = "SELECT * FROM repair_line_item WHERE repair_case_id=?";
-        RowMapper<RepairLineItem> rowMapper = new BeanPropertyRowMapper<>(RepairLineItem.class);
-        return template.query(sql, rowMapper, repair_case_id);
-    }
-
     @Override
     public RepairLineItem findById(int id){
         String sql = "SELECT * FROM repair_line_item WHERE repair_line_item_id=?";
@@ -54,4 +48,22 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
         String sql = "DELETE FROM repair_line_item WHERE repair_line_item_id=?";
         return template.update(sql, id) >= 0;
     }
+
+    public List<RepairLineItem> findByRcId(int repair_case_id) {
+        String sql = "SELECT * FROM repair_line_item WHERE repair_case_id=?";
+        RowMapper<RepairLineItem> rowMapper = new BeanPropertyRowMapper<>(RepairLineItem.class);
+        return template.query(sql, rowMapper, repair_case_id);
+    }
+
+    public int sumRepairTimeByRepairCaseId(int repair_case_id) {
+        return 1;
+    }
+
+    public double sumRepairPriceByRepairCaseId(int repair_case_id) {
+        return 1;
+    }
+
+
+
+
 }

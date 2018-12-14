@@ -51,13 +51,12 @@ public class RepairCaseController {
     private int repaircase_id;
     private int customer_id;
 
-    private String start_date = service.getCurrentDate().toString();
-    private String end_date = service.getCurrentDateAddOneDay().toString();
+    private String start_date = service.getDateForToday();
+    private String end_date = service.getDateForTomorrow();
     private int status_id = 1;
     private int bicycle_id = 1;
     private int customer_employee_id = 1;
     private int repair_employee_id = 1;
-    private int repair_number = 1;
     private int end_time = 17;
 
     // Getting Customer & Bicycle info before creating and editing a new repair_case
@@ -66,6 +65,7 @@ public class RepairCaseController {
     public String getCustomer(Model model){
         customer.setName("");
         customer.setPhone_number("");
+        bicycle.setDescription("");
         model.addAttribute("customer", customer);
         model.addAttribute("bicycle", bicycle);
         return "repaircase/getcustomer";
@@ -115,7 +115,6 @@ public class RepairCaseController {
     @PostMapping("/gotBicycle")
     public String gotBicycle(@ModelAttribute Bicycle bicycle){
         bicycle_id = bicycle.getBicycle_id();
-        System.out.println("Data (id): " + bicycle_id);
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
         System.out.println("Data (id): " + repaircase_id);
@@ -142,7 +141,7 @@ public class RepairCaseController {
         newRepairCase.setBicycle_id(bicycle_id);
         newRepairCase.setCustomer_employee_id(customer_employee_id);
         newRepairCase.setRepair_employee_id(repair_employee_id);
-        newRepairCase.setRepair_number(repair_number);
+        newRepairCase.setRepair_number(repairCaseService.lastRepairNumber()+1);
         newRepairCase.setEnd_time(end_time);
         repairCaseService.create(newRepairCase);
         repaircase_id = repairCaseService.lastId();
@@ -150,9 +149,13 @@ public class RepairCaseController {
 
     // Show the repair_case for editing
 
-    @GetMapping("/repaircasemain/{id}")
+    @RequestMapping("/repaircasemain/{id}")
     public String repairCaseMain(@PathVariable("id")int id, Model model) {
         repaircase_id = id;
+        repairCase = repairCaseService.findById(id);
+        model.addAttribute("repairCase",repairCase);
+        System.out.println("Data (bicycle_id main): " + repairCase.getBicycle_id());
+        System.out.println("Data (id main): " + repaircase_id);
         statusList = statusService.findAll();
         model.addAttribute("statusList", statusList);
         employeeList = employeeService.findAll();
@@ -161,8 +164,6 @@ public class RepairCaseController {
         model.addAttribute("stdRepairLineList", stdRepairLineList);
         stdPartLineList = stdPartLineItemService.findAll();
         model.addAttribute("stdPartLineList", stdPartLineList);
-        repairCase = repairCaseService.findById(id);
-        model.addAttribute("repairCase",repairCase);
         bicycle = bicycleService.findById(repairCase.getBicycle_id());
         model.addAttribute("bicycle",bicycle);
         customer = customerService.findById(bicycle.getCustomer_id());
@@ -185,9 +186,7 @@ public class RepairCaseController {
 
     @PostMapping("/updateRepairCase")
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
-        System.out.println("Data (id) her: " + repaircase_id);
-        System.out.println("Data (id) her: " + repairCase.getRepair_case_id());
-        System.out.println("Data (id) her: " + repairCase.getStatus_id());
+        repairCase.setRepair_case_id(repaircase_id);
         repairCaseService.update(repairCase);
         return "redirect:/repaircasemain/"+repaircase_id;
     }
@@ -202,7 +201,7 @@ public class RepairCaseController {
         rli.setRepair_case_id(repaircase_id);
         repairLineItemService.create(rli);
         repairLineList = repairLineItemService.findByRcId(repaircase_id);
-        return "redirect:/repairCaseMain/"+repaircase_id;
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     @PostMapping("/updateRepairLine")
@@ -257,6 +256,7 @@ public class RepairCaseController {
 
     @PostMapping("/updateComment")
     public String updateComment(@ModelAttribute Comment comment){
+        comment.setRepair_case_id(repaircase_id);
         if (commentService.existsById(repaircase_id)) {
             commentService.update(comment);
         } else {

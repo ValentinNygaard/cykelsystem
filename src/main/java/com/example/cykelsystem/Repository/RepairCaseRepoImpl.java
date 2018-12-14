@@ -56,6 +56,21 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         Integer id = (template.queryForObject(sql, Integer.class));
         return id.intValue();
     }
+
+    public int lastRepairNumber() {
+        List<RepairCase> tempList = findAll();
+        int index = tempList.size()-1;
+        return tempList.get(index).getRepair_number();
+    }
+
+    public List<RepairCase> findAllByBicycleId(int id) {
+        String sql = "select * from repair_case where bicycle_id = ?;";
+        RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
+        List<RepairCase> repairCases = template.query(sql, rowMapper, id);
+        return repairCases;
+    }
+
+
 }
 
 

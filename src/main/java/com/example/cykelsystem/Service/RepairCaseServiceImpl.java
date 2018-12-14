@@ -38,4 +38,6 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
     }
 
     public int lastId() { return repairCaseRepo.lastId(); }
+
+    public int lastRepairNumber() { return repairCaseRepo.lastRepairNumber(); }
 }
