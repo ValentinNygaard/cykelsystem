@@ -41,4 +41,8 @@ public class PartLineItemServiceImpl implements IService<PartLineItem> {
         return repoImpl.findByRcId(id);
     }
 
+    public double sumPartPriceByRepairCaseId(int id) {
+        return repoImpl.sumPartPriceByRepairCaseId(id);
+    }
+
 }

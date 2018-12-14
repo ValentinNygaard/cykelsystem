@@ -10,34 +10,36 @@ import java.util.List;
 public class RepairCaseServiceImpl implements IService<RepairCase> {
 
     @Autowired
-    RepairCaseRepoImpl repairCaseRepo;
+    RepairCaseRepoImpl repoImpl;
 
     @Override
     public List<RepairCase> findAll() {
-        return repairCaseRepo.findAll();
+        return repoImpl.findAll();
     }
 
     @Override
     public RepairCase findById(int id) {
-        return repairCaseRepo.findById(id);
+        return repoImpl.findById(id);
     }
 
     @Override
     public RepairCase create(RepairCase repairCase) {
-        return repairCaseRepo.create(repairCase);
+        return repoImpl.create(repairCase);
     }
 
     @Override
     public RepairCase update(RepairCase repairCase) {
-        return repairCaseRepo.update(repairCase);
+        return repoImpl.update(repairCase);
     }
 
     @Override
     public boolean delete(int id) {
-        return repairCaseRepo.delete(id);
+        return repoImpl.delete(id);
     }
 
-    public int lastId() { return repairCaseRepo.lastId(); }
+    public int lastId() { return repoImpl.lastId(); }
 
-    public int lastRepairNumber() { return repairCaseRepo.lastRepairNumber(); }
+    public int lastRepairNumber() { return repoImpl.lastRepairNumber(); }
+
+    public List<RepairCase> findAllByBicycleId(int id) { return repoImpl.findAllByBicycleId(id); }
 }

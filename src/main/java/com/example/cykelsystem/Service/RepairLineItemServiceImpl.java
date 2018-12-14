@@ -42,4 +42,12 @@ public class RepairLineItemServiceImpl implements IService<RepairLineItem> {
         return repoImpl.findByRcId(id);
     }
 
+    public double sumRepairPriceByRepairCaseId(int id) {
+        return repoImpl.sumRepairPriceByRepairCaseId(id);
+    }
+
+    public int sumRepairTimeByRepairCaseId(int id) {
+        return repoImpl.sumRepairTimeByRepairCaseId(id);
+    }
+
 }
