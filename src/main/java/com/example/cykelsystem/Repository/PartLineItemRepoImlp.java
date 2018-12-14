@@ -56,7 +56,11 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
     }
 
     public double sumPartPriceByRepairCaseId(int repair_case_id) {
-        return 1;
+        String sql = "SELECT repair_case_id, sum(price) as price\n" +
+                "FROM part_line_item\n" +
+                "WHERE repair_case_id = ?;";
+        RowMapper<Double> rowMapper = new BeanPropertyRowMapper<>(Double.class);
+        Double price = template.queryForObject(sql, rowMapper, repair_case_id);
+        return price.doubleValue();
     }
-
 }

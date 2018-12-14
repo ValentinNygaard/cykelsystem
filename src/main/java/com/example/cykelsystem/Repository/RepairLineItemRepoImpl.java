@@ -56,11 +56,21 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
     }
 
     public int sumRepairTimeByRepairCaseId(int repair_case_id) {
-        return 1;
+            String sql = "SELECT repair_case_id, sum(time) as time\n" +
+                    "FROM repair_line_item\n" +
+                    "WHERE repair_case_id = ?;";
+            RowMapper<Integer> rowMapper = new BeanPropertyRowMapper<>(Integer.class);
+            Integer time = template.queryForObject(sql, rowMapper, repair_case_id);
+            return time.intValue();
     }
 
     public double sumRepairPriceByRepairCaseId(int repair_case_id) {
-        return 1;
+        String sql = "SELECT repair_case_id, sum(price) as price\n" +
+                "FROM repair_line_item\n" +
+                "WHERE repair_case_id = ?;";
+        RowMapper<Double> rowMapper = new BeanPropertyRowMapper<>(Double.class);
+        Double price = template.queryForObject(sql, rowMapper, repair_case_id);
+        return price.doubleValue();
     }
 
 
