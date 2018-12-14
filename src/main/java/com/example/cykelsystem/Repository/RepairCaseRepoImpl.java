@@ -41,8 +41,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     @Override
     public RepairCase update(RepairCase repairCase) {
         String sql = "UPDATE repair_case SET start_date=?, end_date=?, status_id=?, bicycle_id=?, customer_employee_id=?, repair_employee_id=?, repair_number=?, end_time=? WHERE repair_case_id=?";
-        template.update(sql, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getRepair_case_id(), repairCase.getEnd_time());
-        RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
+        template.update(sql, repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getEnd_time(), repairCase.getRepair_case_id());
         return repairCase;
     }
 
