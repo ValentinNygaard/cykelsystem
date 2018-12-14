@@ -22,13 +22,6 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
         return template.query(sql, rowMapper);
     }
 
-    public List<PartLineItem> findByRcId(int repair_case_id) {
-        String sql = "SELECT * FROM part_line_item WHERE repair_case_id=?";
-        RowMapper<PartLineItem> rowMapper = new BeanPropertyRowMapper<>(PartLineItem.class);
-        return template.query(sql, rowMapper, repair_case_id);
-    }
-
-
     @Override
     public PartLineItem findById(int id) {
         String sql ="SELECT * FROM part_line_item WHERE part_line_item_id=?";
@@ -54,5 +47,20 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
         String sql = "UPDATE part_line_item SET description=?, price=?, repair_case_id=? WHERE part_line_item_id=?";
         template.update(sql,partLineItem.getDescription(), partLineItem.getPrice(), partLineItem.getRepair_case_id(),partLineItem.getPart_line_item_id());
         return partLineItem;
+    }
+
+    public List<PartLineItem> findByRcId(int repair_case_id) {
+        String sql = "SELECT * FROM part_line_item WHERE repair_case_id=?";
+        RowMapper<PartLineItem> rowMapper = new BeanPropertyRowMapper<>(PartLineItem.class);
+        return template.query(sql, rowMapper, repair_case_id);
+    }
+
+    public double sumPartPriceByRepairCaseId(int repair_case_id) {
+        String sql = "SELECT repair_case_id, sum(price) as price\n" +
+                "FROM part_line_item\n" +
+                "WHERE repair_case_id = ?;";
+        RowMapper<Double> rowMapper = new BeanPropertyRowMapper<>(Double.class);
+        Double price = template.queryForObject(sql, rowMapper, repair_case_id);
+        return price.doubleValue();
     }
 }

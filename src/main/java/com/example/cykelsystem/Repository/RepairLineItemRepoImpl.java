@@ -22,12 +22,6 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
         return template.query(sql, rowMapper);
     }
 
-    public List<RepairLineItem> findByRcId(int repair_case_id) {
-        String sql = "SELECT * FROM repair_line_item WHERE repair_case_id=?";
-        RowMapper<RepairLineItem> rowMapper = new BeanPropertyRowMapper<>(RepairLineItem.class);
-        return template.query(sql, rowMapper, repair_case_id);
-    }
-
     @Override
     public RepairLineItem findById(int id){
         String sql = "SELECT * FROM repair_line_item WHERE repair_line_item_id=?";
@@ -54,4 +48,32 @@ public class RepairLineItemRepoImpl implements IRepo<RepairLineItem> {
         String sql = "DELETE FROM repair_line_item WHERE repair_line_item_id=?";
         return template.update(sql, id) >= 0;
     }
+
+    public List<RepairLineItem> findByRcId(int repair_case_id) {
+        String sql = "SELECT * FROM repair_line_item WHERE repair_case_id=?";
+        RowMapper<RepairLineItem> rowMapper = new BeanPropertyRowMapper<>(RepairLineItem.class);
+        return template.query(sql, rowMapper, repair_case_id);
+    }
+
+    public int sumRepairTimeByRepairCaseId(int repair_case_id) {
+            String sql = "SELECT repair_case_id, sum(time) as time\n" +
+                    "FROM repair_line_item\n" +
+                    "WHERE repair_case_id = ?;";
+            RowMapper<Integer> rowMapper = new BeanPropertyRowMapper<>(Integer.class);
+            Integer time = template.queryForObject(sql, rowMapper, repair_case_id);
+            return time.intValue();
+    }
+
+    public double sumRepairPriceByRepairCaseId(int repair_case_id) {
+        String sql = "SELECT repair_case_id, sum(price) as price\n" +
+                "FROM repair_line_item\n" +
+                "WHERE repair_case_id = ?;";
+        RowMapper<Double> rowMapper = new BeanPropertyRowMapper<>(Double.class);
+        Double price = template.queryForObject(sql, rowMapper, repair_case_id);
+        return price.doubleValue();
+    }
+
+
+
+
 }

@@ -46,6 +46,7 @@
             <select id="remployee" name="repair_employee_id">
                 <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
             </select><br>
+            <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
             <input type="submit" value="opdater">
         </form>
 
