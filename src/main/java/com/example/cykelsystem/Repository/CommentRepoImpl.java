@@ -44,6 +44,7 @@ public class CommentRepoImpl  implements IRepo<Comment>{
 
     @Override
     public Comment update(Comment comment) {
+        System.out.println("getting to repo");
         String sql = "UPDATE comment SET comment=? WHERE repair_case_id=?";
         template.update(sql,comment.getComment(), comment.getRepair_case_id());
         return comment;

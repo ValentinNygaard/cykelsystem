@@ -32,45 +32,38 @@ public class SettingsController {
         return "settings/settings";
     }
 
-    @GetMapping("/updateStdPartLineItemFromSettings/{id}")
-    public String updateStdPartLineItemFromSettings(@PathVariable("id")int id, Model model)
-    {
-        model.addAttribute("stdPartLineItem", stdPartLineItemService.findById(id));
-        return "settings/updatestdpartlineitemJens";
-    }
-
-    @PostMapping("/updateStdPartLineItemFromSettings")
-    public String updateCustomer(@ModelAttribute StdPartLineItem stdPartLineItem){
+    @PostMapping("/updateStdPartLineItem/{id}")
+    public String updateStdPartLineItem(@ModelAttribute StdPartLineItem stdPartLineItem){
         stdPartLineItemService.update(stdPartLineItem);
         return "redirect:/settings";
     }
 
-    @GetMapping("/updateStdRepairLineItemFromSettings/{id}")
-    public String updateStdRepairLineItemFromSettings(@PathVariable("id")int id, Model model) {
-        model.addAttribute("stdRepairLineItem", stdRepairLineItemService.findById(id));
-        return "settings/updatestdrepairlineitemJens";
-    }
-
-    @PostMapping("/updateStdRepairlineitemFromSettings")
-    public String updateStdRepairLineFromSettings(@ModelAttribute StdRepairLineItem stdRepairLineItem){
+    @PostMapping("/updateStdRepairLineItem/{id}")
+    public String updateStdRepairLineItem(@ModelAttribute StdRepairLineItem stdRepairLineItem) {
         stdRepairLineItemService.update(stdRepairLineItem);
         return "redirect:/settings";
     }
 
-    @PostMapping("/createStdPartLineItemFromSettings")
-    public String createStdPartLineItemFromSettings(@ModelAttribute StdPartLineItem stdPartLineItem){
+    @PostMapping("/updateStdRepairlineitem")
+    public String updateStdRepairLine(@ModelAttribute StdRepairLineItem stdRepairLineItem){
+        stdRepairLineItemService.update(stdRepairLineItem);
+        return "redirect:/settings";
+    }
+
+    @PostMapping("/createStdPartLineItem")
+    public String createStdPartLineItem(@ModelAttribute StdPartLineItem stdPartLineItem){
         stdPartLineItemService.create(stdPartLineItem);
         return "redirect:/settings";
     }
 
-    @PostMapping("/createStdRepairLineItemFromSettings")
-    public String createStdRepairLineItemFromSettings(@ModelAttribute StdRepairLineItem StdRepairLineItem){
+    @PostMapping("/createStdRepairLineItem")
+    public String createStdRepairLineItem(@ModelAttribute StdRepairLineItem StdRepairLineItem){
         stdRepairLineItemService.create(StdRepairLineItem);
         return "redirect:/settings";
     }
 
-    @GetMapping("/deleteStdPartLineItemFromSettings/{id}")
-    public String deleteStdPartLineItemFromSettings(@PathVariable("id")int id)
+    @GetMapping("/deleteStdPartLineItem/{id}")
+    public String deleteStdPartLineItem(@PathVariable("id")int id)
     {
         boolean deleted = stdPartLineItemService.delete(id);
         if(deleted) {
@@ -81,8 +74,8 @@ public class SettingsController {
         }
     }
 
-    @GetMapping("/deleteStdRepairLineItemFromSettings/{id}")
-    public String deleteStdRepairLineItemFromSettings(@PathVariable("id")int id)
+    @GetMapping("/deleteStdRepairLineItem/{id}")
+    public String deleteStdRepairLineItem(@PathVariable("id")int id)
     {
         boolean deleted = stdRepairLineItemService.delete(id);
         if(deleted) {
