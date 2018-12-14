@@ -178,13 +178,16 @@ public class RepairCaseController {
             comment.setRepair_case_id(id);
         }
         model.addAttribute("comment",comment);
-        return "repaircase/repaircasemain/"+repaircase_id;
+        return "repaircase/repaircasemain";
     }
 
     // Handling edits to the repair_case
 
     @PostMapping("/updateRepairCase")
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
+        System.out.println("Data (id) her: " + repaircase_id);
+        System.out.println("Data (id) her: " + repairCase.getRepair_case_id());
+        System.out.println("Data (id) her: " + repairCase.getStatus_id());
         repairCaseService.update(repairCase);
         return "redirect:/repaircasemain/"+repaircase_id;
     }
