@@ -12,8 +12,6 @@ public class RepBarLineService {
     @Autowired
     RepBarLineRepoImpl repoImpl;
 
-    ServiceService service;
-
     public List<RepBarLine> findAll() {
         return repoImpl.findAll();
     }
