@@ -32,8 +32,8 @@ public class RepairCaseController {
     CustomerServiceImpl customerService;
     @Autowired
     EmployeeServiceImpl employeeService;
-
-    ServiceService service = new ServiceService();
+    @Autowired
+    ServiceService service;
 
     private List<Bicycle> bicycleList;
     private List<Employee> employeeList;
@@ -51,8 +51,6 @@ public class RepairCaseController {
     private int repaircase_id;
     private int customer_id;
 
-    private String start_date = service.getDateForToday();
-    private String end_date = service.getDateForTomorrow();
     private int status_id = 1;
     private int bicycle_id = 1;
     private int customer_employee_id = 1;
@@ -135,8 +133,8 @@ public class RepairCaseController {
 
     private void createNewRepairCase() {
         RepairCase newRepairCase = new RepairCase();
-        newRepairCase.setStart_date(start_date);
-        newRepairCase.setEnd_date(end_date);
+        newRepairCase.setStart_date(service.getDateForToday());
+        newRepairCase.setEnd_date( service.getDateForTomorrow());
         newRepairCase.setStatus_id(status_id);
         newRepairCase.setBicycle_id(bicycle_id);
         newRepairCase.setCustomer_employee_id(customer_employee_id);

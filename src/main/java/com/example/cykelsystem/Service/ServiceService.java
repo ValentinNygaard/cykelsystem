@@ -16,15 +16,19 @@ public class ServiceService {
         return date;
     }
 
-    public String getDateForTomorrow() {
+    public String getDateForLaterThanToday(int days) {
         java.util.Date utilDate = new java.util.Date();
         Calendar c = Calendar.getInstance();
         c.setTime(utilDate);
-        c.add(Calendar.DATE, 1);
+        c.add(Calendar.DATE, days);
         utilDate = c.getTime();
         java.sql.Date sqlTomorrow = new java.sql.Date(utilDate.getTime());
         String date =  sqlTomorrow.toString();
         return date;
+    }
+
+    public String getDateForTomorrow() {
+        return getDateForLaterThanToday(1);
     }
 
 
