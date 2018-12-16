@@ -15,13 +15,17 @@ public class CommentRepoImpl  implements IRepo<Comment>{
     @Autowired
     JdbcTemplate template;
 
+    // All the methods with the @Override annotation, is implemeted.
+
+    /* This method finds all objects of comment in the database
+     it does this through the JdbcTemplate. */
     @Override
     public List<Comment> findAll() {
         String sql = "SELECT * FROM comment";
         RowMapper<Comment> rowMapper = new BeanPropertyRowMapper<>(Comment.class);
         return template.query(sql, rowMapper);
     }
-
+    // This method returns a Bicycle with a specific id.
     @Override
     public Comment findById(int id) {
         String sql ="SELECT * FROM comment WHERE repair_case_id=?";
@@ -29,12 +33,14 @@ public class CommentRepoImpl  implements IRepo<Comment>{
         return template.queryForObject(sql, rowMapper, id);
     }
 
+    // This method finds a comment, on a specific repair_case_id
     public boolean existsById(int id) {
         String sql ="SELECT * FROM comment WHERE repair_case_id=?";
         RowMapper<Comment> rowMapper = new BeanPropertyRowMapper<>(Comment.class);
         return (template.query(sql, rowMapper, id).size()>0);
     }
 
+    // This method creates a new object of Comment
     @Override
     public Comment create(Comment comment) {
         String sql = "INSERT INTO comment (repair_case_id, comment) VALUES(?,?)";
@@ -42,6 +48,7 @@ public class CommentRepoImpl  implements IRepo<Comment>{
         return comment;
     }
 
+    // This method updates a specific Comment with a specific repair_case_id.
     @Override
     public Comment update(Comment comment) {
         System.out.println("getting to repo");
@@ -50,11 +57,10 @@ public class CommentRepoImpl  implements IRepo<Comment>{
         return comment;
     }
 
+    // This method deletes a comment with a specific repair_case_id.
     @Override
     public boolean delete(int id) {
         String sql = "DELETE FROM comment WHERE repair_case_id=?";
         return  template.update(sql, id) >= 0;
     }
-
-
 }

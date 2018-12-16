@@ -8,7 +8,7 @@ import java.util.Date;
 @Service
 public class ServiceService {
 
-
+    // This method get the current date
     public String getDateForToday() {
         java.util.Date utilToday = new java.util.Date();
         java.sql.Date sqlToday = new java.sql.Date(utilToday.getTime());
@@ -16,6 +16,7 @@ public class ServiceService {
         return date;
     }
 
+    // This methods gets the date for the comming days
     public String getDateForLaterThanToday(int days) {
         java.util.Date utilDate = new java.util.Date();
         Calendar c = Calendar.getInstance();
@@ -27,16 +28,18 @@ public class ServiceService {
         return date;
     }
 
+    // This method gets the date for tomorrow
     public String getDateForTomorrow() {
         return getDateForLaterThanToday(1);
     }
 
-
+    // This method gets the date for today
     public java.sql.Date getCurrentDate() {
         java.util.Date today = new java.util.Date();
         return new java.sql.Date(today.getTime());
     }
 
+    // This method gets the date for tomorrow
     public java.sql.Date getCurrentDateAddOneDay(){
         java.util.Date date = new java.util.Date();
         Calendar c = Calendar.getInstance();
