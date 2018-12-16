@@ -22,7 +22,10 @@ public class SettingsController {
     @Autowired
     StdRepairLineItemServiceImpl stdRepairLineItemService;
 
+    // We are creating some methods to navigate between different HTML sites.
 
+    /* Here the method is filling lists of StdPartLineItem, and StdRepairLineItem.
+     then adding them to model, and returning the settings page (HTML)*/
     @GetMapping("/settings")
     public String settings(Model model){
         List<StdPartLineItem> stdPartLineItem = stdPartLineItemService.findAll();
@@ -32,37 +35,55 @@ public class SettingsController {
         return "settings/settings";
     }
 
+    /* This method is updating a StdPartLineItem, on a specific object.
+      the method is taking a ModelAttribute as a parameter, to specifi that object.
+     its calling the method update, in stdPartLineServiceImpl class.
+     then returning the settings page(HTML)*/
     @PostMapping("/updateStdPartLineItem/{id}")
     public String updateStdPartLineItem(@ModelAttribute StdPartLineItem stdPartLineItem){
         stdPartLineItemService.update(stdPartLineItem);
         return "redirect:/settings";
     }
 
+    // this is the same method, just with a StdRepairLineItem
     @PostMapping("/updateStdRepairLineItem/{id}")
     public String updateStdRepairLineItem(@ModelAttribute StdRepairLineItem stdRepairLineItem) {
         stdRepairLineItemService.update(stdRepairLineItem);
         return "redirect:/settings";
     }
 
-    //samme metode som ovenover, bør slettes
+    // This method updates a StdPartLineItem
+    @PostMapping("/updateStdPartlineitem")
+    public String updateStdPartLine(@ModelAttribute StdPartLineItem stdPartLineItem){
+        stdPartLineItemService.update(stdPartLineItem);
+        return "redirect:/settings";
+    }
+
+    // This method updates a StdRepairLineItem
     @PostMapping("/updateStdRepairlineitem")
     public String updateStdRepairLine(@ModelAttribute StdRepairLineItem stdRepairLineItem){
         stdRepairLineItemService.update(stdRepairLineItem);
         return "redirect:/settings";
     }
 
+    // This method is creating a new StdPartLineItem, it calls the method create in the stdPartLineServiceImpl class.
     @PostMapping("/createStdPartLineItem")
     public String createStdPartLineItem(@ModelAttribute StdPartLineItem stdPartLineItem){
         stdPartLineItemService.create(stdPartLineItem);
         return "redirect:/settings";
     }
 
+    // The same method, just for StdRepairLineItem.
     @PostMapping("/createStdRepairLineItem")
     public String createStdRepairLineItem(@ModelAttribute StdRepairLineItem StdRepairLineItem){
         stdRepairLineItemService.create(StdRepairLineItem);
         return "redirect:/settings";
     }
 
+    /* This method is deleting a StdPartLineItem
+     The method is taking a PathVariable as a parameter
+     the method is looking for a id, if its there it delets the object, then returns the settings page
+     if not it is returning the settings page*/
     @GetMapping("/deleteStdPartLineItem/{id}")
     public String deleteStdPartLineItem(@PathVariable("id")int id)
     {
@@ -75,6 +96,7 @@ public class SettingsController {
         }
     }
 
+    //The same but for RepairLineItem
     @GetMapping("/deleteStdRepairLineItem/{id}")
     public String deleteStdRepairLineItem(@PathVariable("id")int id)
     {

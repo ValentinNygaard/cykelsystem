@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 public class RepairCaseController {
 
+    // First new objects of the needed classes is initiated.
     @Autowired
     RepairCaseServiceImpl repairCaseService;
     @Autowired
@@ -35,6 +36,7 @@ public class RepairCaseController {
 
     ServiceService service = new ServiceService();
 
+    // Lists of classes is initilised
     private List<Bicycle> bicycleList;
     private List<Employee> employeeList;
     private List<PartLineItem> partLineList;
@@ -51,6 +53,8 @@ public class RepairCaseController {
     private int repaircase_id;
     private int customer_id;
 
+    // Default values is added to the RepairCase object, then later updates.
+    // This is not the best way to operate, we will change this later.
     private String start_date = service.getDateForToday();
     private String end_date = service.getDateForTomorrow();
     private int status_id = 1;
@@ -71,6 +75,7 @@ public class RepairCaseController {
         return "repaircase/getcustomer";
     }
 
+    // This method checks if there is a customer with a specific phone_number.
     @PostMapping("/getCustomer")
     public String getCustomer(@ModelAttribute Customer customer){
         //check if customer exists
@@ -84,6 +89,7 @@ public class RepairCaseController {
         }
     }
 
+    // This method creates a customer with a biclycle
     @PostMapping("/createCustomerAndBicycle")
     public String createCustomerAndBicycle(@ModelAttribute Customer costumer, Bicycle bicycle){
         customerService.create(costumer);
@@ -95,6 +101,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This method returns the HTML site if there is no customer
     @GetMapping("/noCustomer")
     public String noCustomer(Model model){
         // Identisk med getCustomer - bortset fra fejlbesked på html side - så den bruger også gettingCustomer som PostMapping
@@ -103,6 +110,7 @@ public class RepairCaseController {
         return "repaircase/nocustomer";
     }
 
+    // This method selects a bicycle on a customer_id.
     @GetMapping("/getbicycle")
     public String getBicycle(Model model){
         bicycleList = bicycleService.findAllByCustomer(customer_id);
@@ -112,6 +120,7 @@ public class RepairCaseController {
         return "repaircase/getbicycle";
     }
 
+    // This method creates a new repair case with the bicycle
     @PostMapping("/gotBicycle")
     public String gotBicycle(@ModelAttribute Bicycle bicycle){
         bicycle_id = bicycle.getBicycle_id();
@@ -121,6 +130,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This method creates a new bicycle
     @PostMapping("/createNewBicycle")
     public String createBicycle(@ModelAttribute Bicycle bicycle){
         bicycle.setCustomer_id(customer_id);
@@ -191,6 +201,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This mehtod adds a repairLine
     @PostMapping("/addRepairLine")
     public String addRepairLine(@ModelAttribute StdRepairLineItem srli){
         RepairLineItem rli = new RepairLineItem();
@@ -204,6 +215,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This method updates the repairLine, returns the repaircaseman site with the specific repaircase_id
     @PostMapping("/updateRepairLine")
     public String updateRepairLine(@ModelAttribute RepairLineItem repairLineItem){
         repairLineItem.setRepair_case_id(repaircase_id);
@@ -211,6 +223,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This method deletes a repairLine with a specific id
     @GetMapping("/deleteRepairLine/{id}")
     public String deleteRepairLine(@PathVariable("id")int id) {
         boolean deleted = repairLineItemService.delete(id);
@@ -223,6 +236,7 @@ public class RepairCaseController {
         }
     }
 
+    // This method adds a partLine
     @PostMapping("/addPartLine")
     public String addPartLine(@ModelAttribute StdPartLineItem spli){
         PartLineItem pli = new PartLineItem();
@@ -235,6 +249,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This method updates partLine
     @PostMapping("/updatePartLine")
     public String updatePartLine(@ModelAttribute PartLineItem partLineItem){
         partLineItem.setRepair_case_id(repaircase_id);
@@ -242,6 +257,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // This method deletes a partLine on a specific id.
     @GetMapping("/deletePartLine/{id}")
     public String deletePartLine(@PathVariable("id")int id) {
         boolean deleted = partLineItemService.delete(id);
@@ -254,6 +270,7 @@ public class RepairCaseController {
         }
     }
 
+    // This method updates a comment, if the repaircase_id mathes the one given.
     @PostMapping("/updateComment")
     public String updateComment(@ModelAttribute Comment comment){
         comment.setRepair_case_id(repaircase_id);
@@ -266,6 +283,7 @@ public class RepairCaseController {
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
+    // THis method deletes a comment, if it finds the repaircase_id.
     @GetMapping("/deleteComment")
     public String deleteComment() {
         boolean deleted = commentService.delete(repaircase_id);
