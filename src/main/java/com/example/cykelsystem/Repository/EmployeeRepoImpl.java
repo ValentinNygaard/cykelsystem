@@ -15,6 +15,10 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     @Autowired
     JdbcTemplate template;
 
+    // All the methods with the @Override annotation, is implemeted.
+
+    /* This method finds all objects of Employee in the database
+    it does this through the JdbcTemplate. */
     @Override
     public List<Employee> findAll() {
         String sql = "SELECT * FROM employee";
@@ -23,6 +27,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
 
     }
 
+    // This method finds a specific Employee with a specific employee_id.
     @Override
     public  Employee findById(int id) {
         String sql = "SELECT * FROM employee WHERE employee_id=?";
@@ -31,6 +36,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
         return employee;
     }
 
+    // This method creates an object of Employee
     @Override
     public Employee create(Employee employee) {
         String sql = "INSERT INTO employee (employee_id, name, phone_number, user_name, password) VALUES(?,?,?,?,?)";
@@ -39,6 +45,7 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
         return employee;
     }
 
+    // This method updates an object of Employee, on a specific employee_id
     @Override
     public Employee update(Employee employee) {
         String sql = "UPDATE employee SET name=?, phone_number=?, user_name=?, password=? WHERE employee_id=?";
@@ -47,12 +54,15 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
         return e;
     }
 
+    // This method deletes an Employee on a specific employee_id.
     @Override
     public boolean delete(int id) {
         String sql = "DELETE FROM employee WHERE employee_id=?";
         return template.update(sql, id) >= 0;
     }
 
+    // This method is not implemented, but we want to implement it later.
+    // It checkes if there is a user_name, that mathes a password.
     public boolean login(Employee employee){
         String sql = "SELECT * FROM employee WHERE user_name=? and password=?";
         RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);

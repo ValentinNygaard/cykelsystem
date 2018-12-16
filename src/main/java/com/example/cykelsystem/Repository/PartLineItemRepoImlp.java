@@ -14,7 +14,10 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
     @Autowired
     JdbcTemplate template;
 
+    // All the methods with the @Override annotation, is implemeted.
 
+    /* This method finds all objects of PartLineItem in the database
+    it does this through the JdbcTemplate. */
     @Override
     public List<PartLineItem> findAll() {
         String sql = "SELECT * FROM part_line_item";
@@ -22,6 +25,7 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
         return template.query(sql, rowMapper);
     }
 
+    // This method finds a specific PartLineItem with a specific part_line_item_id.
     @Override
     public PartLineItem findById(int id) {
         String sql ="SELECT * FROM part_line_item WHERE part_line_item_id=?";
@@ -29,6 +33,7 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
         return template.queryForObject(sql, rowMapper, id);
     }
 
+    // This method creates an object of PartLineItem
     @Override
     public PartLineItem create(PartLineItem partLineItem) {
         String sql = "INSERT INTO  part_line_item (part_line_item_id, description, price, repair_case_id) VALUES(?,?,?,?)";
@@ -36,11 +41,14 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
         return partLineItem;
     }
 
+    // This method updates an object of Employee, on a specific employee_id
     @Override
     public boolean delete(int id) {
         String sql = "DELETE FROM part_line_item WHERE part_line_item_id=?";
         return  template.update(sql, id) >= 0;
     }
+
+    // This method deletes an Employee on a specific employee_id.
 
     @Override
     public PartLineItem update(PartLineItem partLineItem) {
@@ -49,12 +57,14 @@ public class PartLineItemRepoImlp implements IRepo<PartLineItem>{
         return partLineItem;
     }
 
+    // This method finds a PartLineItem with a specific repair_case_id.
     public List<PartLineItem> findByRcId(int repair_case_id) {
         String sql = "SELECT * FROM part_line_item WHERE repair_case_id=?";
         RowMapper<PartLineItem> rowMapper = new BeanPropertyRowMapper<>(PartLineItem.class);
         return template.query(sql, rowMapper, repair_case_id);
     }
 
+    // This method sums the price of a PartLineItem, on a repair_case_id.
     public double sumPartPriceByRepairCaseId(int repair_case_id) {
         String sql = "SELECT repair_case_id, sum(price) as price\n" +
                 "FROM part_line_item\n" +

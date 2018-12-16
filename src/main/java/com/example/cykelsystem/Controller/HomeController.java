@@ -13,9 +13,11 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
-    RepBarLineService rbls;
 
+    @Autowired
+    RepBarLineService rbls;             // Er den ikke overflødig her?
+
+    //
     @GetMapping("/")
     public String home(Model model){
        return "home/index";

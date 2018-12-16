@@ -15,6 +15,7 @@ public class RepBarLineRepoImpl {
     @Autowired
     JdbcTemplate template;
 
+    // This method returns a list of RepBarLine with specific status_id's
     public List<RepBarLine> findRepbarsWithStatus(int fromStatus, int toStatus) {
         String sql = "SELECT repair_case_id, phone_number, repair_number, IFNULL(t1.time, 0) AS time, IFNULL(t1.price, 0) AS price, status_title, end_date\n" +
                 "FROM customer NATURAL JOIN bicycle\n" +
@@ -30,6 +31,7 @@ public class RepBarLineRepoImpl {
         return repBarLines;
     }
 
+    // This method returns a list of RepBarLines, with specific status_id's ordered by the date
     public List<RepBarLine> findRepbarsWithStatusFromDate(int fromStatus, int toStatus, String fromDate) {
         String sql = "SELECT repair_case_id, phone_number, repair_number, IFNULL(t1.time, 0) AS time, IFNULL(t1.price, 0) AS price, status_title, end_date\n" +
                 "FROM customer NATURAL JOIN bicycle\n" +
@@ -45,6 +47,7 @@ public class RepBarLineRepoImpl {
         return repBarLines;
     }
 
+    // This method returns a list of RepBarLines, with specific status_id's, between given dates
     public List<RepBarLine> findRepbarsWithStatusBetweenDates(int fromStatus, int toStatus, String fromDate, String toDate) {
         String sql = "SELECT repair_case_id, phone_number, repair_number, IFNULL(t1.time, 0) AS time, IFNULL(t1.price, 0) AS price, status_title, end_date\n" +
                 "FROM customer NATURAL JOIN bicycle\n" +

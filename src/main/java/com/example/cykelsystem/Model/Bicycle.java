@@ -3,10 +3,10 @@ package com.example.cykelsystem.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity      // This defines that this is a class, in the Spring framework
 public class Bicycle {
 
-    @Id
+    @Id // the Entity annotation needs this, for the Spring framework to work
     private int bicycle_id;
     private String description;
     private int customer_id;
