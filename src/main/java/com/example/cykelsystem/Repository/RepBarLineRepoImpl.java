@@ -15,8 +15,7 @@ public class RepBarLineRepoImpl {
     @Autowired
     JdbcTemplate template;
 
-    public List<RepBarLine>
-    findAll() {
+    public List<RepBarLine> findAll() {
         String sql = "select repair_case_id, phone_number, repair_number, t1.time, t1.price, status_title, end_date\n" +
                 "from customer natural join bicycle natural join repair_case natural join (select repair_case_id, status_title, sum(time) as time, sum(price) as price\n" +
                 "from status natural join repair_case natural join repair_line_item\n" +

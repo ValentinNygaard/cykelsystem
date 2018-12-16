@@ -44,6 +44,7 @@ public class SettingsController {
         return "redirect:/settings";
     }
 
+    //samme metode som ovenover, bør slettes
     @PostMapping("/updateStdRepairlineitem")
     public String updateStdRepairLine(@ModelAttribute StdRepairLineItem stdRepairLineItem){
         stdRepairLineItemService.update(stdRepairLineItem);
