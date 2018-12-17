@@ -52,7 +52,7 @@
                 <form action="/updateRepairCase" method="post">
                 <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
                 <label for="rnumber">Arbejdskort:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                <input type="text" id="rnumber" name="repair_number" size="6" style="text-align:right;" th:value="${repairCase.repair_number}">
+                <input type="text" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
                     <label for="statusid">&nbsp&nbsp&nbsp&nbspStatus:</label>
                     <select id="statusid" name="status_id">
                         <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
@@ -70,7 +70,7 @@
                         <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
                     </select><br>
                     <label for="ttime">Tidspunkt:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                <input type="text" id="ttime" name="end_time" size="3" style="text-align:right;" th:value="${repairCase.end_time}">
+                <input type="text" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
                     &nbsp&nbsp
 
 
@@ -103,8 +103,8 @@
                     <form action="/updateRepairLine" method="post">
                         <input type="hidden" name="repair_line_item_id" th:value="${rLine.repair_line_item_id}">
                         <input type="text" id="description" name="description" th:value="${rLine.description}">
-                        <input type="text" id="time" name="time" size="5" style="text-align:right;" th:value="${rLine.time}">
-                        <input type="text" id="price" name="price" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
+                        <input type="text" id="time" name="time" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
+                        <input type="text" id="price" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
                         <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}">Slet</a>
                     </form>
                 </span>
@@ -127,7 +127,7 @@
                     <form action="/updatePartLine" method="post">
                         <input type="hidden" name="part_line_item_id" th:value="${pLine.part_line_item_id}">
                         <input type="text" id="description" name="description" th:value="${pLine.description}">
-                        <input type="text" id="price" name="price" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
+                        <input type="text" id="price" name="price" pattern="[0-9]+" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
                         <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}">Slet</a>
                     </form>
                 </span>
