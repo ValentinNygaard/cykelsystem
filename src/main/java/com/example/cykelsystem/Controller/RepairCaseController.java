@@ -294,7 +294,4 @@ public class RepairCaseController {
             return "redirect:/repaircasemain/"+repaircase_id;
         }
     }
-
-    //System.out.println("Data (id): " + repaircase_id);
-
 }
