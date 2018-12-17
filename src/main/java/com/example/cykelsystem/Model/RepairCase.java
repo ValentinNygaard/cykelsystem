@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity     // This defines that this is a class, in the Spring framework
 public class RepairCase {
 
     @Id

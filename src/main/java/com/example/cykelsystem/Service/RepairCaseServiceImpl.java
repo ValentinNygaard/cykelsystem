@@ -10,36 +10,42 @@ import java.util.List;
 public class RepairCaseServiceImpl implements IService<RepairCase> {
 
     @Autowired
-    RepairCaseRepoImpl repoImpl;
+    RepairCaseRepoImpl repairCaseRepo;
+    // All the methods with the @Override annotation, is implemeted.
 
+    // This method finds all objects of RepairCase
     @Override
     public List<RepairCase> findAll() {
-        return repoImpl.findAll();
+        return repairCaseRepo.findAll();
     }
 
+    // This method finds an object of RepairCase, with a specific id
     @Override
     public RepairCase findById(int id) {
-        return repoImpl.findById(id);
+        return repairCaseRepo.findById(id);
     }
 
+    // This method creates an object of RepairCase
     @Override
     public RepairCase create(RepairCase repairCase) {
-        return repoImpl.create(repairCase);
+        return repairCaseRepo.create(repairCase);
     }
 
+    // This method updates an object of RepairCase
     @Override
     public RepairCase update(RepairCase repairCase) {
-        return repoImpl.update(repairCase);
+        return repairCaseRepo.update(repairCase);
     }
 
+    // This method deletes an object of RepairCase, with a specific id
     @Override
     public boolean delete(int id) {
-        return repoImpl.delete(id);
+        return repairCaseRepo.delete(id);
     }
 
-    public int lastId() { return repoImpl.lastId(); }
+    // This method returns the last id of all the objects of RepairCase
+    public int lastId() { return repairCaseRepo.lastId(); }
 
-    public int lastRepairNumber() { return repoImpl.lastRepairNumber(); }
-
-    public List<RepairCase> findAllByBicycleId(int id) { return repoImpl.findAllByBicycleId(id); }
+    // This method returns the last RepairNumber of all the objects of RepairCase
+    public int lastRepairNumber() { return repairCaseRepo.lastRepairNumber(); }
 }

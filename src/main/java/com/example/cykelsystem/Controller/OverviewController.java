@@ -14,10 +14,13 @@ import java.util.List;
 public class OverviewController {
 
     @Autowired
-    RepBarLineService rbls;
+    RepBarLineService rbls;                      // Her opretter vi et objekt af RepBarLineService
+    ServiceService service;                     //Overflødig?
 
-    ServiceService service;
-
+    /* This method is refering to the HTML site "overview", in the method we are creating a list of RepBarLIne,
+     we are filling the list with a method in RepBarLineService, the method findRepBarsWithStatusFromDate.
+     then we are adding the elements to a Model object, with the method addAttribute.
+     after that, we are returning the HTML site. */
     @GetMapping("/overview")
     public String overview(Model model){
         //List<RepBarLine> repBarLines = rbls.findAll();
