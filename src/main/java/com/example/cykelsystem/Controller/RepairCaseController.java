@@ -1,4 +1,4 @@
-// Responsible for code: VN
+// Responsible for code: VN, EB, JØ, EPS
 package com.example.cykelsystem.Controller;
 
 import com.example.cykelsystem.Model.*;
@@ -127,7 +127,7 @@ public class RepairCaseController {
         bicycle_id = bicycle.getBicycle_id();
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
-        System.out.println("Data (id): " + repaircase_id);
+
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 
@@ -165,8 +165,6 @@ public class RepairCaseController {
         repaircase_id = id;
         repairCase = repairCaseService.findById(id);
         model.addAttribute("repairCase",repairCase);
-        System.out.println("Data (bicycle_id main): " + repairCase.getBicycle_id());
-        System.out.println("Data (id main): " + repaircase_id);
         statusList = statusService.findAll();
         model.addAttribute("statusList", statusList);
         employeeList = employeeService.findAll();

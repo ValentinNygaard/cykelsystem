@@ -1,4 +1,4 @@
-//Made by EPS
+//Made by EB, JØ, VN
 
 package com.example.cykelsystem.Service;
 import com.example.cykelsystem.Model.Customer;

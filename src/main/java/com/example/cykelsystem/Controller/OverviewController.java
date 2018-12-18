@@ -1,3 +1,4 @@
+// Made by EB
 package com.example.cykelsystem.Controller;
 
 import com.example.cykelsystem.Model.RepBarLine;
@@ -7,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import java.util.List;
 
 @Controller
 public class OverviewController {
 
     @Autowired
-    RepBarLineService rbls;                      // Her opretter vi et objekt af RepBarLineService
+    RepBarLineService rbls;                     // We are initialising the class RepBarLineService
 
-    ServiceService service = new ServiceService();                     //Overflødig?
+    ServiceService service = new ServiceService();
 
     private String currentDate = service.getDateForToday();
     /* This method is refering to the HTML site "overview", in the method we are creating a list of RepBarLIne,

@@ -1,3 +1,4 @@
+// Made by all
 package com.example.cykelsystem.Model;
 
 import org.springframework.format.annotation.DateTimeFormat;

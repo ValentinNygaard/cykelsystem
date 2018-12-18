@@ -1,4 +1,4 @@
-//Made by EPS
+//Made by JØ, EB
 
 package com.example.cykelsystem.Repository;
 

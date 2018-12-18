@@ -1,4 +1,4 @@
-<!--Responsible for code: JØ, VN-->
+<!--Made by JØ, VN, EPS-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
@@ -38,8 +38,8 @@
                         <form action="/updateStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" method="post">
                             <input type="hidden" name="std_repair_line_item_id" th:value="${stdRepairLineItem.std_repair_line_item_id}">
                             <input type="text" name="description" th:value="${stdRepairLineItem.description}">
-                            <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${stdRepairLineItem.time}">
-                            <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(stdRepairLineItem.price,1,0)}">
+                            <input type="text" name="time" size="5" style="text-align:right;" th:value="${stdRepairLineItem.time}">
+                            <input type="text" name="price" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(stdRepairLineItem.price,1,0)}">
                             <input type="submit" value="gem ændringer">
                             <a style="color: red;" th:href="@{'deleteStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}">Slet</a>
                         </form>
@@ -48,8 +48,8 @@
                 <h4>Opret ny standard reparationslinie</h4>
                 <form action="/createStdRepairLineItem" method="post">
                     <input type="text" name="description" placeholder="Beskrivelse">
-                    <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Tid">
-                    <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Pris">
+                    <input type="text" name="time" size="5" style="text-align:right;" placeholder="Tid">
+                    <input type="text" name="price" size="5" style="text-align:right;" placeholder="Pris">
                     <input type="submit" value="opret ny">
                 </form>
 
@@ -63,7 +63,7 @@
                         <form action="/updateStdPartLineItem/' + ${stdPartLineItem.std_part_line_item_id}}" method="post">
                              <input type="hidden" name="std_part_line_item_id" th:value="${stdPartLineItem.std_part_line_item_id}">
                              <input type="text" name="description" th:value="${stdPartLineItem.description}">
-                             <input type="text" name="price" size="5" style="text-align:right;" pattern="[0-9]+" th:value="${#numbers.formatDecimal(stdPartLineItem.price,1,0)}">
+                             <input type="text" name="price" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(stdPartLineItem.price,1,0)}">
                              <input type="submit" value="gem ændringer">
                              <a style="color: red;" th:href="@{'deleteStdPartLineItem/' + ${stdPartLineItem.std_part_line_item_id}}">Slet</a>
                         </form>

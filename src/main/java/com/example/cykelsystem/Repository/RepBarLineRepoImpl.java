@@ -1,5 +1,4 @@
-//Made by EPS,
-
+//Made by EPS
 package com.example.cykelsystem.Repository;
 
 import com.example.cykelsystem.Model.RepBarLine;

@@ -1,4 +1,4 @@
-//Made by EPS
+//Made by EPS, JØ
 
 package com.example.cykelsystem.Service;
 
