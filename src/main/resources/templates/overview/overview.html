@@ -27,7 +27,7 @@
 <h2>Dette er rep bar delen</h2>
 
 <h3>Oversigt over rep barer</h3>
-<div class="container" style="padding-left:0px">
+
     <div style="padding-left:16px">
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
@@ -47,7 +47,7 @@
         <a th:each="repBarLine :${repBarLine}" th:href="@{'/repaircasemain/' + ${repBarLine.repair_case_id}}" style="text-decoration:none">
             <button ><i class='fas fa-wrench' style='font-size:24px'></i><span th:text="${repBarLine.phone_number}+' '+${repBarLine.repair_number}+' '+${repBarLine.status_title}+' '+${repBarLine.end_date}" /></button>
         </a>
-    </div>
+
 </div>
 
 <!--
