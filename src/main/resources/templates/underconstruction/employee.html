@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>    <meta charset="UTF-8">
+    <title>Medarbejder administration</title>
+</head>
+<body>
+<div class="topnav">
+    <a href="/">CykelSystem</a>
+    <a href="/overview">Oversigter</a>
+    <a href="/getCustomer">Arbejdskort</a>
+    <a href="/kassebilag">Kasserapport</a>
+    <a href="/customer">Kunder</a>
+    <a href="/search">Søgninger</a>
+    <a href="/settings">Indstillinger</a>
+    <a class="active" href="/employee">Medarbejder administration</a>
+    <a href="/help">Hjælp</a>
+</div>
+
+<h1>Dette er medarbejder delen</h1>
+<p>du kan opdatere medarbejder oplysninger og oprette nye medarbejdere</p>
+
+
+<h4>Ændre indhold i eksisterende medarbejdere</h4>
+<span th:each="employee :${employee}">
+    <form action="/updateEmployee/' + ${employee.employee_id}}" method="post">
+        <input type="hidden" name="employee_id" th:value="${employee.employee_id}">
+        <input type="text" name="name" th:value="${employee.name}">
+        <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${employee.phone_number}">
+        <input type="submit" value="gem ændringer">
+    </form>
+</span>
+
+<h4>Opret en ny medarbejder</h4>
+<form action="/createEmployee" method="post">
+    <input type="text" name="name" placeholder="medarbejder navn">
+    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer">
+    <input type="text" name="user_name" placeholder="medarbejders username">
+    <input type="text" name="password" placeholder="medarbejders password">
+    <input type="submit" value="opret ny medarbejder">
+</form>
+</body>
+</html>

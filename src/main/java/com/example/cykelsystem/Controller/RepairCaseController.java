@@ -86,6 +86,7 @@ public class RepairCaseController {
         }
         else{
             customer.setPhone_number("");
+            System.out.println(found + customer.getPhone_number());
             return "redirect:/nocustomer";
         }
     }
@@ -103,7 +104,7 @@ public class RepairCaseController {
     }
 
     // This method returns the HTML site if there is no customer
-    @GetMapping("/noCustomer")
+    @GetMapping("/nocustomer")
     public String noCustomer(Model model){
         // Identisk med getCustomer - bortset fra fejlbesked på html side - så den bruger også gettingCustomer som PostMapping
         model.addAttribute("customer",customer);
