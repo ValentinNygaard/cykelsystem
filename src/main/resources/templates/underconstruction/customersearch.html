@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>    <meta charset="UTF-8">
+    <title>Kundesøgning</title>
+</head>
+<body>
+<div class="topnav">
+    <a href="/">CykelSystem</a>
+    <a href="/overview">Oversigter</a>
+    <a href="/getCustomer">Arbejdskort</a>
+    <a href="/kassebilag">Kasserapport</a>
+    <a class="active" href="/customer">Kunder</a>
+    <a href="/search">Søgninger</a>
+    <a href="/settings">Indstillinger</a>
+    <a href="/help">Hjælp</a>
+</div>
+
+<span th:each="customerSearch :${customerSearch}">
+    <form action="/updateCustomerSearch/' + ${customerSearch.customer_id}" method="post">
+        <input type="hidden" name="customer_id" th:value="${customerSearch.customer_id}">
+        <input type="text" name="name" th:value="${customerSearch.name}">
+        <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${customerSearch.phone_number}">
+        <input type="submit" value="gem ændringer">
+    </form>
+</span>
+
+</body>
+</html>

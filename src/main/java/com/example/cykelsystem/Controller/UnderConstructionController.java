@@ -15,16 +15,6 @@ public class UnderConstructionController {
         return "underconstruction/kassebilag";
     }
 
-    @GetMapping("/kunder")
-    public String kunder(Model model){
-        return "underconstruction/kunde";
-    }
-
-    @GetMapping("/search")
-    public String search(Model model){
-        return "underconstruction/search";
-    }
-
     @GetMapping("/help")
     public String help(Model model){
         return "underconstruction/help";

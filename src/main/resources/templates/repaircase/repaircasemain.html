@@ -14,7 +14,7 @@
         <a href="/overview">Oversigter</a>
         <a class="active" href="/getCustomer">Arbejdskort</a>
         <a href="/kassebilag">Kasserapport</a>
-        <a href="/kunder">Kunder</a>
+        <a href="/customer">Kunder</a>
         <a href="/search">Søgninger</a>
         <a href="/settings">Indstillinger</a>
         <a href="/help">Hjælp</a>
@@ -42,7 +42,7 @@
                 <span>
                     <form action="/updateComment" method="post">
                         <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
-                        <input type="text" id="comment" name="comment" th:value="${comment.comment}"><br>
+                        <textarea type="text" id="comment" name="comment" rows = "10" cols = "30" style="height:80px; width:75%;" th:field="${comment.comment}"></textarea>
                         <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteComment/'}">Slet</a>
                     </form>
                 </span>

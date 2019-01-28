@@ -17,8 +17,10 @@ public class RepBarLine {
     private String status_title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String end_date;
+    private String customer_name;
+    private String employee_name;
 
-    public RepBarLine(int repair_case_id, String phone_number, int repair_number, int time, double price, String status_title, String end_date) {
+    public RepBarLine(int repair_case_id, String phone_number, int repair_number, int time, double price, String status_title, String end_date, String customer_name, String employee_name) {
         this.repair_case_id = repair_case_id;
         this.phone_number = phone_number;
         this.repair_number = repair_number;
@@ -26,6 +28,8 @@ public class RepBarLine {
         this.price = price;
         this.status_title = status_title;
         this.end_date = end_date;
+        this.customer_name = customer_name;
+        this.employee_name = employee_name;
     }
 
     public RepBarLine(){}
@@ -84,5 +88,22 @@ public class RepBarLine {
 
     public void setEnd_date(String end_date) {
         this.end_date = end_date;
+    }
+
+
+    public String getEmployee_name() {
+        return employee_name;
+    }
+
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
     }
 }

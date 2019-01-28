@@ -24,8 +24,10 @@ public class StatusRepoImpl implements IRepo<Status> {
     public List<Status> findAll() {
         String sql = "SELECT * FROM status";
         RowMapper<Status> rowMapper = new BeanPropertyRowMapper<>(Status.class);
-        return template.query(sql, rowMapper);
+        List<Status> statusList = template.query(sql, rowMapper);
+        return statusList;
     }
+
 
     // This method returns a Status with a specific status_id.
     @Override

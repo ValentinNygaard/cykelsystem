@@ -86,4 +86,16 @@ public class CustomerRepoImpl implements IRepo<Customer> {
         Integer id = (template.queryForObject(sql2, Integer.class));
         return id.intValue();
     }
+
+    public List<Customer> findByName(String name){
+        String sql = "SELECT * from customer WHERE name LIKE ?";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return template.query(sql, rowMapper, name);
+    }
+
+    public List<Customer> findByPhoneList(String phone_number){
+        String sql = "SELECT * FROM customer WHERE phone_number=?";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return template.query(sql, rowMapper, phone_number);
+    }
 }

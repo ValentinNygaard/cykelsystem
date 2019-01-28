@@ -26,4 +26,27 @@ public class RepBarLineService {
     public List<RepBarLine> findRepbarsWithStatusBetweenDates(int fromStatus, int toStatus, String fromDate, String toDate){
         return repoImpl.findRepbarsWithStatusBetweenDates(fromStatus, toStatus, fromDate, toDate);
     }
+
+    public List<RepBarLine> findByStartDate(String fromDate, String toDate) {
+        return  repoImpl.findByStartDate(fromDate, toDate);
+    }
+
+    public List<RepBarLine> findByCustomerName(String customerName) {
+        String customerConcatName = "%" + customerName + "%";
+        return repoImpl.findByCustomerName(customerConcatName);
+    }
+
+    public List<RepBarLine> findByRepairEmployeeNameAndDate(String employeeName, String fromDate, String toDate) {
+        String employeeCancatName ="%" + employeeName + "%";
+        return  repoImpl.findByRepairEmployeeNameAndDate(employeeCancatName, fromDate, toDate);
+    }
+
+    public List<RepBarLine> findByCreateEmployeeNameAndDate(String employeeName, String fromDate, String toDate) {
+        String employeeConcatName ="%" + employeeName + "%";
+        return  repoImpl.findByCreateEmployeeNameAndDate(employeeConcatName, fromDate, toDate);
+    }
+
+    public List<RepBarLine> findByPhoneNumber(String phoneNumber){
+        return repoImpl.findByPhoneNumber(phoneNumber);
+    }
 }

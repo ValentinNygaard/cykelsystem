@@ -81,8 +81,6 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         List<RepairCase> repairCases = template.query(sql, rowMapper, id);
         return repairCases;
     }
-
-
 }
 
 

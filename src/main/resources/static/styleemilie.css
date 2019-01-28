@@ -1,4 +1,9 @@
 /*made by EB*/
+
+div {
+    overflow:scroll;
+}
+
 body {
     margin: 0;
     font-family: Arial, Helvetica;
@@ -65,8 +70,6 @@ body {
     border: 1px solid black;
     font-size: 20px;
     width: 100%;
-
-
 }
 
 h1{

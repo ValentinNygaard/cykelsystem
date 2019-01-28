@@ -15,7 +15,7 @@
         <a href="/overview">Oversigter</a>
         <a href="/getCustomer">Arbejdskort</a>
         <a href="/kassebilag">Kasserapport</a>
-        <a href="/kunder">Kunder</a>
+        <a href="/customer">Kunder</a>
         <a href="/search">Søgninger</a>
         <a href="/settings">Indstillinger</a>
         <a href="/help">Hjælp</a>
@@ -36,7 +36,7 @@
         <h5>Indtast telefonnummer</h5>
 
         <form action="/getCustomer" method="post">
-            <input type="text" name="phone_number" th:value="${phone_number}" placeholder="Telefonnummer"><br>
+            <input type="text" name="phone_number" size="8" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
             <input type="submit" value="Find kunde">
         </form>
 
@@ -47,7 +47,7 @@
         <h5>Indtast telefonnummer, navn og cykelbeskrivelse</h5>
 
         <form action="/createCustomerAndBicycle" method="post">
-            <input type="text" name="phone_number" placeholder="Telefonnummer" th:value="${customer.phone_number}"><br>
+            <input type="text" name="phone_number" size="8" pattern="[0-9]+" placeholder="Telefonnummer" th:value="${customer.phone_number}"><br>
             <input type="text" name="name" placeholder="Navn" th:value="${customer.name}"><br>
             <input type="text" name="description" placeholder="Cykelbeskrivelse" th:value="${bicycle.description}"><br>
             <input type="submit" value="Opret">

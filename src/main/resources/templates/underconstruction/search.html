@@ -12,13 +12,61 @@
     <a href="/overview">Oversigter</a>
     <a href="/getCustomer">Arbejdskort</a>
     <a href="/kassebilag">Kasserapport</a>
-    <a href="/kunder">Kunder</a>
+    <a href="/customer">Kunder</a>
     <a class="active"  href="/search">Søgninger</a>
     <a href="/settings">Indstillinger</a>
     <a href="/help">Hjælp</a>
 </div>
-<h1>Under konstruktion!</h1>
-<h2>Søgninger, denne side skal bruges til at søge i databasen</h2>
-<p>Denne del af programmet er endnu ikke implementeret</p>
+
+    <h1>Dette er søgnings delen</h1>
+    <h2>Her kan du lave søgninger over alle arbejdskort</h2>
+    <p>Vælg venligst hvad du vil søge på</p>
+
+<form action="/searchPhone" method="post">
+    <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
+    <input type="submit" value="søg på telefon nummer">
+</form>
+
+<form action="/searchCustomer" method="post">
+    <input type="text" name="name" th:value="${phone_number}" placeholder="kunde navn"><br>
+    <input type="submit" value="søg på kunde navn">
+</form>
+
+
+<form action="/searchBetweenDates" method="post">
+    <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
+    <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+    <input type="submit" value="søg mellem to afhentnings datoer">
+</form>
+
+<form action="/searchBetweenStartDates" method="post">
+    <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
+    <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+    <input type="submit" value="søg mellem to oprettelses datoer">
+</form>
+
+<form action="/searchOnStatus" method="post">
+    <select id="status" name="status_id">
+        <option th:each="status :${status}" th:value="${status.status_id}" th:text="${status.status_title}"></option>
+    </select>
+    <input type="submit" value="vælg status">
+</form>
+
+<form action="/searchOnRepairEmployee" method="post">
+    <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
+    <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
+    <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+    <input type="submit" value="søg på reperations medarbejder i mellem datoer">
+
+</form>
+
+<form action="/searchOnCreateEmployee" method="post">
+    <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
+    <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
+    <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+    <input type="submit" value="søg på oprettelses medarbejder i mellem datoer">
+
+</form>
+
 </body>
 </html>

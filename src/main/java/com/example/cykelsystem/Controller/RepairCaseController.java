@@ -65,7 +65,6 @@ public class RepairCaseController {
     private int end_time = 17;
 
     // Getting Customer & Bicycle info before creating and editing a new repair_case
-
     @GetMapping("/getCustomer")
     public String getCustomer(Model model){
         customer.setName("");
@@ -81,12 +80,13 @@ public class RepairCaseController {
     public String getCustomer(@ModelAttribute Customer customer){
         //check if customer exists
         boolean found = customerService.existsByPhone(customer.getPhone_number());
-        if(found) {
+        if(found == true) {
             customer_id = customerService.findByPhone(customer.getPhone_number()).getCustomer_id();
             return "redirect:/getbicycle";
         }
         else{
-            return "repaircase/nocustomer";
+            customer.setPhone_number("");
+            return "redirect:/nocustomer";
         }
     }
 
@@ -127,7 +127,6 @@ public class RepairCaseController {
         bicycle_id = bicycle.getBicycle_id();
         createNewRepairCase();
         repaircase_id = repairCaseService.lastId();
-
         return "redirect:/repaircasemain/"+repaircase_id;
     }
 

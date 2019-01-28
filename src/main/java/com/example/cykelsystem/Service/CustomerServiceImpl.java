@@ -52,4 +52,13 @@ public class CustomerServiceImpl implements IService<Customer> {
 
     // this method returns the last id of all the objects of Customer
     public int lastId() { return repoImpl.lastId(); }
+
+    public List<Customer> findByName(String name){
+        String concatName ="%" + name + "%";
+        return repoImpl.findByName(concatName);
+    }
+
+    public  List<Customer> findByPhoneList (String phoneNumber){
+        return repoImpl.findByPhoneList(phoneNumber);
+    }
 }
