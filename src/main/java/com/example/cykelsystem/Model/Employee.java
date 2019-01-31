@@ -13,15 +13,16 @@ public class Employee {
     private String phone_number;
     private String user_name;
     private String password;
+    private int active;
 
 
-    public Employee(int employee_id, String name, String phone_number, String user_name, String password) {
+    public Employee(int employee_id, String name, String phone_number, String user_name, String password, int active) {
         this.employee_id = employee_id;
         this.name = name;
         this.phone_number = phone_number;
         this.user_name = user_name;
         this.password = password;
-
+        this.active = active;
     }
 
     public Employee(){}
@@ -64,5 +65,13 @@ public class Employee {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

@@ -3,7 +3,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
@@ -18,39 +19,51 @@
     <a href="/employee">Medarbejder administration</a>
     <a href="/help">Hjælp</a>
 </div>
-<h1>Dette er kunde delen</h1>
-<h2>Her kan du administrere jeres kunder</h2>
-<p>Søg efter kunder</p>
+<div class="container" style="padding-left:0px">
+    <h1>Dette er kunde delen</h1>
+    <h2>Her kan du administrere jeres kunder</h2>
+</div>
+<div class="container" style="padding-left:0px">
+    <div class="row">
+        <div class="col">
 
-<form action="/searchCustomerPhone" method="post">
-    <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
-    <input type="submit" value="søg på telefon nummer">
-</form>
+            <p>Her kan du opdatere kundeoplysninger</p>
 
-<form action="/searchCustomerName" method="post">
-    <input type="text" name="name" th:value="${name}" placeholder="kunde navn"><br>
-    <input type="submit" value="søg på kundens navn">
-</form>
+            <h4>Ændre indhold i eksisterende kunder</h4>
+            <span th:each="customer :${customer}">
+                <form action="/updateCustomer/' + ${customer.customer_id}}" method="post">
+                    <input type="hidden" name="customer_id" th:value="${customer.customer_id}">
+                    <input type="text" name="name" th:value="${customer.name}">
+                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${customer.phone_number}">
+                    <input type="submit" value="gem ændringer">
+                </form>
+            </span>
 
-<p>du kan opdatere kundeoplysninger og oprette nye kunder</p>
+        </div>
+        <div class="col">
+            <p>Søg efter kunder</p>
 
+            <form action="/searchCustomerPhone" method="post">
+                <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
+                <input type="submit" value="søg på telefon nummer">
+            </form>
 
-<h4>Ændre indhold i eksisterende kunder</h4>
-<span th:each="customer :${customer}">
-    <form action="/updateCustomer/' + ${customer.customer_id}}" method="post">
-        <input type="hidden" name="customer_id" th:value="${customer.customer_id}">
-        <input type="text" name="name" th:value="${customer.name}">
-        <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${customer.phone_number}">
-        <input type="submit" value="gem ændringer">
-    </form>
-</span>
-
-<h4>Opret en ny kunde</h4>
-<form action="/createCustomer" method="post">
-    <input type="text" name="name" placeholder="kunde navn">
-    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer">
-    <input type="submit" value="opret ny kunde">
-</form>
-
+            <form action="/searchCustomerName" method="post">
+                <input type="text" name="name" th:value="${name}" placeholder="kunde navn"><br>
+                <input type="submit" value="søg på kundens navn">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Her kan du oprette nye kunder</h4>
+                <form action="/createCustomer" method="post">
+                    <input type="text" name="name" placeholder="kunde navn">
+                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer">
+                    <input type="submit" value="opret ny kunde">
+                </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -45,5 +45,9 @@ public class EmployeeServiceImpl implements IService<Employee> {
         return repoImpl.delete(id);
     }
 
+    public List<Employee> findAllActive(){
+        return repoImpl.findAllActive();
+    }
+
     //public boolean login(Employee employee){ return repoImpl.login(employee);}
 }

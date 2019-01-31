@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+    <meta charset="UTF-8">
     <title>Medarbejder administration</title>
 </head>
 <body>
@@ -28,7 +29,12 @@
         <input type="hidden" name="employee_id" th:value="${employee.employee_id}">
         <input type="text" name="name" th:value="${employee.name}">
         <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${employee.phone_number}">
+        <input type="text" name="user_name" th:value="${employee.user_name}">
+        <input type="password" name="password" placeholder="medarbejders password" th:value="${employee.password}">
+        <input type="text" name="active" pattern="[0-1]+" size=3 th:value="${employee.active}"disabled>
         <input type="submit" value="gem ændringer">
+        <button type="submit" formaction="activateEmployee"th:href="${employee}">Aktiver</button>
+        <button type="submit" formaction="deactivateEmployee"th:href="${employee}">Deaktiver</button>
     </form>
 </span>
 
@@ -37,7 +43,8 @@
     <input type="text" name="name" placeholder="medarbejder navn">
     <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer">
     <input type="text" name="user_name" placeholder="medarbejders username">
-    <input type="text" name="password" placeholder="medarbejders password">
+    <input type="password" name="password" placeholder="medarbejders password">
+    <input type="text" name="avtive" size="12" pattern="[0-1]" placeholder="aktiv = 1 inaktiv=0">
     <input type="submit" value="opret ny medarbejder">
 </form>
 </body>

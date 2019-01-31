@@ -1,9 +1,17 @@
 // Made by EB
 package com.example.cykelsystem.Controller;
 
+import com.sun.net.httpserver.HttpServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOError;
 
 @Controller
 public class UnderConstructionController {
@@ -19,4 +27,5 @@ public class UnderConstructionController {
     public String help(Model model){
         return "underconstruction/help";
     }
+
 }

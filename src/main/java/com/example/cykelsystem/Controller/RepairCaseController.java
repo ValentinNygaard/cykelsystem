@@ -163,11 +163,13 @@ public class RepairCaseController {
     @RequestMapping("/repaircasemain/{id}")
     public String repairCaseMain(@PathVariable("id")int id, Model model) {
         repaircase_id = id;
+        Integer totalPrice = repairCaseService.getTotalPriceOnRepairCaseId(repaircase_id);
+        model.addAttribute("totalPrice", totalPrice);
         repairCase = repairCaseService.findById(id);
         model.addAttribute("repairCase",repairCase);
         statusList = statusService.findAll();
         model.addAttribute("statusList", statusList);
-        employeeList = employeeService.findAll();
+        employeeList = employeeService.findAllActive();
         model.addAttribute("employeeList", employeeList);
         stdRepairLineList = stdRepairLineItemService.findAll();
         model.addAttribute("stdRepairLineList", stdRepairLineList);

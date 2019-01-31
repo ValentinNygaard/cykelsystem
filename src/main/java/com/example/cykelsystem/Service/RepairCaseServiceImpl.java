@@ -50,4 +50,8 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
 
     // This method returns the last RepairNumber of all the objects of RepairCase
     public int lastRepairNumber() { return repairCaseRepo.lastRepairNumber(); }
+
+    public Integer getTotalPriceOnRepairCaseId(int id){
+        return repairCaseRepo.getTotalPriceOnRepairCaseId(id);
+    }
 }

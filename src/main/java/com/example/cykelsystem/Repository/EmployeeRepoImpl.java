@@ -25,7 +25,12 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
         String sql = "SELECT * FROM employee";
         RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
         return template.query(sql, rowMapper);
+    }
 
+    public List<Employee> findAllActive() {
+        String sql = "SELECT * FROM employee WHERE active = 1";
+        RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
+        return template.query(sql, rowMapper);
     }
 
     // This method finds a specific Employee with a specific employee_id.
@@ -40,17 +45,17 @@ public class EmployeeRepoImpl implements IRepo<Employee> {
     // This method creates an object of Employee
     @Override
     public Employee create(Employee employee) {
-        String sql = "INSERT INTO employee (employee_id, name, phone_number, user_name, password) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO employee (employee_id, name, phone_number, user_name, password, active) VALUES(?,?,?,?,?,?)";
         template.update(sql, employee.getEmployee_id(), employee.getName(), employee.getPhone_number(),
-                employee.getUser_name(), employee.getPassword());
+                employee.getUser_name(), employee.getPassword(), employee.getActive());
         return employee;
     }
 
     // This method updates an object of Employee, on a specific employee_id
     @Override
     public Employee update(Employee employee) {
-        String sql = "UPDATE employee SET name=?, phone_number=?, user_name=?, password=? WHERE employee_id=?";
-        template.update(sql, employee.getName(), employee.getPhone_number(), employee.getUser_name(), employee.getPassword(), employee.getEmployee_id());
+        String sql = "UPDATE employee SET name=?, phone_number=?, user_name=?, password=?, active=? WHERE employee_id=?";
+        template.update(sql, employee.getName(), employee.getPhone_number(), employee.getUser_name(), employee.getPassword(), employee.getActive(), employee.getEmployee_id());
         Employee e = findById(employee.getEmployee_id());
         return e;
     }

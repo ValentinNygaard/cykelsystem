@@ -41,7 +41,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     @Override
     public RepairCase create(RepairCase repairCase) {
         String sql = "INSERT INTO repair_case (repair_case_id, start_date, end_date, status_id, bicycle_id, customer_employee_id, repair_employee_id, repair_number, end_time) VALUES(?,?,?,?,?,?,?,?,?)";
-        template.update(sql, repairCase.getRepair_case_id(), repairCase.getStart_date(),repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getEnd_time());
+        template.update(sql, repairCase.getRepair_case_id(), repairCase.getStart_date(), repairCase.getEnd_date(), repairCase.getStatus_id(), repairCase.getBicycle_id(), repairCase.getCustomer_employee_id(), repairCase.getRepair_employee_id(), repairCase.getRepair_number(), repairCase.getEnd_time());
         return repairCase;
     }
 
@@ -55,14 +55,14 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
 
     // This method deletes a RepairCase on a specific repair_case_id
     @Override
-    public boolean delete(int id){
+    public boolean delete(int id) {
         String sql = "DELETE FROM repair_case WHERE repair_case_id=?";
         return template.update(sql, id) >= 0;
     }
 
     // This method returns the last id, of all the objects of RepairCase
-       public int lastId() {
-        String sql ="SELECT LAST_INSERT_ID()";
+    public int lastId() {
+        String sql = "SELECT LAST_INSERT_ID()";
         Integer id = (template.queryForObject(sql, Integer.class));
         return id.intValue();
     }
@@ -70,7 +70,7 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
     // This method returns the last Repair number, of all the objects of RepairCase
     public int lastRepairNumber() {
         List<RepairCase> tempList = findAll();
-        int index = tempList.size()-1;
+        int index = tempList.size() - 1;
         return tempList.get(index).getRepair_number();
     }
 
@@ -80,6 +80,17 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         RowMapper<RepairCase> rowMapper = new BeanPropertyRowMapper<>(RepairCase.class);
         List<RepairCase> repairCases = template.query(sql, rowMapper, id);
         return repairCases;
+    }
+
+    public Integer getTotalPriceOnRepairCaseId(int id) {
+        String sql = "SELECT IFNULL(sum(repair_line_item.price), 0) + t1.part_price AS total_price\n" +
+                "FROM repair_case LEFT JOIN repair_line_item using(repair_case_id)\n" +
+                "\tNATURAL JOIN (SELECT repair_case_id, IFNULL(sum(part_line_item.price), 0) AS part_price\n" +
+                "FROM repair_case LEFT JOIN part_line_item using(repair_case_id)\n" +
+                "WHERE repair_case_id = ?) t1\n" +
+                "WHERE repair_case_id = ?;";
+        Integer total_price = template.queryForObject(sql, Integer.class, id, id);
+        return total_price;
     }
 }
 
