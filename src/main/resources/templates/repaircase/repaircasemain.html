@@ -60,14 +60,13 @@
                         <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
                     </select><br>
                     <label for="fdate">Oprettet:&nbsp&nbsp&nbsp&nbsp</label>
-                    <!--pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" -->
-                <input type="date" id="fdate" name="start_date" size="10"  style="text-align:right;" th:value="${repairCase.start_date}">
+                <input type="date" id="fdate" name="start_date" th:value="${repairCase.start_date}">
                     <label for="cemployee">&nbsp&nbsp&nbsp&nbspOprettet af:&nbsp&nbsp&nbsp</label>
                     <select id="cemployee" name="customer_employee_id">
                         <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
                     </select><br>
                     <label for="tdate">Afhentning:</label>
-                <input type="text" id="tdate" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" style="text-align:right;" th:value="${repairCase.end_date}">
+                <input type="date" id="tdate" name="end_date" th:value="${repairCase.end_date}">
                     <label for="remployee">&nbsp&nbsp&nbsp&nbspUdføret af:&nbsp&nbsp&nbsp&nbsp</label>
                     <select id="remployee" name="repair_employee_id">
                         <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
