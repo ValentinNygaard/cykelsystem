@@ -92,6 +92,14 @@ public class RepairCaseRepoImpl implements IRepo<RepairCase> {
         Integer total_price = template.queryForObject(sql, Integer.class, id, id);
         return total_price;
     }
+
+    public Integer getTotalTimeOnRepairCaseId(int id){
+        String sql = "SELECT IFNULL(sum(time), 0) AS total_time\n" +
+                "FROM repair_line_item \n" +
+                "WHERE repair_case_id = ?;";
+        Integer total_time = template.queryForObject(sql, Integer.class, id);
+        return  total_time;
+    }
 }
 
 

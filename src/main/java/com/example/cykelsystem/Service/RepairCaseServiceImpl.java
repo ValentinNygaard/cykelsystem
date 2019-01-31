@@ -54,4 +54,8 @@ public class RepairCaseServiceImpl implements IService<RepairCase> {
     public Integer getTotalPriceOnRepairCaseId(int id){
         return repairCaseRepo.getTotalPriceOnRepairCaseId(id);
     }
+
+    public  Integer getTotalTimeOnRepairCaseId(int id){
+        return repairCaseRepo.getTotalTimeOnRepairCaseId(id);
+    }
 }
