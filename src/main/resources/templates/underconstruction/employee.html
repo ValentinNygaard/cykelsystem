@@ -40,11 +40,11 @@
 
 <h4>Opret en ny medarbejder</h4>
 <form action="/createEmployee" method="post">
-    <input type="text" name="name" placeholder="medarbejder navn">
-    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer">
-    <input type="text" name="user_name" placeholder="medarbejders username">
-    <input type="password" name="password" placeholder="medarbejders password">
-    <input type="text" name="avtive" size="12" pattern="[0-1]" placeholder="aktiv = 1 inaktiv=0">
+    <input type="text" name="name" placeholder="medarbejder navn" required>
+    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer" required>
+    <input type="text" name="user_name" placeholder="medarbejders username" required>
+    <input type="password" name="password" placeholder="medarbejders password" required>
+    <input type="text" name="avtive" size="12" pattern="[0-1]" placeholder="aktiv = 1 inaktiv=0" >
     <input type="submit" value="opret ny medarbejder">
 </form>
 </body>

@@ -48,9 +48,9 @@
 
                 <h4>Opret ny standard reparationslinie</h4>
                 <form action="/createStdRepairLineItem" method="post">
-                    <input type="text" name="description" placeholder="Beskrivelse">
-                    <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Tid">
-                    <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Pris">
+                    <input type="text" name="description" placeholder="Beskrivelse" required>
+                    <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Tid" required>
+                    <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Pris" required>
                     <input type="submit" value="opret ny">
                 </form>
 
@@ -71,8 +71,8 @@
                     </span>
                 <h4>Opret ny cykeldel eller tilbehørs linie</h4>
                 <form action="/createStdPartLineItem" method="post">
-                    <input type="text" name="description" placeholder="Beskrivelse">
-                    <input type="text" name="price" size="5" style="text-align:right;" placeholder="Pris" pattern="[0-9]+">
+                    <input type="text" name="description" placeholder="Beskrivelse" required>
+                    <input type="text" name="price" size="5" style="text-align:right;" placeholder="Pris" pattern="[0-9]+" required>
                     <input type="submit" value="opret ny">
                 </form>
             </div>

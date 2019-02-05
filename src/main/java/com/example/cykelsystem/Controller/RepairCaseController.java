@@ -165,6 +165,8 @@ public class RepairCaseController {
         repaircase_id = id;
         Integer totalPrice = repairCaseService.getTotalPriceOnRepairCaseId(repaircase_id);
         model.addAttribute("totalPrice", totalPrice);
+        Integer totalTime = repairCaseService.getTotalTimeOnRepairCaseId(repaircase_id);
+        model.addAttribute("totalTime", totalTime);
         repairCase = repairCaseService.findById(id);
         model.addAttribute("repairCase",repairCase);
         statusList = statusService.findAll();

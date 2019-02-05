@@ -58,8 +58,8 @@
         <div class="col">
             <h4>Her kan du oprette nye kunder</h4>
                 <form action="/createCustomer" method="post">
-                    <input type="text" name="name" placeholder="kunde navn">
-                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer">
+                    <input type="text" name="name" placeholder="kunde navn" required>
+                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer" required>
                     <input type="submit" value="opret ny kunde">
                 </form>
         </div>

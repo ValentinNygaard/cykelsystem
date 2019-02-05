@@ -47,14 +47,14 @@
         </div>
         <div class="col">
             <form action="/searchBetweenDates" method="post">
-                <input type="date" name="start_date" size="10" th:value="${start_date}"><br>
-                <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+                <input type="date" name="start_date" th:value="${start_date}"><br>
+                <input type="date" name="end_date" th:value="${end_date}"><br>
                 <input type="submit" value="søg mellem to afhentnings datoer">
             </form>
             <p><br></p>
             <form action="/searchBetweenStartDates" method="post">
-                <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
-                <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+                <input type="date" name="start_date" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
+                <input type="date" name="end_date" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
                 <input type="submit" value="søg mellem to oprettelses datoer">
             </form>
         </div>
@@ -62,15 +62,15 @@
         <div class="col">
             <form action="/searchOnRepairEmployee" method="post">
                 <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
-                <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
-                <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+                <input type="date" name="start_date" th:value="${start_date}"><br>
+                <input type="date" name="end_date" th:value="${end_date}"><br>
                 <input type="submit" value="søg på reperations medarbejder i mellem datoer">
             </form>
             <p></p>
             <form action="/searchOnCreateEmployee" method="post">
                 <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
-                <input type="text" name="start_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
-                <input type="text" name="end_date" size="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+                <input type="date" name="start_date" th:value="${start_date}"><br>
+                <input type="date" name="end_date" th:value="${end_date}"><br>
                 <input type="submit" value="søg på oprettelses medarbejder i mellem datoer">
             </form>
         </div>
