@@ -13,8 +13,8 @@ table{
     border-color: #5F9EA0;
     text-align: center;
     color: white;
-    padding: 10px 10px;
-    font-size: 22px;
+    padding: 12px 12px;
+    font-size: 27px;
     width: 100%;
 
 }
@@ -28,19 +28,23 @@ th{
 
 td {
     text-align: center;
-    background-color: #5F9EA0;
     border-bottom: 1px solid;
     border-color: #404040;
 
 }
 
-tr{
+
+tr {
     text-align: center;
+    background-color: #5F9EA0;
     border-style: solid;
     border-spacing: 1px;
-
-
 }
+
+tr:hover{
+    background-color: #436e70;
+}
+
 
 
 
@@ -56,7 +60,7 @@ tr{
     text-align: center;
     padding: 17px 17px;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 30px;
 }
 
 .topnav a:hover {
@@ -103,7 +107,7 @@ tr{
 .date {background-color: #404040;
     color: white;
     border: 1px solid black;
-    font-size: 20px;
+    font-size: 28px;
     width: 100%;
 }
 
