@@ -23,10 +23,10 @@ public class OverviewController {
      we are filling the list with a method in RepBarLineService, the method findRepBarsWithStatusFromDate.
      then we are adding the elements to a Model object, with the method addAttribute.
      after that, we are returning the HTML site. */
-    @GetMapping("/overview")
+    @GetMapping("/overviewJens")
     public String overview(Model model){
         List<RepBarLine> repBarLines = rbls.findRepbarsWithStatusFromDate(2,3, currentDate);
         model.addAttribute("repBarLine", repBarLines);
-        return "overview/overview";
+        return "overview/overviewJens";
     }
 }
