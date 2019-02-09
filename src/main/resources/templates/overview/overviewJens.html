@@ -45,11 +45,11 @@
         <th>Status</th>
         <th>Afhentnings dato</th>
     </tr>
-    <tr style="border-style: solid; border-width: 5px" th:each="repBarLine :${repBarLine}">
-        <td th:text="${repBarLine.phone_number}"> </atd>
-        <td th:text="${repBarLine.repair_number}"> </atd>
-        <td th:text="${repBarLine.status_title}"> </atd>
-        <td th:text="${repBarLine.end_date}"> </atd>
+    <tr th:each="repBarLine :${repBarLine}">
+        <td th:text="${repBarLine.phone_number}"> </td>
+        <td th:text="${repBarLine.repair_number}"> </td>
+        <td th:text="${repBarLine.status_title}"> </td>
+        <td th:text="${repBarLine.end_date}"> </td>
     </tr>
 <!--
 <div class="btn-group">
