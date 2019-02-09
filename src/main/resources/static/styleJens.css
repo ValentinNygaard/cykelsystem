@@ -13,7 +13,7 @@ table{
     border-color: #5F9EA0;
     text-align: center;
     color: white;
-    padding: 12px 12px;
+    padding: 0px;
     font-size: 22px;
     width: 100%;
 
@@ -30,9 +30,8 @@ td {
     text-align: center;
     border-bottom: 1px solid;
     border-color: #404040;
-
+    padding: 10px 10px;
 }
-
 
 tr {
     text-align: center;
@@ -44,10 +43,6 @@ tr {
 tr:hover{
     background-color: #436e70;
 }
-
-
-
-
 
 .topnav {
     overflow: hidden;

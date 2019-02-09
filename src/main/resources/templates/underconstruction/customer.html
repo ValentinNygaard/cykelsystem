@@ -41,7 +41,7 @@
 
         </div>
         <div class="col">
-            <p>Søg efter kunder</p>
+            <h4>Søg efter kunder</h4>
 
             <form action="/searchCustomerPhone" method="post">
                 <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
@@ -52,16 +52,13 @@
                 <input type="text" name="name" th:value="${name}" placeholder="kunde navn"><br>
                 <input type="submit" value="søg på kundens navn">
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
+
             <h4>Her kan du oprette nye kunder</h4>
-                <form action="/createCustomer" method="post">
-                    <input type="text" name="name" placeholder="kunde navn" required>
-                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer" required>
-                    <input type="submit" value="opret ny kunde">
-                </form>
+            <form action="/createCustomer" method="post">
+                <input type="text" name="name" placeholder="kunde navn" required>
+                <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer" required>
+                <input type="submit" value="opret ny kunde">
+            </form>
         </div>
     </div>
 </div>
