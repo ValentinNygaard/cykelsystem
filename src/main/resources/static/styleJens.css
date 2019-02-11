@@ -8,6 +8,10 @@ body {
     overflow:scroll;
 }
 
+h1{
+    font-size: 40px;
+}
+
 table{
     border-spacing: 0px;
     border-color: #5F9EA0;
@@ -16,13 +20,14 @@ table{
     padding: 0px;
     font-size: 22px;
     width: 100%;
-
 }
-
 
 th{
     background-color: #404040;
     text-align: center;
+}
+
+th.hidden{
 
 }
 
@@ -42,6 +47,14 @@ tr {
 
 tr:hover{
     background-color: #436e70;
+}
+
+.repaired {
+    background-color: mediumseagreen;
+}
+
+.repaired:hover{
+    background-color: seagreen;
 }
 
 .topnav {
@@ -69,7 +82,6 @@ tr:hover{
     color: white;
 }
 
-
 .btn-group button {
     background-color: #5F9EA0; /* Green background */
     border: 1px solid black; /* Green border */
@@ -92,23 +104,18 @@ tr:hover{
     background-color: #436e70;
 }
 
-
 .label {
     color: white;
     padding: 1px;
     font-family: Arial
-
 }
 
-.date {background-color: #404040;
+.date {
+    background-color: #404040;
     color: white;
     border: 1px solid black;
     font-size: 28px;
     width: 100%;
-}
-
-h1{
-    font-size: 40px;
 }
 
 .blocksmall {

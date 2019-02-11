@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/styleJens.css}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <meta charset="UTF-8">
     <title>find gennem telefon nummer</title>
 </head>
@@ -21,16 +22,10 @@
     <a href="/help">Hjælp</a>
 </div>
 
-<h2>Dette er en søgning af arbejdskort efter telefon nummer</h2>
+<h2>Dette er en søgning af arbejdskort</h2>
 
 <h3>Oversigt over arbejdskort</h3>
 
-<div style="padding-left:16px">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</div>
 
 <button class="label date"><p id="demo"></p></button>
 
@@ -39,10 +34,37 @@
     document.getElementById("demo").innerHTML = d.toDateString();
 </script>
 
-<div class="btn-group">
-    <a th:each="repBarLine :${repBarLine}" th:href="@{'/repaircasemain/' + ${repBarLine.repair_case_id}}" style="text-decoration:none">
-        <button ><i class='fas fa-wrench' style='font-size:24px'></i><span th:text="${repBarLine.phone_number}+' '+${repBarLine.customer_name}+' '+${repBarLine.repair_number}+' '+${repBarLine.status_title}+' '+${repBarLine.end_date}+' '+${repBarLine.employee_name}" /></button>
-    </a>
+<script>
+    $(document).ready(function() {
+        $('tr').click(function() {
+            var href = $(this).find("a").attr("href");
+            if(href) {
+                window.location = href;
+            }
+        });
+    });
+</script>
+
+<table>
+    <tr>
+        <th>&nbsp</th>
+        <th>Telefon nummer</th>
+        <th>Kunde navn</th>
+        <th>Arbejdskort nummer</th>
+        <th>Status</th>
+        <th>Afhentnings dato</th>
+        <th>Medarbejder navn</th>
+    </tr>
+    <tr th:each="repBarLine :${repBarLine}">
+        <td><a th:href="@{'/repaircasemain/' + ${repBarLine.repair_case_id}}"></a></td>
+        <td th:text="${repBarLine.phone_number}"> </td>
+        <td th:text="${repBarLine.customer_name}"> </td>
+        <td th:text="${repBarLine.repair_number}"> </td>
+        <td th:text="${repBarLine.status_title}"> </td>
+        <td th:text="${repBarLine.end_date}"> </td>
+        <td th:text="${repBarLine.employee_name}"> </td>
+    </tr>
+</table>
 
 </div>
 </body>
