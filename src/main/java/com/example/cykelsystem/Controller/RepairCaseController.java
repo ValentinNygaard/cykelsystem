@@ -201,7 +201,7 @@ public class RepairCaseController {
     public String updateRepairCase(@ModelAttribute RepairCase repairCase){
         repairCase.setRepair_case_id(repaircase_id);
         repairCaseService.update(repairCase);
-        return "redirect:/overviewJens";
+        return "redirect:/repaircasemain/"+repaircase_id;
     }
 
     // This mehtod adds a repairLine

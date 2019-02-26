@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styleJens.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
     <meta charset="UTF-8">
     <title>Repair Case</title>
 </head>
@@ -17,139 +17,210 @@
         <a href="/customer">Kunder</a>
         <a href="/search">Søgninger</a>
         <a href="/settings">Indstillinger</a>
-        <a href="/employee">Medarbejder administration</a>
         <a href="/help">Hjælp</a>
     </div>
 
     <div class="container" style="padding-left:0px">
 
-        <h1>Rediger arbejdskort</h1>
-        &nbsp<br>
-    </div>
-    <div class="container" style="padding-left:0px">
-        <div class="row">
-            <div class="col-3">
-                <h3>Kunde og cykel info:</h3>
+        <div class="row" style="text-align: justify-all">
 
-                <p>Navn: <span th:text="${customer.name}"/><br>
-                    Telefon: <span th:text="${customer.phone_number}"/><br>
-                    Cykel: <span th:text="${bicycle.description}"/>
-                </p>
+            <div class="col-3" style="padding-left: 35px">
+
+                <h1># <span th:text="${repairCase.repair_number}"/></h1>
+
             </div>
 
-            <div class="col-3">
-                <h3>Kommentarer:</h3>
+            <div class="col-6" style="padding-left: 35px">
 
-                <span>
-                    <form action="/updateComment" method="post">
-                        <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
-                        <textarea type="text" id="comment" name="comment" rows = "10" cols = "30" style="height:80px; width:75%;" th:field="${comment.comment}"></textarea>
-                        <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteComment/'}">Slet</a>
-                    </form>
-                </span>
+                &nbsp;<br>
+                <h2><span th:text="${repairCase.end_date}"/> - kl. <span th:text="${repairCase.end_time}"/></h2>
+
             </div>
-            <div class="col-6">
-                <h3>Basisoplysninger</h3>
 
-                <form action="/updateRepairCase" method="post">
-                <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-                <label for="rnumber">Arbejdskort:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                <input type="text" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
-                    <label for="statusid">&nbsp&nbsp&nbsp&nbspStatus:</label>
-                    <select id="statusid" name="status_id">
-                        <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
-                    </select><br>
-                    <label for="fdate">Oprettet:&nbsp&nbsp&nbsp&nbsp</label>
-                <input type="date" id="fdate" name="start_date" th:value="${repairCase.start_date}">
-                    <label for="cemployee">&nbsp&nbsp&nbsp&nbspOprettet af:&nbsp&nbsp&nbsp</label>
-                    <select id="cemployee" name="customer_employee_id">
-                        <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
-                    </select><br>
-                    <label for="tdate">Afhentning:</label>
-                <input type="date" id="tdate" name="end_date" th:value="${repairCase.end_date}">
-                    <label for="remployee">&nbsp&nbsp&nbsp&nbspUdføret af:&nbsp&nbsp&nbsp&nbsp</label>
-                    <select id="remployee" name="repair_employee_id">
-                        <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
-                    </select><br>
-                    <label for="ttime">Tidspunkt:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                <input type="text" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
-                    &nbsp&nbsp
+            <div class="col-3" style="padding-left: 35px">
 
+                &nbsp;<br>
+                <h2>Status <span th:text="${repairCase.status_id}"/></h2>
 
-                <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
-                <input type="submit" value="opdater">
-                </form>
-                <br>&nbsp
             </div>
+
         </div>
     </div>
     <div class="container" style="padding-left:0px">
-        &nbsp<br>
+
         <div class="row">
-            <div class="col">
 
-                <h3>Reperationer:</h3>
+            <div class="col-3">
 
-                <form action="/addRepairLine" method="post">
-                    <label for="stdRepairline">Vælg og tilføj:</label>
-                    <select required id="stdRepairline" name="std_repair_line_item_id">
-                        <option selected value="">Vælg reparation</option>
-                        <option th:each="stdRepairLine :${stdRepairLineList}" th:value="${stdRepairLine.std_repair_line_item_id}" th:text="${stdRepairLine.description}"></option>
-                    </select>
-                    <input type="submit" value="Tilføj">
-                </form>
+                <div class="box1b">
 
-                <h4>Reperationslinier:</h4>
+                    <h3>Kunde og cykel info</h3>
 
-                <span th:each="rLine :${repairLineList}">
+                    <table>
+                        <tr>
+                            <td>Navn:</td>
+                            <td><span th:text="${customer.name}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Telefon:&nbsp&nbsp</td>
+                            <td><span th:text="${customer.phone_number}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Cykel:</td>
+                            <td><span th:text="${bicycle.description}"/></td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <br>&nbsp
+
+                <div class="box1b">
+
+                    <h3>Basisoplysninger</h3>
+
+                    <form action="/updateRepairCase" method="post">
+                        <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
+                        <label for="rnumber">Arbejdskort:</label>
+                        <input type="text" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
+                        <input type="hidden" id="statusid" name="status_id" th:value="${repairCase.status_id}">
+
+                        <br>
+                        <label for="fdate">Oprettet:</label>
+                        <input type="date" id="fdate" name="start_date" size="10" th:value="${repairCase.start_date}">
+                        <br>
+                        <label for="cemployee">Oprettet af:</label>
+                        <select id="cemployee" name="customer_employee_id">
+                            <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
+                        </select>
+                        <br>
+                        <label for="remployee">Udføret af:</label>
+                        <select id="remployee" name="repair_employee_id">
+                            <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
+                        </select>
+                        <br>
+                        <label for="tdate">Afhentes:</label>
+                        <input type="date" id="tdate" name="end_date" size="10" th:value="${repairCase.end_date}">
+                        <br>
+                        <label for="ttime">Tidspunkt:</label>
+                        <input type="text" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
+
+                        <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
+                        <br>
+                        <input type="submit" value="gem opdatering af basisoplysninger">
+                    </form>
+
+                </div>
+
+                <br>&nbsp
+
+            </div>
+
+            <div class="col-6">
+
+                <div class="box1b">
+
+                    <h3>Reperationer og tilbehør</h3>
+
+                    <div class="row">
+                        <div class="col">
+                            <form action="/addRepairLine" method="post">
+                                <select required id="stdRepairline" name="std_repair_line_item_id">
+                                    <option selected value="">Vælg reparation</option>
+                                    <option th:each="stdRepairLine :${stdRepairLineList}" th:value="${stdRepairLine.std_repair_line_item_id}" th:text="${stdRepairLine.description}"></option>
+                                </select>
+                                <input type="submit" value="Tilføj">
+                            </form>
+                        </div>
+                        <div class="col" style="text-align: right">
+                            <form action="/addPartLine" method="post">
+                                <select required id="stdPartline" name="std_part_line_item_id">
+                                    <option selected value="">Vælg cykeldel/tilbehør</option>
+                                    <option th:each="stdPartLine :${stdPartLineList}" th:value="${stdPartLine.std_part_line_item_id}" th:text="${stdPartLine.description}"></option>
+                                </select>
+                                <input type="submit" value="Tilføj">
+                            </form>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col">
+                            <b>Samlet tid: <span th:text="${totalTime}"/> min.</b>
+                        </div>
+                        <div class="col" style="text-align: right">
+                            <b><span style="text-align: right">Samlet pris: <span th:text="${totalPrice}"/></span> kr.</b>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <br>
+
+                    <span th:each="rLine :${repairLineList}">
                     <form action="/updateRepairLine" method="post">
                         <input type="hidden" name="repair_line_item_id" th:value="${rLine.repair_line_item_id}">
-                        <input type="text" id="description" name="description" th:value="${rLine.description}">
-                        <input type="text" id="time" name="time" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
+                        <input type="text" id="description" name="description" size="40" th:value="${rLine.description}">
+                        <input type="text" id="time" name="time" size="4" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
                         <input type="text" id="price" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
-                        <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}">Slet</a>
+                        <input type="submit" value="opdater linie">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
                     </form>
-                </span>
-            </div>
-            <div class="col">
-                <h3>Cykeldele og tilbehør:</h3>
+                    </span>
 
-                <form action="/addPartLine" method="post">
-                    <label for="stdPartline">Vælg og tilføj:</label>
-                    <select required id="stdPartline" name="std_part_line_item_id">
-                        <option selected value="">Vælg del/tilbehør</option>
-                        <option th:each="stdPartLine :${stdPartLineList}" th:value="${stdPartLine.std_part_line_item_id}" th:text="${stdPartLine.description}"></option>
-                    </select>
-                    <input type="submit" value="Tilføj">
-                </form>
 
-                <h4>Salgslinier:</h4>
-
-                <span th:each="pLine :${partLineList}">
+                    <span th:each="pLine :${partLineList}">
                     <form action="/updatePartLine" method="post">
                         <input type="hidden" name="part_line_item_id" th:value="${pLine.part_line_item_id}">
-                        <input type="text" id="description" name="description" th:value="${pLine.description}">
+                        <input type="text" id="description" name="description" size="46" th:value="${pLine.description}">
                         <input type="text" id="price" name="price" pattern="[0-9]+" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
-                        <input type="submit" value="opdater">&nbsp&nbsp<a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}">Slet</a>
+                        <input type="submit" value="opdater linie">&nbsp&nbsp<a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
+                    </form>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="col-3">
+
+                <div class="box1b">
+                    <h3>Opdater status</h3>
+
+                    <form action="/updateRepairCase" method="post">
+                        <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
+                        <input type="hidden" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
+                        <select id="statusid" name="status_id">
+                            <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
+                        </select>
+                        <input type="hidden" id="fdate" name="start_date" th:value="${repairCase.start_date}">
+                        <input type="hidden" id="cemployee" name="customer_employee_id" th:value="${repairCase.customer_employee_id}">
+                        <input type="hidden" id="tdate" name="end_date" size="15" th:value="${repairCase.end_date}">
+                        <input type="hidden" id="remployee" name="repair_employee_id" th:value="${repairCase.repair_employee_id}">
+                        <input type="hidden" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
+                        <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
+                        <input type="submit" value="gem opdatering af status">
+                    </form>
+                </div>
+
+                <br>&nbsp
+
+                <div class="box1b">
+                    <h3>Kommentarer</h3>
+                    <span>
+                    <form action="/updateComment" method="post">
+                        <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
+                        <textarea type="text" id="comment" name="comment" rows = "20" cols = "40" style="height:80px; width:100%;" th:field="${comment.comment}"></textarea>
+                        <input type="submit" value="gem opdatering af kommentar">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteComment/'}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
                     </form>
                 </span>
-            </div>
-        </div>
-    </div>
 
-    <div class="container" style="padding-left:0px">
-        &nbsp<br>
-        <div class="row">
-            <div class="col">
-                <h4>Samlet tid</h4>
-                <input style="font-size: 18px;" type="text" name="totalTime" th:value="${totalTime}"disabled>
+                </div>
+
             </div>
-            <div class="col">
-            </div>
-            <div class="col">
-                <h4>Samlet pris</h4>
-                <input style="font-size: 18px;" type="text" name="totalPrice" th:value="${totalPrice}"disabled>
-            </div>
+
         </div>
     </div>
 
