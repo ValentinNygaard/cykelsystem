@@ -55,21 +55,21 @@
                 <div class="box1b">
 
                     <h3>Kunde og cykel info</h3>
+                    <div class="tableContainer">
 
-                    <table>
-                        <tr>
-                            <td>Navn:</td>
-                            <td><span th:text="${customer.name}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Telefon:&nbsp&nbsp</td>
-                            <td><span th:text="${customer.phone_number}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Cykel:</td>
-                            <td><span th:text="${bicycle.description}"/></td>
-                        </tr>
-                    </table>
+                        <div class="tableRow">
+                            <div class="col-r">
+                                <span>Navn:</span><br>
+                                <span>Telefon:</span><br>
+                                <span>Cykel:</span>
+                            </div>
+                            <div class="col-l">
+                                <span th:text="${customer.name}"></span><br>
+                                <span th:text="${customer.phone_number}"></span><br>
+                                <span th:text="${bicycle.description}"></span>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -80,31 +80,63 @@
                     <h3>Basisoplysninger</h3>
 
                     <form action="/updateRepairCase" method="post">
+                        <div class="tableContainer">
+
+                            <div class="tableRow">
+                                <div class="col-r">
+                                    <label for="rnumber">Arbejdskort:</label>
+                                </div>
+                                <div class="col-l">
+                                    <input type="text" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.repair_number}">
+                                </div>
+                            </div>
+                            <div class="tableRow">
+                                <div class="col-r">
+                                    <label for="fdate">Oprettet:</label>
+                                </div>
+                                <div class="col-l">
+                                    <input type="date" id="fdate" name="start_date" size="10" th:value="${repairCase.start_date}">
+                                </div>
+                            </div>
+                            <div class="tableRow">
+                                <div class="col-r">
+                                    <label for="cemployee">Oprettet af:</label>
+                                </div>
+                                <div class="col-l">
+                                    <select id="cemployee" name="customer_employee_id">
+                                        <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tableRow">
+                                <div class="col-r">
+                                    <label for="remployee">Udføret af:</label>
+                                </div>
+                                <div class="col-l">
+                                    <select id="remployee" name="repair_employee_id">
+                                        <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tableRow">
+                                <div class="col-r">
+                                    <label for="tdate">Afhentes:</label>
+                                </div>
+                                <div class="col-l">
+                                    <input type="date" id="tdate" name="end_date" size="10" th:value="${repairCase.end_date}">
+                                </div>
+                            </div>
+                            <div class="tableRow">
+                                <div class="col-r">
+                                    <label for="ttime">Tidspunkt:</label>
+                                </div>
+                                <div class="col-l">
+                                    <input type="text" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.end_time}">
+                                </div>
+                            </div>
+                        </div>
                         <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-                        <label for="rnumber">Arbejdskort:</label>
-                        <input type="text" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
                         <input type="hidden" id="statusid" name="status_id" th:value="${repairCase.status_id}">
-
-                        <br>
-                        <label for="fdate">Oprettet:</label>
-                        <input type="date" id="fdate" name="start_date" size="10" th:value="${repairCase.start_date}">
-                        <br>
-                        <label for="cemployee">Oprettet af:</label>
-                        <select id="cemployee" name="customer_employee_id">
-                            <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
-                        </select>
-                        <br>
-                        <label for="remployee">Udføret af:</label>
-                        <select id="remployee" name="repair_employee_id">
-                            <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
-                        </select>
-                        <br>
-                        <label for="tdate">Afhentes:</label>
-                        <input type="date" id="tdate" name="end_date" size="10" th:value="${repairCase.end_date}">
-                        <br>
-                        <label for="ttime">Tidspunkt:</label>
-                        <input type="text" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
-
                         <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
                         <br>
                         <input type="submit" value="gem opdatering af basisoplysninger">

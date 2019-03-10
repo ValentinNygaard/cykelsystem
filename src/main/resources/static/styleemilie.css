@@ -133,6 +133,32 @@ h1{
     color: black;
 }
 
+.tableContainer {
+    display: table;
+    width: 100%;
+}
+
+.tableRow {
+    display: table-row;
+    width: 100%;
+}
+
+.col-l {
+    display: table-cell;
+    width: 50%;
+    text-align: left;
+    vertical-align: center;
+}
+
+.col-r {
+    display: table-cell;
+    width: 50%;
+    text-align: right;
+    vertical-align: center;
+    padding-right: 10px;
+}
+
+
 * {
     box-sizing: border-box;
 }
