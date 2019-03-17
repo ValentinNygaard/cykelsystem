@@ -1,63 +1,48 @@
-<!--Made by all, primary VN-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Repair Case</title>
 </head>
 <body>
 
-    <div class="topnav">
+    <nav class="topnav">
         <a href="/">CykelSystem</a>
         <a href="/overviewJens">Oversigter</a>
         <a class="active" href="/getCustomer">Arbejdskort</a>
-        <a href="/kassebilag">Kasserapport</a>
-        <a href="/customer">Kunder</a>
         <a href="/search">Søgninger</a>
+        <a href="/customer">Kunder</a>
         <a href="/settings">Indstillinger</a>
         <a href="/help">Hjælp</a>
-    </div>
+        <a href="/kassebilag">Kasserapport</a>
+    </nav>
 
     <div class="container" style="padding-left:0px">
-
-        <div class="row" style="text-align: justify-all">
-
+        <div class="row">
             <div class="col-3" style="padding-left: 35px">
-
                 <h1># <span th:text="${repairCase.repair_number}"/></h1>
-
             </div>
-
             <div class="col-6" style="padding-left: 35px">
-
-                &nbsp;<br>
-                <h2><span th:text="${repairCase.end_date}"/> - kl. <span th:text="${repairCase.end_time}"/></h2>
-
+                &nbsp;<br><h2><span th:text="${repairCase.end_date}"/> - kl. <span th:text="${repairCase.end_time}"/></h2>
             </div>
-
             <div class="col-3" style="padding-left: 35px">
-
                 &nbsp;<br>
-                <h2>Status <span th:text="${repairCase.status_id}"/></h2>
-
+                <h2><span th:text="${statusTitle}"/></h2>
             </div>
-
         </div>
     </div>
+
     <div class="container" style="padding-left:0px">
-
         <div class="row">
-
             <div class="col-3">
 
                 <div class="box1b">
-
                     <h3>Kunde og cykel info</h3>
                     <div class="tableContainer">
-
-                        <div class="tableRow">
+                        <div class="row">
                             <div class="col-r">
                                 <span>Navn:</span><br>
                                 <span>Telefon:</span><br>
@@ -70,24 +55,23 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <br>&nbsp
 
                 <div class="box1b">
-
                     <h3>Basisoplysninger</h3>
-
                     <form action="/updateRepairCase" method="post">
+                        <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
+                        <input type="hidden" name="status_id" th:value="${repairCase.status_id}">
+                        <input type="hidden" name="bicycle_id" th:value="${repairCase.bicycle_id}">
                         <div class="tableContainer">
-
                             <div class="tableRow">
                                 <div class="col-r">
                                     <label for="rnumber">Arbejdskort:</label>
                                 </div>
                                 <div class="col-l">
-                                    <input type="text" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.repair_number}">
+                                    <input type="text" id="rnumber" name="repair_number" autocomplete="off" size="6" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.repair_number}">
                                 </div>
                             </div>
                             <div class="tableRow">
@@ -110,7 +94,7 @@
                             </div>
                             <div class="tableRow">
                                 <div class="col-r">
-                                    <label for="remployee">Udføret af:</label>
+                                    <label for="remployee">Udføres af:</label>
                                 </div>
                                 <div class="col-l">
                                     <select id="remployee" name="repair_employee_id">
@@ -131,29 +115,18 @@
                                     <label for="ttime">Tidspunkt:</label>
                                 </div>
                                 <div class="col-l">
-                                    <input type="text" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.end_time}">
+                                    <input type="text" id="ttime" name="end_time" autocomplete="off" size="3" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.end_time}">
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-                        <input type="hidden" id="statusid" name="status_id" th:value="${repairCase.status_id}">
-                        <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
-                        <br>
-                        <input type="submit" value="gem opdatering af basisoplysninger">
                     </form>
-
                 </div>
-
                 <br>&nbsp
-
             </div>
-
             <div class="col-6">
 
                 <div class="box1b">
-
                     <h3>Reperationer og tilbehør</h3>
-
                     <div class="row">
                         <div class="col">
                             <form action="/addRepairLine" method="post">
@@ -161,7 +134,6 @@
                                     <option selected value="">Vælg reparation</option>
                                     <option th:each="stdRepairLine :${stdRepairLineList}" th:value="${stdRepairLine.std_repair_line_item_id}" th:text="${stdRepairLine.description}"></option>
                                 </select>
-                                <input type="submit" value="Tilføj">
                             </form>
                         </div>
                         <div class="col" style="text-align: right">
@@ -170,15 +142,11 @@
                                     <option selected value="">Vælg cykeldel/tilbehør</option>
                                     <option th:each="stdPartLine :${stdPartLineList}" th:value="${stdPartLine.std_part_line_item_id}" th:text="${stdPartLine.description}"></option>
                                 </select>
-                                <input type="submit" value="Tilføj">
                             </form>
                         </div>
                     </div>
-
                     <br>
-
                     <hr>
-
                     <div class="row">
                         <div class="col">
                             <b>Samlet tid: <span th:text="${totalTime}"/> min.</b>
@@ -187,53 +155,76 @@
                             <b><span style="text-align: right">Samlet pris: <span th:text="${totalPrice}"/></span> kr.</b>
                         </div>
                     </div>
-
                     <hr>
-
                     <br>
-
+                    <div class="row">
+                        <div class="col-x1">
+                            <span class="t1">&nbspBeskrivelse</span>
+                        </div>
+                        <div class="col-x2">
+                            <span class="t1">Tid&nbsp</span>
+                        </div>
+                        <div class="col-x3">
+                            <span class="t1">Pris&nbsp</span>
+                        </div>
+                        <div class="col-x4">
+                        </div>
+                    </div>
                     <span th:each="rLine :${repairLineList}">
-                    <form action="/updateRepairLine" method="post">
+                    <form th:id="'rl' + ${rLine.repair_line_item_id}" action="/updateRepairLine" method="post">
                         <input type="hidden" name="repair_line_item_id" th:value="${rLine.repair_line_item_id}">
-                        <input type="text" id="description" name="description" size="40" th:value="${rLine.description}">
-                        <input type="text" id="time" name="time" size="4" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
-                        <input type="text" id="price" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
-                        <input type="submit" value="opdater linie">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
+                        <div class="row">
+                            <div class="col-x1">
+                                <input type="text" class="description" name="description" autocomplete="off" size="50" th:value="${rLine.description}">
+                            </div>
+                            <div class="col-x2">
+                                <input type="text" class="time" name="time" autocomplete="off" size="4" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
+                            </div>
+                            <div class="col-x3">
+                                <input type="text" class="price" name="price" autocomplete="off" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
+                            </div>
+                            <div class="col-x4">
+                                <a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
+                            </div>
+                        </div>
                     </form>
                     </span>
-
-
                     <span th:each="pLine :${partLineList}">
-                    <form action="/updatePartLine" method="post">
+                    <form th:id="'pl' + ${pLine.part_line_item_id}" action="/updatePartLine" method="post">
                         <input type="hidden" name="part_line_item_id" th:value="${pLine.part_line_item_id}">
-                        <input type="text" id="description" name="description" size="46" th:value="${pLine.description}">
-                        <input type="text" id="price" name="price" pattern="[0-9]+" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
-                        <input type="submit" value="opdater linie">&nbsp&nbsp<a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
+                        <div class="row">
+                            <div class="col-x1">
+                                <input type="text" class="description" name="description" autocomplete="off" size="50" th:value="${pLine.description}">
+                            </div>
+                            <div class="col-x2">
+                            </div>
+                            <div class="col-x3">
+                                <input type="text" class="price" name="price" autocomplete="off" pattern="[0-9]+" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
+                            </div>
+                            <div class="col-x4">
+                                <a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
+                            </div>
+                        </div>
                     </form>
                     </span>
-
                 </div>
-
             </div>
-
             <div class="col-3">
 
                 <div class="box1b">
                     <h3>Opdater status</h3>
-
-                    <form action="/updateRepairCase" method="post">
+                    <form id="statusupdate" action="/updateRepairCase" method="post">
                         <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-                        <input type="hidden" id="rnumber" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
+                        <input type="hidden" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
                         <select id="statusid" name="status_id">
                             <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
                         </select>
-                        <input type="hidden" id="fdate" name="start_date" th:value="${repairCase.start_date}">
-                        <input type="hidden" id="cemployee" name="customer_employee_id" th:value="${repairCase.customer_employee_id}">
-                        <input type="hidden" id="tdate" name="end_date" size="15" th:value="${repairCase.end_date}">
-                        <input type="hidden" id="remployee" name="repair_employee_id" th:value="${repairCase.repair_employee_id}">
-                        <input type="hidden" id="ttime" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
-                        <input type="hidden" id="rbicycle" name="bicycle_id" th:value="${repairCase.bicycle_id}">
-                        <input type="submit" value="gem opdatering af status">
+                        <input type="hidden" name="start_date" th:value="${repairCase.start_date}">
+                        <input type="hidden" name="customer_employee_id" th:value="${repairCase.customer_employee_id}">
+                        <input type="hidden" name="end_date" size="15" th:value="${repairCase.end_date}">
+                        <input type="hidden" name="repair_employee_id" th:value="${repairCase.repair_employee_id}">
+                        <input type="hidden" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
+                        <input type="hidden" name="bicycle_id" th:value="${repairCase.bicycle_id}">
                     </form>
                 </div>
 
@@ -242,19 +233,39 @@
                 <div class="box1b">
                     <h3>Kommentarer</h3>
                     <span>
-                    <form action="/updateComment" method="post">
+                    <form id="commentbox" action="/updateComment" method="post">
                         <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
-                        <textarea type="text" id="comment" name="comment" rows = "20" cols = "40" style="height:80px; width:100%;" th:field="${comment.comment}"></textarea>
-                        <input type="submit" value="gem opdatering af kommentar">&nbsp&nbsp<a style="color: red;" th:href="@{'/deleteComment/'}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
+                        <textarea type="text" id="comments" name="comment" rows = "20" cols = "40" style="height:80px; width:100%;" th:field="${comment.comment}"></textarea>
+                        <!--<a style="color: red;" th:href="@{'/deleteComment/'}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>-->
                     </form>
                 </span>
 
                 </div>
-
             </div>
-
         </div>
     </div>
+
+    <script>
+
+        $(function() {
+            $('#stdRepairline, #stdPartline, #statusid, #remployee').change(function() {
+                this.form.submit();
+            });
+        });
+
+        $(function() {
+            $('.description, .time, .price').change(function() {
+                this.form.submit();
+            });
+        });
+
+        $(function() {
+            $('#cemployee, #comments, #rnumber, #fdate, #tdate, #ttime').change(function() {
+                this.form.submit();
+            });
+        });
+
+    </script>
 
 </body>
 </html>

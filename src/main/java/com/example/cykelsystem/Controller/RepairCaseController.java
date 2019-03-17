@@ -171,6 +171,8 @@ public class RepairCaseController {
         model.addAttribute("repairCase",repairCase);
         statusList = statusService.findAll();
         model.addAttribute("statusList", statusList);
+        String statusTitle = statusList.get(repairCase.getStatus_id()-1).getStatus_title();
+        model.addAttribute("statusTitle", statusTitle);
         employeeList = employeeService.findAllActive();
         model.addAttribute("employeeList", employeeList);
         stdRepairLineList = stdRepairLineItemService.findAll();
