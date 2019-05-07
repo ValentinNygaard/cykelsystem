@@ -9,18 +9,9 @@
 </head>
 <body>
 
-    <nav class="topnav">
-        <a href="/">CykelSystem</a>
-        <a href="/overviewJens">Oversigter</a>
-        <a class="active" href="/getCustomer">Arbejdskort</a>
-        <a href="/search">Søgninger</a>
-        <a href="/customer">Kunder</a>
-        <a href="/settings">Indstillinger</a>
-        <a href="/help">Hjælp</a>
-        <a href="/kassebilag">Kasserapport</a>
-    </nav>
+<div th:replace="fragments/topnav :: topnavi(getCustomer)"></div>
 
-    <div class="container" style="padding-left:0px">
+<div class="container" style="padding-left:0px">
         <div class="row">
             <div class="col-3" style="padding-left: 35px">
                 <h1># <span th:text="${repairCase.repair_number}"/></h1>

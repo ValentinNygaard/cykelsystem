@@ -22,17 +22,7 @@
 </head>
 <body>
 
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a class="active" href="/overviewJens">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a href="/employee">Medarbejder administration</a>
-    <a href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(overview)"></div>
 
 <div style="padding-left:16px">
     <meta name='viewport' content='width=device-width, initial-scale=1'>

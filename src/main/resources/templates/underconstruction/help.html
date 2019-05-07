@@ -8,17 +8,8 @@
 </head>
 <body>
 
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a href="/overviewJens">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a href="/employee">Medarbejder administration</a>
-    <a class="active" href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(help)"></div>
+
 
 <iframe height="650px" width="100%" src="ManualCykelSystem.pdf" name="iframe_a"></iframe>
 

@@ -14,17 +14,8 @@
 </head>
 <body>
 
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a class="active" href="/overview">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a href="/employee">Medarbejder administration</a>
-    <a href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(overview)"></div>
+
 <h1>Dette er en test</h1>
 
 <h2>Dette er rep bar delen</h2>

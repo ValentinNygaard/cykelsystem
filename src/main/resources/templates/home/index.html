@@ -8,17 +8,7 @@
 </head>
 <body>
 
-    <div class="topnav">
-        <a class="active" href="/">CykelSystem</a>
-        <a href="/overviewJens">Oversigter</a>
-        <a href="/getCustomer">Arbejdskort</a>
-        <a href="/kassebilag">Kasserapport</a>
-        <a href="/customer">Kunder</a>
-        <a href="/search">Søgninger</a>
-        <a href="/settings">Indstillinger</a>
-        <a href="/employee">Medarbejder administration</a>
-        <a href="/help">Hjælp</a>
-    </div>
+    <div th:replace="fragments/topnav :: topnavi(index)"></div>
 
     <h1>Under konstruktion!</h1>
     <h2>Herfra skal medarbejderne kunne logge ind</h2>

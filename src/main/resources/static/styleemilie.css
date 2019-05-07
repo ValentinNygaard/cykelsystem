@@ -2,6 +2,7 @@
 
 div {
     overflow:scroll;
+    overflow:hidden;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
     font-family: Arial, Helvetica;
     background-color: #f2f2f2;
     overflow:scroll;
+    overflow:hidden;
 }
 
 .box1 {

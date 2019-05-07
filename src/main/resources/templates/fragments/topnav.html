@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+</head>
+<body>
+<div class="topnav" th:fragment="topnavi(activeTab)">
+    <a th:class="${activeTab == 'index'}? 'active' : null" href="/">CykelSystem</a>
+    <a th:class="${activeTab == 'overview'}? 'active' : null"href="/overviewJens">Oversigter</a>
+    <a th:class="${activeTab == 'getCustomer'}? 'active' : null"href="/getCustomer">Arbejdskort</a>
+    <a th:class="${activeTab == 'kassebilag'}? 'active' : null"href="/kassebilag">Kasserapport</a>
+    <a th:class="${activeTab == 'customer'}? 'active' : null"href="/customer">Kunder</a>
+    <a th:class="${activeTab == 'search'}? 'active' : null"href="/search">Søgninger</a>
+    <a th:class="${activeTab == 'settings'}? 'active' : null" href="/settings">Indstillinger</a>
+    <a th:class="${activeTab == 'employee'}? 'active' : null"href="/employee">Medarbejder administration</a>
+    <a th:class="${activeTab == 'help'}? 'active' : null"href="/help">Hjælp</a>
+
+</div>
+</body>
+</html>

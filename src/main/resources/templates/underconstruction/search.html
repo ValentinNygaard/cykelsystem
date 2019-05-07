@@ -8,17 +8,8 @@
     <title>Title</title>
 </head>
 <body>
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a href="/overviewJens">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a class="active"  href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a href="/employee">Medarbejder administration</a>
-    <a href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(search)"></div>
+
 <div class="container" style="padding-left:0px">
     <h1>Dette er søgnings delen</h1>
     <h2>Her kan du lave søgninger over alle arbejdskort</h2>

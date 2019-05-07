@@ -7,17 +7,8 @@
     <title>Title</title>
 </head>
 <body>
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a href="/overviewJens">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a class="active" href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a href="/employee">Medarbejder administration</a>
-    <a href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(kassebilag)"></div>
+
 <h1>Under konstruktion!</h1>
 <h2>Kassebilag, denne side skal bruges skal bruges til at oprette kassebilag</h2>
 <p>Denne del af programmet er endnu ikke implementeret</p>

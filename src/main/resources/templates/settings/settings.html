@@ -9,19 +9,10 @@
 </head>
 <body>
 
-    <div class="topnav">
-        <a href="/">CykelSystem</a>
-        <a href="/overviewJens">Oversigter</a>
-        <a href="/getCustomer">Arbejdskort</a>
-        <a href="/kassebilag">Kasserapport</a>
-        <a href="/customer">Kunder</a>
-        <a href="/search">Søgninger</a>
-        <a class="active" href="/settings">Indstillinger</a>
-        <a href="/employee">Medarbejder administration</a>
-        <a href="/help">Hjælp</a>
-    </div>
+<div th:replace="fragments/topnav :: topnavi(settings)"></div>
 
-    <div class="container" style="padding-left:0px">
+
+<div class="container" style="padding-left:0px">
 
         <H1>Indstillinger</H1>
 
