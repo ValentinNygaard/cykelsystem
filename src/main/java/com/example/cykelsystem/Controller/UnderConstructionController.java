@@ -25,7 +25,7 @@ public class UnderConstructionController {
 
     @GetMapping("/help")
     public String help(Model model){
-        return "underconstruction/help";
+        return "help/help";
     }
 
 }
