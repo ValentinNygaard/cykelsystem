@@ -25,7 +25,7 @@ public class SearchController {
     public String search(Model model) {
         List<Status> statusList = ssi.findAll();
         model.addAttribute("status",statusList);
-        return "underconstruction/search";
+        return "searches/search";
     }
 
     @PostMapping("/searchPhone")

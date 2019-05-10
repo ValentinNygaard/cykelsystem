@@ -23,7 +23,7 @@ public class EmployeeController {
     public String employee(Model model) {
         List<Employee> employeeList = ess.findAll();
         model.addAttribute("employee",employeeList);
-        return "underconstruction/employee";
+        return "employee/employee";
     }
 
     @PostMapping("/updateEmployee/{id}")
