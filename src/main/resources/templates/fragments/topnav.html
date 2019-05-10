@@ -8,7 +8,7 @@
 <body>
 <div class="topnav" th:fragment="topnavi(activeTab)">
 
-    <a th:class="${activeTab == 'index'}? 'active' : null" href="/">CykelSystem</a>
+    <a th:class="${activeTab == 'index'}? 'active' : null"href="/index">Cykelsystem</a>
     <a th:class="${activeTab == 'overview'}? 'active' : null"href="/overview">Oversigter</a>
     <a th:class="${activeTab == 'getCustomer'}? 'active' : null"href="/getCustomer">Arbejdskort</a>
     <a th:class="${activeTab == 'kassebilag'}? 'active' : null"href="/kassebilag">Kasserapport</a>
