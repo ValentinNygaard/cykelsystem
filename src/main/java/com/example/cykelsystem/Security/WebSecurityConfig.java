@@ -1,4 +1,4 @@
-package com.example.cykelsystem.Security;import org.springframework.context.annotation.Bean;
+/*package com.example.cykelsystem.Security;import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -41,5 +41,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .build();
         return new InMemoryUserDetailsManager(user);
     }
-}
+}*/
 
