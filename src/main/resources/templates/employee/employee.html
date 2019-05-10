@@ -7,17 +7,8 @@
     <title>Medarbejder administration</title>
 </head>
 <body>
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a href="/overviewJens">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a class="active" href="/employee">Medarbejder administration</a>
-    <a href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(employee)"></div>
+
 
 <h1>Dette er medarbejder delen</h1>
 <p>du kan opdatere medarbejder oplysninger og oprette nye medarbejdere</p>

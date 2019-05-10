@@ -36,9 +36,7 @@ public class StdPartLineItemServiceImpl implements IService<StdPartLineItem> {
 
     // This method updates an objecet of StdPartLineItem
     @Override
-    public StdPartLineItem update(StdPartLineItem o) {
-        return repoImpl.update(o);
-    }
+    public StdPartLineItem update(StdPartLineItem o) { return repoImpl.update(o); }
 
     // This method deletes an object of StdPartLineItem, with a specific id
     @Override

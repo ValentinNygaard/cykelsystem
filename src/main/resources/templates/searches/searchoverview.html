@@ -10,17 +10,8 @@
     <title>find gennem telefon nummer</title>
 </head>
 <body>
-<div class="topnav">
-    <a href="/">CykelSystem</a>
-    <a href="/overviewJens">Oversigter</a>
-    <a href="/getCustomer">Arbejdskort</a>
-    <a href="/kassebilag">Kasserapport</a>
-    <a href="/customer">Kunder</a>
-    <a class="active" href="/search">Søgninger</a>
-    <a href="/settings">Indstillinger</a>
-    <a href="/employee">Medarbejder administration</a>
-    <a href="/help">Hjælp</a>
-</div>
+<div th:replace="fragments/topnav :: topnavi(search)"></div>
+
 
 <h2>Dette er en søgning af arbejdskort</h2>
 

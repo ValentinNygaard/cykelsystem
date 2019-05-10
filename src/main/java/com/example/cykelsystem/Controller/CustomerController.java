@@ -21,7 +21,7 @@ public class CustomerController {
     public String search(Model model) {
         List<Customer> customerList = csi.findAll();
         model.addAttribute("customer",customerList);
-        return "underconstruction/customer";
+        return "customer/customer";
     }
 
     @PostMapping("/updateCustomer/{id}")
@@ -41,14 +41,14 @@ public class CustomerController {
         String phoneNumber = customer.getPhone_number();
         List<Customer> customerList= csi.findByPhoneList(phoneNumber);
         model.addAttribute("customerSearch", customerList);
-        return "underconstruction/customersearch";
+        return "customer/customersearch";
     }
 
     @PostMapping("updateCustomerSearch/{id}")
     public String updateCustomerPhoneSearch(@ModelAttribute Customer customer, Model model){
         csi.update(customer);
         model.addAttribute("customerSearch", customer);
-        return "underconstruction/customersearch";
+        return "customer/customersearch";
     }
 
     @PostMapping("/searchCustomerName")
@@ -56,11 +56,6 @@ public class CustomerController {
         String name = customer.getName();
         List<Customer> customerList= csi.findByName(name);
         model.addAttribute("customerSearch", customerList);
-        return "underconstruction/customersearch";
-    }
-
-    @PostMapping("/test")
-    public String test(){
-        return "underconstruction/test";
+        return "customer/customersearch";
     }
 }
