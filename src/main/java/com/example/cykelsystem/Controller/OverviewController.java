@@ -36,6 +36,6 @@ public class OverviewController {
         model.addAttribute("repBarLineRT", repBarLinesRT);
         List<RepBarLine> repBarLines = rbls.findRepbarsWithStatusFromDate(2, 3, service.getDateForLaterThanToday(2));
         model.addAttribute("repBarLine", repBarLines);
-        return "overview";
+        return "overview/overview";
     }
 }
