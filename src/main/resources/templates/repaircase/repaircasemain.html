@@ -48,190 +48,30 @@
                     </div>
                 </div>
 
-                <br>&nbsp
 
-                <div class="box1b">
-                    <h3>Basisoplysninger</h3>
-                    <form action="/updateRepairCase" method="post">
-                        <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-                        <input type="hidden" name="status_id" th:value="${repairCase.status_id}">
-                        <input type="hidden" name="bicycle_id" th:value="${repairCase.bicycle_id}">
-                        <div class="tableContainer">
-                            <div class="tableRow">
-                                <div class="col-r">
-                                    <label for="rnumber">Arbejdskort:</label>
-                                </div>
-                                <div class="col-l">
-                                    <input type="text" id="rnumber" name="repair_number" autocomplete="off" size="6" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.repair_number}">
-                                </div>
-                            </div>
-                            <div class="tableRow">
-                                <div class="col-r">
-                                    <label for="fdate">Oprettet:</label>
-                                </div>
-                                <div class="col-l">
-                                    <input type="date" id="fdate" name="start_date" size="10" th:value="${repairCase.start_date}">
-                                </div>
-                            </div>
-                            <div class="tableRow">
-                                <div class="col-r">
-                                    <label for="cemployee">Oprettet af:</label>
-                                </div>
-                                <div class="col-l">
-                                    <select id="cemployee" name="customer_employee_id">
-                                        <option th:each="cemployee :${employeeList}" th:value="${cemployee.employee_id}" th:text="${cemployee.name}" th:selected="${repairCase.customer_employee_id == cemployee.employee_id}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tableRow">
-                                <div class="col-r">
-                                    <label for="remployee">Udføres af:</label>
-                                </div>
-                                <div class="col-l">
-                                    <select id="remployee" name="repair_employee_id">
-                                        <option th:each="remployee :${employeeList}" th:value="${remployee.employee_id}" th:text="${remployee.name}" th:selected="${repairCase.repair_employee_id == remployee.employee_id}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tableRow">
-                                <div class="col-r">
-                                    <label for="tdate">Afhentes:</label>
-                                </div>
-                                <div class="col-l">
-                                    <input type="date" id="tdate" name="end_date" size="10" th:value="${repairCase.end_date}">
-                                </div>
-                            </div>
-                            <div class="tableRow">
-                                <div class="col-r">
-                                    <label for="ttime">Tidspunkt:</label>
-                                </div>
-                                <div class="col-l">
-                                    <input type="text" id="ttime" name="end_time" autocomplete="off" size="3" pattern="[0-9]+" style="text-align:left;" th:value="${repairCase.end_time}">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
                 <br>&nbsp
             </div>
             <div class="col-6">
 
-                <div class="box1b">
-                    <h3>Reperationer og tilbehør</h3>
-                    <div class="row">
-                        <div class="col">
-                            <form action="/addRepairLine" method="post">
-                                <select required id="stdRepairline" name="std_repair_line_item_id">
-                                    <option selected value="">Vælg reparation</option>
-                                    <option th:each="stdRepairLine :${stdRepairLineList}" th:value="${stdRepairLine.std_repair_line_item_id}" th:text="${stdRepairLine.description}"></option>
-                                </select>
-                            </form>
-                        </div>
-                        <div class="col" style="text-align: right">
-                            <form action="/addPartLine" method="post">
-                                <select required id="stdPartline" name="std_part_line_item_id">
-                                    <option selected value="">Vælg cykeldel/tilbehør</option>
-                                    <option th:each="stdPartLine :${stdPartLineList}" th:value="${stdPartLine.std_part_line_item_id}" th:text="${stdPartLine.description}"></option>
-                                </select>
-                            </form>
-                        </div>
-                    </div>
-                    <br>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <b>Samlet tid: <span th:text="${totalTime}"/> min.</b>
-                        </div>
-                        <div class="col" style="text-align: right">
-                            <b><span style="text-align: right">Samlet pris: <span th:text="${totalPrice}"/></span> kr.</b>
-                        </div>
-                    </div>
-                    <hr>
-                    <br>
-                    <div class="row">
-                        <div class="col-x1">
-                            <span class="t1">&nbspBeskrivelse</span>
-                        </div>
-                        <div class="col-x2">
-                            <span class="t1">Tid&nbsp</span>
-                        </div>
-                        <div class="col-x3">
-                            <span class="t1">Pris&nbsp</span>
-                        </div>
-                        <div class="col-x4">
-                        </div>
-                    </div>
-                    <span th:each="rLine :${repairLineList}">
-                    <form th:id="'rl' + ${rLine.repair_line_item_id}" action="/updateRepairLine" method="post">
-                        <input type="hidden" name="repair_line_item_id" th:value="${rLine.repair_line_item_id}">
-                        <div class="row">
-                            <div class="col-x1">
-                                <input type="text" class="description" name="description" autocomplete="off" size="50" th:value="${rLine.description}">
-                            </div>
-                            <div class="col-x2">
-                                <input type="text" class="time" name="time" autocomplete="off" size="4" placeholder="0" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
-                            </div>
-                            <div class="col-x3">
-                                <input type="text" class="price" name="price" autocomplete="off" placeholder="0" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
-                            </div>
-                            <div class="col-x4">
-                                <a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
-                            </div>
-                        </div>
-                    </form>
-                    </span>
-                    <span th:each="pLine :${partLineList}">
-                    <form th:id="'pl' + ${pLine.part_line_item_id}" action="/updatePartLine" method="post">
-                        <input type="hidden" name="part_line_item_id" th:value="${pLine.part_line_item_id}">
-                        <div class="row">
-                            <div class="col-x1">
-                                <input type="text" class="description" name="description" autocomplete="off" size="50" th:value="${pLine.description}">
-                            </div>
-                            <div class="col-x2">
-                            </div>
-                            <div class="col-x3">
-                                <input type="text" class="price" name="price" autocomplete="off" pattern="[0-9]+" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
-                            </div>
-                            <div class="col-x4">
-                                <a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
-                            </div>
-                        </div>
-                    </form>
-                    </span>
-                </div>
+                <div th:replace="fragments/repaircase :: repairSelector"></div>
+
+                <br>&nbsp
+                dummyRepairStatus
+                <div th:replace="fragments/repaircase :: repairComment"></div>
+
+
             </div>
             <div class="col-3">
 
-                <div class="box1b">
-                    <h3>Opdater status</h3>
-                    <form id="statusupdate" action="/updateRepairCase" method="post">
-                        <input type="hidden" name="repair_case_id" th:value="${repairCase.repair_case_id}">
-                        <input type="hidden" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.repair_number}">
-                        <select id="statusid" name="status_id">
-                            <option th:each="status :${statusList}" th:value="${status.status_id}" th:text="${status.status_title}" th:selected="${repairCase.status_id == status.status_id}"></option>
-                        </select>
-                        <input type="hidden" name="start_date" th:value="${repairCase.start_date}">
-                        <input type="hidden" name="customer_employee_id" th:value="${repairCase.customer_employee_id}">
-                        <input type="hidden" name="end_date" size="15" th:value="${repairCase.end_date}">
-                        <input type="hidden" name="repair_employee_id" th:value="${repairCase.repair_employee_id}">
-                        <input type="hidden" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;" th:value="${repairCase.end_time}">
-                        <input type="hidden" name="bicycle_id" th:value="${repairCase.bicycle_id}">
-                    </form>
-                </div>
+                <div th:replace="fragments/repaircase :: repairStatus"></div>
 
                 <br>&nbsp
 
-                <div class="box1b">
-                    <h3>Kommentarer</h3>
-                    <span>
-                    <form id="commentbox" action="/updateComment" method="post">
-                        <input type="hidden" name="comment_id" th:value="${comment.repair_case_id}">
-                        <textarea type="text" id="comments" name="comment" rows = "20" cols = "40" style="height:80px; width:100%;" th:field="${comment.comment}"></textarea>
-                        <!--<a style="color: red;" th:href="@{'/deleteComment/'}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>-->
-                    </form>
-                </span>
+                <div th:replace="fragments/repaircase :: repairCaseBasic"></div>
 
-                </div>
+
+
             </div>
         </div>
     </div>
@@ -240,13 +80,13 @@
 
         $(function() {
             $('#stdRepairline, #stdPartline, #statusid, #remployee').change(function() {
-
                 this.form.submit();
             });
         });
 
         $(function() {
             $('.description, .time, .price').change(function() {
+
                 this.form.submit();
             });
         });
@@ -256,6 +96,17 @@
                 this.form.submit();
             });
         });
+
+        function tjek(element){
+            var input = element.id.valueOf();
+            console.log(input);
+            if(input = ''){
+                this.value = 0;
+            }
+            console.log(element.valueOf());
+        };
+
+
 
     </script>
 

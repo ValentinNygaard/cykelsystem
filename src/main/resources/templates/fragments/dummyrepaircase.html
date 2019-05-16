@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Repair Case</title>
+</head>
+<body>
+
+<div class="boxdummy" th:fragment="dummyRepairCaseBasic">
+    <h3>Basisoplysninger</h3>
+    <form action="/updateRepairCase" method="post">
+        <input type="hidden" name="repair_case_id" disabled>
+        <input type="hidden" name="status_id" disabled>
+        <input type="hidden" name="bicycle_id" disabled>
+        <div class="tableContainer">
+            <div class="tableRow">
+                <div class="col-r">
+                    <label for="rnumber">Arbejdskort:</label>
+                </div>
+                <div class="col-l">
+                    <input type="text" id="rnumber" name="repair_number" autocomplete="off" size="6" pattern="[0-9]+" style="text-align:left;" disabled>
+                </div>
+            </div>
+            <div class="tableRow">
+                <div class="col-r">
+                    <label for="fdate">Oprettet:</label>
+                </div>
+                <div class="col-l">
+                    <input type="date" id="fdate" name="start_date" size="10" disabled>
+                </div>
+            </div>
+            <div class="tableRow">
+                <div class="col-r">
+                    <label for="cemployee">Oprettet af:</label>
+                </div>
+                <div class="col-l">
+                    <select id="cemployee" name="customer_employee_id" disabled>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="tableRow">
+                <div class="col-r">
+                    <label for="remployee">Udføres af:</label>
+                </div>
+                <div class="col-l">
+                    <select id="remployee" name="repair_employee_id" disabled>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="tableRow">
+                <div class="col-r">
+                    <label for="tdate">Afhentes:</label>
+                </div>
+                <div class="col-l">
+                    <input type="date" id="tdate" name="end_date" size="10" disabled>
+                </div>
+            </div>
+            <div class="tableRow">
+                <div class="col-r">
+                    <label for="ttime">Tidspunkt:</label>
+                </div>
+                <div class="col-l">
+                    <input type="text" id="ttime" name="end_time" autocomplete="off" size="3" pattern="[0-9]+" style="text-align:left;"disabled>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="boxdummy" th:fragment="dummyRepairSelector">
+    <h3>Reperationer og tilbehør</h3>
+    <div class="row">
+        <div class="col">
+            <form action="/addRepairLine" method="post">
+                <select required id="stdRepairline" name="std_repair_line_item_id" disabled>
+                    <option selected value="">Vælg reparation</option>
+                    <option></option>
+                </select>
+            </form>
+        </div>
+        <div class="col" style="text-align: right">
+            <form action="/addPartLine" method="post">
+                <select required id="stdPartline" name="std_part_line_item_id" disabled>
+                    <option selected value="">Vælg cykeldel/tilbehør</option>
+                    <option></option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <b>Samlet tid: min.</b>
+        </div>
+        <div class="col" style="text-align: right">
+            <b>Samlet pris: kr.</b>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-x1">
+            <span class="t1">&nbspBeskrivelse</span>
+        </div>
+        <div class="col-x2">
+            <span class="t1">Tid&nbsp</span>
+        </div>
+        <div class="col-x3">
+            <span class="t1">Pris&nbsp</span>
+        </div>
+        <div class="col-x4">
+        </div>
+    </div>
+</div>
+
+<div class="boxdummy" th:fragment="dummyRepairStatus">
+    <h3>Opdater status</h3>
+    <form id="statusupdate" action="/updateRepairCase" method="post">
+        <input type="hidden" name="repair_case_id" disabled>
+        <input type="hidden" name="repair_number" size="6" pattern="[0-9]+" style="text-align:right;" disabled>
+        <select id="statusid" name="status_id" disabled>
+            <option></option>
+        </select>
+        <input type="hidden" name="start_date" disabled>
+        <input type="hidden" name="customer_employee_id" disabled>
+        <input type="hidden" name="end_date" size="15" disabled>
+        <input type="hidden" name="repair_employee_id" disabled>
+        <input type="hidden" name="end_time" size="3" pattern="[0-9]+" style="text-align:right;">
+        <input type="hidden" name="bicycle_id" disabled>
+    </form>
+</div>
+
+
+<div class="boxdummy" th:fragment="dummyRepairComment">
+    <h3>Kommentarer</h3>
+    <span>
+        <form id="commentbox" action="/updateComment" method="post">
+            <input type="hidden" name="comment_id" disabled>
+            <textarea type="text" id="comments" name="comment" rows = "20" cols = "40" style="height:80px; width:100%;" disabled></textarea>
+        </form>
+    </span>
+</div>
+
+<script>/*$(".boxdummy :input").attr("disabled", "disabled");*/</script>
+
+</body>
+</html>

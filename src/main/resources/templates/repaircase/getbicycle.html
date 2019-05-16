@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styleJens.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
 
     <meta charset="UTF-8">
     <title>Find Kunde</title>
@@ -12,40 +12,72 @@
 
 <div th:replace="fragments/topnav :: topnavi(getCustomer)"></div>
 
-    <div class="container" style="padding-left:0px">
 
-        <h1>Oprettelse af arbejdskort - 2</h1>
+<div class="container">
 
-        <p>&nbsp</p>
+    <h1>Oprettelse af arbejdskort</h1>
 
-        <h3>Kunde info</h3>
+</div>
 
-        <p>Navn: <span th:text="${customer.name}"/><br>
-        Telefonnummer: <span th:text="${customer.phone_number}"/></p>
+<div class="container" style="padding-left:0px">
+    <div class="row">
+        <div class="col-3">
+            <div class="box1b">
 
-        <h3>Fundne cykler</h3>
+                <h3>Kunde info</h3>
 
-        <h4>Vælg en cykel</h4>
+                <p>Navn: <span th:text="${customer.name}"/><br>
+                    Telefonnummer: <span th:text="${customer.phone_number}"/></p>
 
-        <form action="/gotBicycle" method="post">
-            <select id="bicycle" name="bicycle_id">
-                <option th:each="bicycle :${bicycleList}" th:value="${bicycle.bicycle_id}" th:text="${bicycle.description}"></option>
-            </select>
-            <input type="submit" value="Vælg cykel">
-        </form>
+                <h3>Fundne cykler</h3>
 
-        <p>Eller hvis kunden har en ny/anden cykel der skal repareres</p>
+                <h4>Vælg en cykel</h4>
 
-        <h3>Opret ny cykel for kunden</h3>
+                <form action="/gotBicycle" method="post">
+                    <select id="bicycle" name="bicycle_id">
+                        <option th:each="bicycle :${bicycleList}" th:value="${bicycle.bicycle_id}" th:text="${bicycle.description}"></option>
+                    </select>
+                    <input type="submit" value="Vælg cykel">
+                </form>
 
-        <h4>Indtast cykelbeskrivelse</h4>
+                <p>Eller hvis kunden har en ny/anden cykel der skal repareres</p>
 
-        <form action="/createNewBicycle" method="post">
-            <input type="text" name="description" placeholder="Cykelbeskrivelse">
-            <input type="submit" value="Opret cykel">
-        </form>
+                <h3>Opret ny cykel for kunden</h3>
 
+                <h4>Indtast cykelbeskrivelse</h4>
+
+                <form action="/createNewBicycle" method="post">
+                    <input type="text" name="description" placeholder="Cykelbeskrivelse">
+                    <input type="submit" value="Opret cykel">
+                </form>
+
+
+            </div>
+            <br>&nbsp
+        </div>
+        <div class="col-6">
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairSelector"></div>
+
+            <br>&nbsp
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairComment"></div>
+
+
+        </div>
+        <div class="col-3">
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairStatus"></div>
+
+            <br>&nbsp
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairCaseBasic"></div>
+
+
+
+        </div>
     </div>
+</div>
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styleJens.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
 
     <meta charset="UTF-8">
     <title>Find Kunde</title>
@@ -12,34 +12,66 @@
 
 <div th:replace="fragments/topnav :: topnavi(getCustomer)"></div>
 
-    <div class="container" style="padding-left:0px">
+<div class="container">
 
-        <h1>Oprettelse af arbejdskort</h1>
+    <h1>Oprettelse af arbejdskort</h1>
 
-        <p>&nbsp</p>
+</div>
 
-        <h3>Find kunde</h3>
+<div class="container" style="padding-left:0px">
+    <div class="row">
+        <div class="col-3">
+            <div class="box1b">
 
-        <h5>Indtast telefonnummer</h5>
+            <h3>Find kunde</h3>
 
-        <form action="/getCustomer" method="post">
-            <input type="text" name="phone_number" size="8" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefon nr."><br>
-            <input type="submit" value="Find kunde">
-        </form>
+            <h5>Indtast telefonnummer</h5>
 
-        <p>&nbsp<br>Eller hvis kunden ikke findes i systemet i forvejen<br>&nbsp</p>
+            <form action="/getCustomer" method="post">
+                <input type="text" name="phone_number" size="8" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefon nr."><br>
+                <input type="submit" value="Find kunde">
+            </form>
 
-        <h3>Opret kunde og cykel</h3>
+            <p>&nbsp<br>Eller hvis kunden ikke findes i systemet i forvejen<br>&nbsp</p>
 
-        <h5>Indtast telefonnummer, navn og cykelbeskrivelse</h5>
+            <h3>Opret kunde og cykel</h3>
 
-        <form action="/createCustomerAndBicycle" method="post">
-            <input type="text" name="phone_number" placeholder="Telefon nr." size="8" pattern="[0-9]+" th:value="${customer.phone_number}" required><br>
-            <input type="text" name="name" placeholder="Navn" th:value="${customer.name}" required><br>
-            <input type="text" name="description" placeholder="Cykelbeskrivelse" th:value="${bicycle.description}" required><br>
-            <input type="submit" value="Opret">
-        </form>
+            <h5>Indtast telefonnummer, navn og cykelbeskrivelse</h5>
+
+            <form action="/createCustomerAndBicycle" method="post">
+                <input type="text" name="phone_number" placeholder="Telefon nr." size="8" pattern="[0-9]+" th:value="${customer.phone_number}" required><br>
+                <input type="text" name="name" placeholder="Navn" th:value="${customer.name}" required><br>
+                <input type="text" name="description" placeholder="Cykelbeskrivelse" th:value="${bicycle.description}" required><br>
+                <input type="submit" value="Opret">
+            </form>
+            </div>
+            <br>&nbsp
+        </div>
+        <div class="col-6">
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairSelector"></div>
+
+            <br>&nbsp
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairComment"></div>
+
+
+        </div>
+        <div class="col-3">
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairStatus"></div>
+
+            <br>&nbsp
+
+            <div th:replace="fragments/dummyrepaircase :: dummyRepairCaseBasic"></div>
+
+
+
+        </div>
     </div>
+</div>
+
+
 
 </body>
 </html>
