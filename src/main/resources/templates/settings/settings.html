@@ -5,11 +5,12 @@
 <head>
     <title>Indstillinger</title>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-grid.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styleJens.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styleemilie.css}"/>
 </head>
 <body>
 
-<div th:replace="fragments/topnav :: topnavi(settings)"></div>
+<div th:replace="fragments/topnav :: topnavi(settings)">
+</div>
 
 
 <div class="container" style="padding-left:0px">
@@ -18,57 +19,102 @@
 
         <h3>Her kan du ændre i systemets standard værdier</h3>
 
-    </div>
+</div>
 
     <div class="container" style="padding-left:0px">
         <div class="row">
             <div class="col">
-                <h3>Standard reparations linier</h3>
+                <div class="box1b">
+                    <h3>Standard reparations linier</h3>
 
-                <h4>Ændre indhold i eksisterende linier eller slette linier</h4>
-                <span th:each="stdRepairLineItem :${stdRepairLineItem}">
-                        <form action="/updateStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" method="post">
-                            <input type="hidden" name="std_repair_line_item_id" th:value="${stdRepairLineItem.std_repair_line_item_id}">
-                            <input type="text" name="description" th:value="${stdRepairLineItem.description}">
-                            <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${stdRepairLineItem.time}">
-                            <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(stdRepairLineItem.price,1,0)}">
-                            <input type="submit" value="gem ændringer">
-                            <a style="color: red;" th:href="@{'deleteStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}">Slet</a>
-                        </form>
-                </span>
+                    <h4>Ændre indhold i eksisterende linier eller slette linier</h4>
+                    <span th:each="stdRepairLineItem :${stdRepairLineItem}">
+                            <form action="/updateStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}" method="post">
+                                <input type="hidden" name="std_repair_line_item_id" th:value="${stdRepairLineItem.std_repair_line_item_id}">
+                                <input type="text" name="description" th:value="${stdRepairLineItem.description}">
+                                <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${stdRepairLineItem.time}">
+                                <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(stdRepairLineItem.price,1,0)}">
+                                <input type="submit" value="gem ændringer">
+                                <a style="color: red;" th:href="@{'deleteStdRepairLineItem/' + ${stdRepairLineItem.std_repair_line_item_id}}">Slet</a>
+                            </form>
+                    </span>
 
-                <h4>Opret ny standard reparationslinie</h4>
-                <form action="/createStdRepairLineItem" method="post">
-                    <input type="text" name="description" placeholder="Beskrivelse" required>
-                    <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Tid" required>
-                    <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Pris" required>
-                    <input type="submit" value="opret ny">
-                </form>
+                    <h4>Opret ny standard reparationslinie</h4>
+                    <form action="/createStdRepairLineItem" method="post">
+                        <input type="text" name="description" placeholder="Beskrivelse" required>
+                        <input type="text" name="time" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Tid" required>
+                        <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" placeholder="Pris" required>
+                        <input type="submit" value="opret ny">
+                    </form>
 
-                <p>&nbsp</p>
+                    <p>&nbsp</p>
+                </div>
             </div>
             <div class="col">
-                <h3>Standard cykeldel og tilbehørs linier</h3>
+                <div class="box1b">
+                    <h3>Standard cykeldel og tilbehørs linier</h3>
 
-                <h4>Ændre indhold i eksisterende linier eller slette linier</h4>
-                <span th:each="stdPartLineItem :${stdPartLineItem}">
-                        <form action="/updateStdPartLineItem/' + ${stdPartLineItem.std_part_line_item_id}}" method="post">
-                             <input type="hidden" name="std_part_line_item_id" th:value="${stdPartLineItem.std_part_line_item_id}">
-                             <input type="text" name="description" th:value="${stdPartLineItem.description}">
-                             <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(stdPartLineItem.price,1,0)}">
-                             <input type="submit" value="gem ændringer">
-                             <a style="color: red;" th:href="@{'deleteStdPartLineItem/' + ${stdPartLineItem.std_part_line_item_id}}">Slet</a>
-                        </form>
-                    </span>
-                <h4>Opret ny cykeldel eller tilbehørs linie</h4>
-                <form action="/createStdPartLineItem" method="post">
-                    <input type="text" name="description" placeholder="Beskrivelse" required>
-                    <input type="text" name="price" size="5" style="text-align:right;" placeholder="Pris" pattern="[0-9]+" required>
-                    <input type="submit" value="opret ny">
-                </form>
+                    <h4>Ændre indhold i eksisterende linier eller slette linier</h4>
+                    <span th:each="stdPartLineItem :${stdPartLineItem}">
+                            <form action="/updateStdPartLineItem/' + ${stdPartLineItem.std_part_line_item_id}}" method="post">
+                                 <input type="hidden" name="std_part_line_item_id" th:value="${stdPartLineItem.std_part_line_item_id}">
+                                 <input type="text" name="description" th:value="${stdPartLineItem.description}">
+                                 <input type="text" name="price" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(stdPartLineItem.price,1,0)}">
+                                 <input type="submit" value="gem ændringer">
+                                 <a style="color: red;" th:href="@{'deleteStdPartLineItem/' + ${stdPartLineItem.std_part_line_item_id}}">Slet</a>
+                            </form>
+                        </span>
+                    <h4>Opret ny cykeldel eller tilbehørs linie</h4>
+                    <form action="/createStdPartLineItem" method="post">
+                        <input type="text" name="description" placeholder="Beskrivelse" required>
+                        <input type="text" name="price" size="5" style="text-align:right;" placeholder="Pris" pattern="[0-9]+" required>
+                        <input type="submit" value="opret ny">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <p>&nbsp</p>
+
+    <div class="container" style="padding-left:0px">
+        <div class="row">
+            <div class="col">
+                <div class="box1b">
+
+                    <h2>du kan opdatere medarbejder oplysninger og oprette nye medarbejdere</h2>
+
+                    <h4>Ændre indhold i eksisterende medarbejdere</h4>
+                    <span th:each="employee :${employee}">
+                    <form action="/updateEmployee/' + ${employee.employee_id}}" method="post">
+                        <input type="hidden" name="employee_id" th:value="${employee.employee_id}">
+                        <input type="text" name="name" th:value="${employee.name}">
+                        <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${employee.phone_number}">
+                        <input type="text" name="user_name" th:value="${employee.user_name}">
+                        <input type="password" name="password" placeholder="medarbejders password" th:value="${employee.password}">
+                        <input type="text" name="active" pattern="[0-1]+" size=3 th:value="${employee.active}"disabled>
+                        <input type="submit" value="gem ændringer">
+                        <button type="submit" formaction="activateEmployee"th:href="${employee}">Aktiver</button>
+                        <button type="submit" formaction="deactivateEmployee"th:href="${employee}">Deaktiver</button>
+                    </form>
+                    </span>
+
+                    <h4>Opret en ny medarbejder</h4>
+                    <form action="/createEmployee" method="post">
+                        <input type="text" name="name" placeholder="medarbejder navn" required>
+                        <input type="text" name="phone_number" size="12" pattern="[0-9]+" placeholder="Telefon nummer" required>
+                        <input type="text" name="user_name" placeholder="medarbejders username" required>
+                        <input type="password" name="password" placeholder="medarbejders password" required>
+                        <input type="text" name="avtive" size="12" pattern="[0-1]" placeholder="aktiv = 1 inaktiv=0" >
+                        <input type="submit" value="opret ny medarbejder">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>&nbsp</p>
+    <p>&nbsp</p>
 
     <script>
         function myFunction() {
@@ -76,7 +122,6 @@
             document.getElementById("demo").innerHTML = "You selected: " + x;
         }
     </script>
-
 
 </body>
 </html>

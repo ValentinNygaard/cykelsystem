@@ -1,6 +1,7 @@
 // Made by Jens, EPS
 package com.example.cykelsystem.Controller;
 import com.example.cykelsystem.Model.*;
+import com.example.cykelsystem.Service.EmployeeServiceImpl;
 import com.example.cykelsystem.Service.StdPartLineItemServiceImpl;
 import com.example.cykelsystem.Service.StdRepairLineItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class SettingsController {
     @Autowired
     StdRepairLineItemServiceImpl stdRepairLineItemService;
 
+    @Autowired
+    EmployeeServiceImpl employeeService;
+
     // We are creating some methods to navigate between different HTML sites.
 
     /* Here the method is filling lists of StdPartLineItem, and StdRepairLineItem.
@@ -30,6 +34,8 @@ public class SettingsController {
     public String settings(Model model){
         List<StdPartLineItem> stdPartLineItem = stdPartLineItemService.findAll();
         List<StdRepairLineItem> stdRepairLineItems = stdRepairLineItemService.findAll();
+        List<Employee> employeeList = employeeService.findAll();
+        model.addAttribute("employee",employeeList);
         model.addAttribute("stdPartLineItem", stdPartLineItem);
         model.addAttribute("stdRepairLineItem", stdRepairLineItems);
         return "settings/settings";
@@ -107,5 +113,40 @@ public class SettingsController {
         else{
             return "redirect:/settings";
         }
+    }
+
+    @GetMapping("/employee")
+    public String employee(Model model) {
+        List<Employee> employeeList = employeeService.findAll();
+        model.addAttribute("employee",employeeList);
+        return "employee/employee";
+    }
+
+    @PostMapping("/updateEmployee/{id}")
+    public String updateEmployee(@ModelAttribute Employee employee){
+        employeeService.update(employee);
+        return "redirect:/settings";
+    }
+
+    @PostMapping("/createEmployee")
+    public String createEmployee(@ModelAttribute Employee employee) {
+        employeeService.create(employee);
+        return "redirect:/settings";
+    }
+
+    @PostMapping("/activateEmployee")
+    public String activateEmployee(@ModelAttribute Employee employee){
+        employee.setActive(1);
+        System.out.println(employee.getActive());
+        employeeService.update(employee);
+        return "redirect:/settings";
+    }
+
+    @PostMapping("/deactivateEmployee")
+    public String deactivateEmployee(@ModelAttribute Employee employee){
+        employee.setActive(0);
+        System.out.println(employee.getActive());
+        employeeService.update(employee);
+        return "redirect:/settings";
     }
 }

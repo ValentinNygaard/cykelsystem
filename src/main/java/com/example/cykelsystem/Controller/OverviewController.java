@@ -1,9 +1,13 @@
 // Made by EB
 package com.example.cykelsystem.Controller;
 
+import com.example.cykelsystem.Model.Employee;
 import com.example.cykelsystem.Model.RepBarLine;
+import com.example.cykelsystem.Model.Status;
+import com.example.cykelsystem.Service.EmployeeServiceImpl;
 import com.example.cykelsystem.Service.RepBarLineService;
 import com.example.cykelsystem.Service.ServiceService;
+import com.example.cykelsystem.Service.StatusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.annotation.Secured;
 //import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,6 +24,12 @@ public class OverviewController {
     @Autowired
     RepBarLineService rbls;                     // We are initialising the class RepBarLineService
 
+    @Autowired
+    StatusServiceImpl ss;
+
+    @Autowired
+    EmployeeServiceImpl esi;
+
     ServiceService service = new ServiceService();
 
     /* This method is refering to the HTML site "overview", in the method we are creating a list of RepBarLIne,
@@ -30,6 +40,11 @@ public class OverviewController {
     public String overview(Model model) {
         String curentDate = service.getDateForToday();
         String tomorrow = service.getDateForTomorrow();
+
+        /*List<Employee> employeelist = esi.findAllActive();
+        model.addAttribute("employee", employeelist);*/
+        List<Status> statusList = ss.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLinesO = rbls.findRepbarsWithStatusBetweenDates(2,2, curentDate, curentDate);
         model.addAttribute("repBarLineO", repBarLinesO);
         List<RepBarLine> repBarLinesR = rbls.findRepbarsWithStatusBetweenDates(3,3, curentDate, curentDate);
