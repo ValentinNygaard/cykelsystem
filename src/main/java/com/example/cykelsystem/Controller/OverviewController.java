@@ -72,7 +72,7 @@ public class OverviewController {
         List<RepBarLine> repBarLinesFD4 = rbls.findRepbarsWithStatusBetweenDates(4,4, day4, day4);
         model.addAttribute("repBarLineFD4", repBarLinesFD4);
 
-        List<RepBarLine> repBarLines = rbls.findRepbarsWithStatusFromDate(1, 4, service.getDateForLaterThanToday(2));
+        List<RepBarLine> repBarLines = rbls.findRepbarsWithStatusFromDate(1, 4, service.getDateForLaterThanToday(5));
         model.addAttribute("repBarLine", repBarLines);
         return "overview/overview";
     }

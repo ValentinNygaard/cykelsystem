@@ -24,7 +24,63 @@
 
 <div th:replace="fragments/topnav :: topnavi(overview)"></div>
 
-<div class="container" style="padding:0px; margin: 0px">
+<!--<div class="container" style="padding:0px; margin: 0px">-->
+    <div class="box1" style="background-color: lightskyblue">
+        <h3>Søgninger i arbejdskort</h3>
+        <div class="row">
+            <div class="col">
+                <form action="/searchPhone" method="post">
+                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
+                    <input type="submit" value="søg på telefon nummer">
+                </form>
+            </div>
+            <div class="col">
+                <form action="/searchCustomer" method="post">
+                    <input type="text" name="name" th:value="${phone_number}" placeholder="kunde navn"><br>
+                    <input type="submit" value="søg på kunde navn">
+                </form>
+
+                <form action="/searchOnStatus" method="post">
+                    <select id="status" name="status_id">
+                        <option th:each="status :${status}" th:value="${status.status_id}" th:text="${status.status_title}"></option>
+                    </select>
+                    <input type="submit" value="vælg status">
+                </form>
+            </div>
+
+            <div class="col">
+                <form action="/searchBetweenDates" method="post">
+                    <input type="date" name="start_date" th:value="${start_date}"><br>
+                    <input type="date" name="end_date" th:value="${end_date}"><br>
+                    <input type="submit" value="søg mellem to afhentnings datoer">
+                </form>
+            </div>
+            <div class="col">
+                <form action="/searchBetweenStartDates" method="post">
+                    <input type="date" name="start_date" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
+                    <input type="date" name="end_date" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
+                    <input type="submit" value="søg mellem to oprettelses datoer">
+                </form>
+            </div>
+
+            <div class="col">
+                <form action="/searchOnRepairEmployee" method="post">
+                    <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
+                    <input type="date" name="start_date" th:value="${start_date}"><br>
+                    <input type="date" name="end_date" th:value="${end_date}"><br>
+                    <input type="submit" value="søg på reperations medarbejder i mellem datoer">
+                </form>
+            </div>
+            <div class="col">
+                <form action="/searchOnCreateEmployee" method="post">
+                    <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
+                    <input type="date" name="start_date" th:value="${start_date}"><br>
+                    <input type="date" name="end_date" th:value="${end_date}"><br>
+                    <input type="submit" value="søg på oprettelses medarbejder i mellem datoer">
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="row" style="padding:0px">
         <div class="col-2" style="padding:0px">
             <div>
@@ -162,111 +218,20 @@
         </div>
         <div class="col-2" style="padding:0px">
             <div>
-                <br>hej
+                <button class="label date"><span id="afterTomorrow"></span><span>Senere reperationer</span></button>
+
+                <table>
+                    <tr>
+                    </tr>
+                    <tr th:each="repBarLine :${repBarLine}">
+                        <td><a th:href="@{'/repaircasemain/' + ${repBarLine.repair_case_id}}"></a></td>
+                        <td th:text="${repBarLine.phone_number}"> </td>
+                        <td th:text="${repBarLine.repair_number}"> </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-</div>
-
-
-            <div class="box1" style="background-color: lightskyblue">
-                <h3>Søgninger i arbejdskort</h3>
-                <div class="row">
-                <div class="col">
-                <form action="/searchPhone" method="post">
-                    <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
-                    <input type="submit" value="søg på telefon nummer">
-                </form>
-                </div>
-                <div class="col">
-                <form action="/searchCustomer" method="post">
-                    <input type="text" name="name" th:value="${phone_number}" placeholder="kunde navn"><br>
-                    <input type="submit" value="søg på kunde navn">
-                </form>
-
-                <form action="/searchOnStatus" method="post">
-                    <select id="status" name="status_id">
-                        <option th:each="status :${status}" th:value="${status.status_id}" th:text="${status.status_title}"></option>
-                    </select>
-                    <input type="submit" value="vælg status">
-                </form>
-                </div>
-
-                <div class="col">
-                    <form action="/searchBetweenDates" method="post">
-                        <input type="date" name="start_date" th:value="${start_date}"><br>
-                        <input type="date" name="end_date" th:value="${end_date}"><br>
-                        <input type="submit" value="søg mellem to afhentnings datoer">
-                    </form>
-                </div>
-                <div class="col">
-                    <form action="/searchBetweenStartDates" method="post">
-                        <input type="date" name="start_date" th:value="${start_date}" placeholder="åååå-mm-dd"><br>
-                        <input type="date" name="end_date" th:value="${end_date}" placeholder="åååå-mm-dd"><br>
-                        <input type="submit" value="søg mellem to oprettelses datoer">
-                    </form>
-                </div>
-
-                <div class="col">
-                    <form action="/searchOnRepairEmployee" method="post">
-                        <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
-                        <input type="date" name="start_date" th:value="${start_date}"><br>
-                        <input type="date" name="end_date" th:value="${end_date}"><br>
-                        <input type="submit" value="søg på reperations medarbejder i mellem datoer">
-                    </form>
-                </div>
-                <div class="col">
-                    <form action="/searchOnCreateEmployee" method="post">
-                        <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
-                        <input type="date" name="start_date" th:value="${start_date}"><br>
-                        <input type="date" name="end_date" th:value="${end_date}"><br>
-                        <input type="submit" value="søg på oprettelses medarbejder i mellem datoer">
-                    </form>
-                </div>
-            </div>
-            </div>
-
-            <div style="padding-left:16px">
-                <meta name='viewport' content='width=device-width, initial-scale=1'>
-                <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            </div>
-
-
-
-
-
-            <button class="label date"><span id="afterTomorrow"></span><span> Og fremefter</span></button>
-
-            <script>
-                var day = new Date();
-                var afterTomorrow = new Date();
-                afterTomorrow.setDate(day.getDate()+2);
-                document.getElementById("afterTomorrow").innerHTML = afterTomorrow.toDateString();
-            </script>
-
-            <table>
-                <tr>
-                    <th>&nbsp</th>
-                    <th>Telefon nummer</th>
-                    <th>Arbejdskort nummer</th>
-                    <th>Status</th>
-                    <th>forventet tidsforbrug</th>
-                    <th>Afhentnings dato</th>
-                </tr>
-                <tr th:each="repBarLine :${repBarLine}">
-                    <td><a th:href="@{'/repaircasemain/' + ${repBarLine.repair_case_id}}"></a></td>
-                    <td th:text="${repBarLine.phone_number}"> </td>
-                    <td th:text="${repBarLine.repair_number}"> </td>
-                    <td th:text="${repBarLine.status_title}"> </td>
-                    <td th:text="${repBarLine.time}"> </td>
-                    <td th:text="${repBarLine.end_date}"> </td>
-                </tr>
-            </table>
-            <div/>
-
-<div/>
 
 </body>
 </html>
