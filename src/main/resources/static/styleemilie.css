@@ -226,7 +226,7 @@ table{
     text-align: center;
     color: white;
     padding: 0px;
-    font-size: 22px;
+    font-size: 16px;
     width: 100%;
 }
 
@@ -249,7 +249,9 @@ td {
 tr {
     text-align: center;
     background-color: #5F9EA0;
+    border: 1px;
     border-style: solid;
+    border-color: #404040;
     border-spacing: 1px;
 }
 
@@ -265,7 +267,18 @@ tr:hover{
     background-color: seagreen;
 }
 
+.project {
+    background-color: #b30416;
+}
 
+.project:hover{
+    background-color: #560c14;
+}
+
+.col-search {
+    display: table-cell;
+    padding-right: 16px;
+}
 
 
 

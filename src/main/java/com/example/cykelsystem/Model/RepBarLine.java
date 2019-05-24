@@ -19,8 +19,10 @@ public class RepBarLine {
     private String end_date;
     private String customer_name;
     private String employee_name;
+    private int end_time;
 
-    public RepBarLine(int repair_case_id, String phone_number, int repair_number, int time, double price, String status_title, String end_date, String customer_name, String employee_name) {
+
+    public RepBarLine(int repair_case_id, String phone_number, int repair_number, int time, double price, String status_title, String end_date, String customer_name, String employee_name, int end_time) {
         this.repair_case_id = repair_case_id;
         this.phone_number = phone_number;
         this.repair_number = repair_number;
@@ -30,9 +32,18 @@ public class RepBarLine {
         this.end_date = end_date;
         this.customer_name = customer_name;
         this.employee_name = employee_name;
+        this.end_time = end_time;
     }
 
     public RepBarLine(){}
+
+    public int getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(int end_time) {
+        this.end_time = end_time;
+    }
 
     public int getRepair_case_id() {
         return repair_case_id;

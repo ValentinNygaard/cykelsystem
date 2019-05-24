@@ -30,6 +30,8 @@ public class SearchController {
 
     @PostMapping("/searchPhone")
     public String searchPhone(@ModelAttribute Customer customer, Model model){
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         String phoneNumber = customer.getPhone_number();
         List<RepBarLine> repBarLines = rbls.findByPhoneNumber(phoneNumber);
         model.addAttribute("repBarLine", repBarLines);
@@ -38,6 +40,8 @@ public class SearchController {
 
     @PostMapping("/searchCustomer")
     public String searchCustomer(@ModelAttribute Customer customer, Model model){
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLines = rbls.findByCustomerName(customer.getName());
         model.addAttribute("repBarLine", repBarLines);
         return "searches/searchoverview";
@@ -45,6 +49,8 @@ public class SearchController {
 
     @PostMapping("searchBetweenDates")
     public String searchBetweenDates(@ModelAttribute RepairCase repairCase, Model model){
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLines = rbls.findRepbarsWithStatusBetweenDates(1, 6, repairCase.getStart_date(), repairCase.getEnd_date());
         model.addAttribute("repBarLine", repBarLines);
         return "searches/searchoverview";
@@ -52,6 +58,8 @@ public class SearchController {
 
     @PostMapping("searchBetweenStartDates")
     public String searchBetweenStartDates(@ModelAttribute RepairCase repairCase, Model model){
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLines = rbls.findByStartDate(repairCase.getStart_date(), repairCase.getEnd_date());
         model.addAttribute("repBarLine", repBarLines);
         return "searches/searchoverview";
@@ -59,6 +67,8 @@ public class SearchController {
 
     @PostMapping("searchOnStatus")
     public String searchOnStatus(@ModelAttribute Status status, Model model){
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLines = rbls.findRepBarsWithStatus(status.getStatus_id(), status.getStatus_id());
         model.addAttribute("repBarLine", repBarLines);
         return "searches/searchoverview";
@@ -66,6 +76,8 @@ public class SearchController {
 
     @PostMapping("searchOnRepairEmployee")
     public String searchOnRepairEmployee(@ModelAttribute RepairCase repairCase, Employee employee, Model model) {
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLines = rbls.findByRepairEmployeeNameAndDate(employee.getName(), repairCase.getStart_date(), repairCase.getEnd_date());
         model.addAttribute("repBarLine", repBarLines);
         return "searches/searchoverview";
@@ -73,6 +85,8 @@ public class SearchController {
 
     @PostMapping("searchOnCreateEmployee")
     public String searchOnCreateEmployee(@ModelAttribute RepairCase repairCase, Employee employee, Model model) {
+        List<Status> statusList = ssi.findAll();
+        model.addAttribute("status", statusList);
         List<RepBarLine> repBarLines = rbls.findByCreateEmployeeNameAndDate(employee.getName(), repairCase.getStart_date(), repairCase.getEnd_date());
         model.addAttribute("repBarLine", repBarLines);
         return "searches/searchoverview";

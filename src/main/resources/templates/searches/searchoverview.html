@@ -13,9 +13,49 @@
 <div th:replace="fragments/topnav :: topnavi(search)"></div>
 
 
-<h2>Dette er en søgning af arbejdskort</h2>
+<div class="box1" style="background-color: darkgrey">
+    <h3>Søgninger i arbejdskort</h3>
+    <div class="row">
+        <div class="col-search">
+            <form action="/searchPhone" method="post">
+                <input type="text" name="phone_number" size="12" pattern="[0-9]+" th:value="${phone_number}" placeholder="Telefonnummer"><br>
+                <input type="submit" value="søg">
+            </form>
+        </div>
+        <div class="col-search">
+            <form action="/searchCustomer" method="post">
+                <input type="text" name="name" th:value="${phone_number}" placeholder="kunde navn"><br>
+                <input type="submit" value="søg">
+            </form>
+        </div>
+        <div class="col-search">
+            <form action="/searchOnStatus" method="post">
+                <select id="status" name="status_id">
+                    <option th:each="status :${status}" th:value="${status.status_id}" th:text="${status.status_title}"></option>
+                </select>
+                <input type="submit" value="vælg status">
+            </form>
+        </div>
 
-<h3>Oversigt over arbejdskort</h3>
+        <form>
+            <div class="col-search">
+                <input type="date" name="start_date" th:value="${start_date}"><br>
+                <input type="date" name="end_date" th:value="${end_date}">
+                <input type="submit" value="søg" formaction="/searchBetweenDates" formmethod="post">
+                <!-- <input type="submit" value="søg mellem oprettelses datoer" formaction="/searchBetweenStartDates" formmethod="post">-->
+            </div>
+        </form>
+
+        <div class="col-search">
+            <form>
+                <input type="text" name="name" th:value="${name}" placeholder="medarbejder navn"><br>
+                <input type="date" name="start_date" th:value="${start_date}">
+                <input type="date" name="end_date" th:value="${end_date}"><br>
+                <input type="submit" value="søg" formaction="/searchOnRepairEmployee" formmethod="post">
+
+            </form>
+            <br>
+        </div>
 
 
 <button class="label date"><p id="demo"></p></button>
