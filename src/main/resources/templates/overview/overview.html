@@ -92,6 +92,7 @@
                         <td th:text="${repBarLineD0.phone_number}"> </td>
                         <td th:text="${repBarLineD0.repair_number}"> </td>
                         <td th:text="${repBarLineD0.end_time}"> </td>
+
                     </tr>
                     <tr class="project" th:each="repBarLineDP0 :${repBarLineDP0}">
                         <td><a th:href="@{'/repaircasemain/' + ${repBarLineDP0.repair_case_id}}"></a></td>

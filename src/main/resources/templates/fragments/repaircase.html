@@ -125,10 +125,10 @@
                     <input type="text" class="description" name="description" autocomplete="off" size="50" th:value="${rLine.description}">
                 </div>
                 <div class="col-x2">
-                    <input type="text" class="time" name="time" autocomplete="off" size="4" placeholder="0" pattern="[0-9]+" style="text-align:right;" th:value="${rLine.time}">
+                    <input type="text" class="time" name="time" autocomplete="off" size="4" placeholder="0" pattern="[0-9]+" style="text-align:center;" th:value="${rLine.time}">
                 </div>
                 <div class="col-x3">
-                    <input type="text" class="price" name="price" autocomplete="off" placeholder="0" size="5" pattern="[0-9]+" style="text-align:right;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
+                    <input type="text" class="price" name="price" autocomplete="off" placeholder="0" size="5" pattern="[0-9]+" style="text-align:center;" th:value="${#numbers.formatDecimal(rLine.price,1,0)}">
                 </div>
                 <div class="col-x4">
                     <a style="color: red;" th:href="@{'/deleteRepairLine/' + ${rLine.repair_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
@@ -146,7 +146,7 @@
                 <div class="col-x2">
                 </div>
                 <div class="col-x3">
-                    <input type="text" class="price" name="price" autocomplete="off" pattern="[0-9]+" size="5" style="text-align:right;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
+                    <input type="text" class="price" name="price" autocomplete="off" pattern="[0-9]+" size="5" style="text-align:center;" th:value="${#numbers.formatDecimal(pLine.price,1,0)}">
                 </div>
                 <div class="col-x4">
                     <a style="color: red;" th:href="@{'/deletePartLine/' + ${pLine.part_line_item_id}}"><img th:src="@{/images/delete.png}" alt="slet" height="16" width="16"></a>
